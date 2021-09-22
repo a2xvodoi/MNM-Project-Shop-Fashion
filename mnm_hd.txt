@@ -1,0 +1,19 @@
+Docs về Javascript: https://developer.mozilla.org/en-US/docs/Web/JavaScript or https://www.w3schools.com/js/default.asp
+Trang chủ đọc tài liệu nodejs: http://expressjs.com/ or https://www.w3schools.com/nodejs/
+
+Youtube học nodejs: https://www.youtube.com/playlist?list=PL_-VfJajZj0VatBpaXkEHK_UPHL7dW6I3
+
+Need to do project:
+- JS: biến, kiểu dữ liệu, array, object, class, if, switch, for loop, json
+- NodeJS cụ thể Express + template engine : EJS 
+	+ Cài đặt Express
+	+ Tìm hiểu cấu trúc thư mục
+	+ Code theo mô hình MVC(model-controller-view)
+	+ Route
+	+ Model
+	+ Controller
+	+ View- hiển thị view với template engine EJS
+	+ Kết nối, thao tác với DB: chủ yếu là CURD(create-update-read-delete)
+	+ Upload file
+	+ Transaction
+- DB: Mongodb
