@@ -1,0 +1,6 @@
+- Khi làm việc trên dự án không được push code lên branch main
+- Mỗi người sẽ có branch riêng để code và push code lên chính branch đó 
+hoặc có thể tạo branch theo task work nếu làm theo cách này sẽ phải có 1 file schedule để phân chia công việc
+- Khi cảm thấy công việc của mình xong thì sẽ tạo pull request để mọi người check code(comment chỗ nào cần sửa) 
+và khi không còn comment nữa-> nhóm trưởng sẽ merge code vô branch main
+- Cách tạo pull request:
