@@ -64,4 +64,11 @@ router.get('/register', (req, res, next) =>{
     });
 });
 
+/* GET info user page. */
+router.get('/info', (req, res, next) =>{
+    res.render('client/user-info', { 
+        layout: './client/layouts/main',
+    });
+});
+
 module.exports = router;
