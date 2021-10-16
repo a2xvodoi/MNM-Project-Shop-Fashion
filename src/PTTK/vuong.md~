@@ -606,7 +606,7 @@
 			    location   	(3379, 1607)
 			    anchor_loc 	1
 			    nlines     	2
-			    max_width  	362
+			    max_width  	327
 			    justify    	0
 			    label      	"Nguoi quan ly")
 			icon       	"Actor"
@@ -1657,7 +1657,7 @@
 			    location   	(1501, 841)
 			    anchor_loc 	1
 			    nlines     	2
-			    max_width  	362
+			    max_width  	327
 			    justify    	0
 			    label      	"Khach hang")
 			icon       	"Actor"
@@ -2297,6 +2297,9 @@
 	subsystem  	"Component View"
 	quidu      	"615910FF038D"
 	logical_models 	(list unit_reference_list
+	    (object Class "User"
+		quid       	"615D743C0134"
+		stereotype 	"Actor")
 	    (object Class "CSDL"
 		quid       	"615D74450210"
 		stereotype 	"Actor"
@@ -2336,9 +2339,6 @@
 			concurrency 	"Sequential"
 			opExportControl 	"Public"
 			uid        	0)))
-	    (object Class "Khach hang"
-		quid       	"615D743C0134"
-		stereotype 	"Actor")
 	    (object Class_Category "Dang ky"
 		quid       	"615DC1F902FD"
 		exportControl 	"Public"
@@ -2527,7 +2527,7 @@
 								ordinal    	11
 								quidu      	"615EBDC00034"
 								creation   	FALSE))))
-						class      	"Logical View::Khach hang"
+						class      	"Logical View::User"
 						quidu      	"615D743C0134"
 						persistence 	"Transient"
 						creationObj 	FALSE
@@ -3163,7 +3163,7 @@
 					origin_y   	0
 					items      	(list diagram_item_list
 					    (object InterObjView "$UNNAMED$75" @131
-						location   	(219, 225)
+						location   	(219, 226)
 						font       	(object Font
 						    size       	10
 						    face       	"Arial"
@@ -3175,10 +3175,10 @@
 						    default_color 	TRUE)
 						label      	(object ItemLabel
 						    Parent_View 	@131
-						    location   	(219, 250)
+						    location   	(219, 251)
 						    anchor_loc 	1
 						    nlines     	2
-						    max_width  	324
+						    max_width  	360
 						    justify    	0
 						    label      	"")
 						icon       	"Actor"
@@ -3186,8 +3186,8 @@
 						line_color 	3342489
 						fill_color 	13434879
 						quidu      	"615DC5E700A2"
-						width      	294
-						height     	3059
+						width      	120
+						height     	3058
 						icon_height 	162
 						icon_width 	120
 						icon_y_offset 	0
@@ -4553,7 +4553,7 @@
 								ordinal    	2
 								quidu      	"615F11530125"
 								creation   	FALSE))))
-						class      	"Logical View::Khach hang"
+						class      	"Logical View::User"
 						quidu      	"615D743C0134"
 						persistence 	"Transient"
 						creationObj 	FALSE
@@ -5233,7 +5233,7 @@
 					origin_y   	481
 					items      	(list diagram_item_list
 					    (object InterObjView "$UNNAMED$90" @238
-						location   	(180, 225)
+						location   	(147, 265)
 						font       	(object Font
 						    size       	10
 						    face       	"Arial"
@@ -5245,10 +5245,10 @@
 						    default_color 	TRUE)
 						label      	(object ItemLabel
 						    Parent_View 	@238
-						    location   	(180, 250)
+						    location   	(147, 290)
 						    anchor_loc 	1
 						    nlines     	2
-						    max_width  	324
+						    max_width  	360
 						    justify    	0
 						    label      	"")
 						icon       	"Actor"
@@ -5256,56 +5256,56 @@
 						line_color 	3342489
 						fill_color 	13434879
 						quidu      	"615DC5980392"
-						width      	294
-						height     	1845
+						width      	120
+						height     	1805
 						icon_height 	162
 						icon_width 	120
 						icon_y_offset 	0
 						annotation 	1
 						Focus_Of_Control 	(object Focus_Of_Control "" @239
-						    location   	(180, 426)
+						    location   	(147, 426)
 						    line_color 	3342489
 						    InterObjView 	@238
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE)
 						Focus_Of_Control 	(object Focus_Of_Control "" @240
-						    location   	(180, 802)
+						    location   	(147, 802)
 						    line_color 	3342489
 						    InterObjView 	@238
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE)
 						Focus_Of_Control 	(object Focus_Of_Control "" @241
-						    location   	(180, 1120)
+						    location   	(147, 1120)
 						    line_color 	3342489
 						    InterObjView 	@238
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE)
 						Focus_Of_Control 	(object Focus_Of_Control "" @242
-						    location   	(180, 1240)
+						    location   	(147, 1240)
 						    line_color 	3342489
 						    InterObjView 	@238
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE)
 						Focus_Of_Control 	(object Focus_Of_Control "" @243
-						    location   	(180, 1587)
+						    location   	(147, 1587)
 						    line_color 	3342489
 						    InterObjView 	@238
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE)
 						Focus_Of_Control 	(object Focus_Of_Control "" @244
-						    location   	(180, 1737)
+						    location   	(147, 1737)
 						    line_color 	3342489
 						    InterObjView 	@238
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE))
 					    (object InterObjView "$UNNAMED$91" @245
-						location   	(627, 225)
+						location   	(504, 225)
 						font       	(object Font
 						    size       	10
 						    face       	"Arial"
@@ -5317,7 +5317,7 @@
 						    default_color 	TRUE)
 						label      	(object ItemLabel
 						    Parent_View 	@245
-						    location   	(627, 225)
+						    location   	(504, 225)
 						    fill_color 	13434879
 						    anchor_loc 	1
 						    nlines     	2
@@ -5335,21 +5335,21 @@
 						icon_y_offset 	0
 						annotation 	1
 						Focus_Of_Control 	(object Focus_Of_Control "" @246
-						    location   	(627, 426)
+						    location   	(504, 426)
 						    line_color 	3342489
 						    InterObjView 	@245
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE)
 						Focus_Of_Control 	(object Focus_Of_Control "" @247
-						    location   	(627, 603)
+						    location   	(504, 603)
 						    line_color 	3342489
 						    InterObjView 	@245
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE))
 					    (object InterObjView "$UNNAMED$94" @248
-						location   	(1149, 225)
+						location   	(1026, 225)
 						font       	(object Font
 						    size       	10
 						    face       	"Arial"
@@ -5361,7 +5361,7 @@
 						    default_color 	TRUE)
 						label      	(object ItemLabel
 						    Parent_View 	@248
-						    location   	(1149, 225)
+						    location   	(1026, 225)
 						    fill_color 	13434879
 						    anchor_loc 	1
 						    nlines     	2
@@ -5379,35 +5379,35 @@
 						icon_y_offset 	0
 						annotation 	1
 						Focus_Of_Control 	(object Focus_Of_Control "" @249
-						    location   	(1149, 603)
+						    location   	(1026, 603)
 						    line_color 	3342489
 						    InterObjView 	@248
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE)
 						Focus_Of_Control 	(object Focus_Of_Control "" @250
-						    location   	(1149, 802)
+						    location   	(1026, 802)
 						    line_color 	3342489
 						    InterObjView 	@248
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE)
 						Focus_Of_Control 	(object Focus_Of_Control "" @251
-						    location   	(1149, 948)
+						    location   	(1026, 948)
 						    line_color 	3342489
 						    InterObjView 	@248
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE)
 						Focus_Of_Control 	(object Focus_Of_Control "" @252
-						    location   	(1149, 1890)
+						    location   	(1026, 1890)
 						    line_color 	3342489
 						    InterObjView 	@248
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE))
 					    (object InterObjView "$UNNAMED$96" @253
-						location   	(1675, 225)
+						location   	(1552, 225)
 						font       	(object Font
 						    size       	10
 						    face       	"Arial"
@@ -5419,7 +5419,7 @@
 						    default_color 	TRUE)
 						label      	(object ItemLabel
 						    Parent_View 	@253
-						    location   	(1675, 225)
+						    location   	(1552, 225)
 						    fill_color 	13434879
 						    anchor_loc 	1
 						    nlines     	2
@@ -5437,21 +5437,21 @@
 						icon_y_offset 	0
 						annotation 	1
 						Focus_Of_Control 	(object Focus_Of_Control "" @254
-						    location   	(1675, 948)
+						    location   	(1552, 948)
 						    line_color 	3342489
 						    InterObjView 	@253
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE)
 						Focus_Of_Control 	(object Focus_Of_Control "" @255
-						    location   	(1675, 1404)
+						    location   	(1552, 1404)
 						    line_color 	3342489
 						    InterObjView 	@253
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE))
 					    (object InterObjView "$UNNAMED$92" @256
-						location   	(2201, 225)
+						location   	(2078, 225)
 						font       	(object Font
 						    size       	10
 						    face       	"Arial"
@@ -5463,7 +5463,7 @@
 						    default_color 	TRUE)
 						label      	(object ItemLabel
 						    Parent_View 	@256
-						    location   	(2201, 225)
+						    location   	(2078, 225)
 						    fill_color 	13434879
 						    anchor_loc 	1
 						    nlines     	2
@@ -5481,21 +5481,21 @@
 						icon_y_offset 	0
 						annotation 	1
 						Focus_Of_Control 	(object Focus_Of_Control "" @257
-						    location   	(2201, 1120)
+						    location   	(2078, 1120)
 						    line_color 	3342489
 						    InterObjView 	@256
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE)
 						Focus_Of_Control 	(object Focus_Of_Control "" @258
-						    location   	(2201, 1240)
+						    location   	(2078, 1240)
 						    line_color 	3342489
 						    InterObjView 	@256
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE))
 					    (object InterObjView "$UNNAMED$95" @259
-						location   	(2676, 225)
+						location   	(2553, 225)
 						font       	(object Font
 						    size       	10
 						    face       	"Arial"
@@ -5507,7 +5507,7 @@
 						    default_color 	TRUE)
 						label      	(object ItemLabel
 						    Parent_View 	@259
-						    location   	(2676, 225)
+						    location   	(2553, 225)
 						    fill_color 	13434879
 						    anchor_loc 	1
 						    nlines     	2
@@ -5525,21 +5525,21 @@
 						icon_y_offset 	0
 						annotation 	1
 						Focus_Of_Control 	(object Focus_Of_Control "" @260
-						    location   	(2676, 1404)
+						    location   	(2553, 1404)
 						    line_color 	3342489
 						    InterObjView 	@259
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE)
 						Focus_Of_Control 	(object Focus_Of_Control "" @261
-						    location   	(2676, 1890)
+						    location   	(2553, 1890)
 						    line_color 	3342489
 						    InterObjView 	@259
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE))
 					    (object InterObjView "$UNNAMED$93" @262
-						location   	(3079, 225)
+						location   	(2956, 225)
 						font       	(object Font
 						    size       	10
 						    face       	"Arial"
@@ -5551,7 +5551,7 @@
 						    default_color 	TRUE)
 						label      	(object ItemLabel
 						    Parent_View 	@262
-						    location   	(3079, 225)
+						    location   	(2956, 225)
 						    fill_color 	13434879
 						    anchor_loc 	1
 						    nlines     	2
@@ -5569,14 +5569,14 @@
 						icon_y_offset 	0
 						annotation 	1
 						Focus_Of_Control 	(object Focus_Of_Control "" @263
-						    location   	(3079, 1587)
+						    location   	(2956, 1587)
 						    line_color 	3342489
 						    InterObjView 	@262
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE)
 						Focus_Of_Control 	(object Focus_Of_Control "" @264
-						    location   	(3079, 1737)
+						    location   	(2956, 1737)
 						    line_color 	3342489
 						    InterObjView 	@262
 						    height     	90
@@ -5595,7 +5595,7 @@
 						    default_color 	TRUE)
 						label      	(object SegLabel @266
 						    Parent_View 	@265
-						    location   	(403, 382)
+						    location   	(325, 382)
 						    font       	(object Font
 							size       	10
 							face       	"Arial"
@@ -5619,8 +5619,8 @@
 						supplier   	@245
 						Focus_Src  	@239
 						Focus_Entry 	@246
-						origin     	(195, 426)
-						terminus   	(611, 426)
+						origin     	(162, 426)
+						terminus   	(488, 426)
 						ordinal    	0)
 					    (object InterMessView "nhap ho ten, ngay sinh, gioi tinh, so dien thoai" @267
 						location   	(0, 1120)
@@ -5635,7 +5635,7 @@
 						    default_color 	TRUE)
 						label      	(object SegLabel @268
 						    Parent_View 	@267
-						    location   	(1190, 1076)
+						    location   	(1112, 1076)
 						    font       	(object Font
 							size       	10
 							face       	"Arial"
@@ -5659,8 +5659,8 @@
 						supplier   	@256
 						Focus_Src  	@241
 						Focus_Entry 	@257
-						origin     	(195, 1120)
-						terminus   	(2185, 1120)
+						origin     	(162, 1120)
+						terminus   	(2062, 1120)
 						ordinal    	4)
 					    (object InterMessView "Kiem tra( )" @269
 						location   	(0, 1240)
@@ -5675,7 +5675,7 @@
 						    default_color 	TRUE)
 						label      	(object SegLabel @270
 						    Parent_View 	@269
-						    location   	(1190, 1196)
+						    location   	(1112, 1196)
 						    font       	(object Font
 							size       	10
 							face       	"Arial"
@@ -5699,8 +5699,8 @@
 						supplier   	@256
 						Focus_Src  	@242
 						Focus_Entry 	@258
-						origin     	(195, 1240)
-						terminus   	(2185, 1240)
+						origin     	(162, 1240)
+						terminus   	(2062, 1240)
 						ordinal    	5)
 					    (object InterMessView "navigate( )" @271
 						location   	(0, 1404)
@@ -5715,7 +5715,7 @@
 						    default_color 	TRUE)
 						label      	(object SegLabel @272
 						    Parent_View 	@271
-						    location   	(2175, 1360)
+						    location   	(2052, 1360)
 						    font       	(object Font
 							size       	10
 							face       	"Arial"
@@ -5739,8 +5739,8 @@
 						supplier   	@259
 						Focus_Src  	@255
 						Focus_Entry 	@260
-						origin     	(1690, 1404)
-						terminus   	(2660, 1404)
+						origin     	(1567, 1404)
+						terminus   	(2537, 1404)
 						ordinal    	6)
 					    (object InterMessView "nhap email, mat khau, nhap lai mat khau,dia chi, chap nhan dieu khoan" @273
 						location   	(0, 1587)
@@ -5755,7 +5755,7 @@
 						    default_color 	TRUE)
 						label      	(object SegLabel @274
 						    Parent_View 	@273
-						    location   	(1629, 1545)
+						    location   	(1551, 1545)
 						    font       	(object Font
 							size       	10
 							face       	"Arial"
@@ -5779,8 +5779,8 @@
 						supplier   	@262
 						Focus_Src  	@243
 						Focus_Entry 	@263
-						origin     	(195, 1587)
-						terminus   	(3063, 1587)
+						origin     	(162, 1587)
+						terminus   	(2940, 1587)
 						ordinal    	7)
 					    (object InterMessView "Dang ky( )" @275
 						location   	(0, 1737)
@@ -5795,7 +5795,7 @@
 						    default_color 	TRUE)
 						label      	(object SegLabel @276
 						    Parent_View 	@275
-						    location   	(1629, 1693)
+						    location   	(1551, 1693)
 						    font       	(object Font
 							size       	10
 							face       	"Arial"
@@ -5819,8 +5819,8 @@
 						supplier   	@262
 						Focus_Src  	@244
 						Focus_Entry 	@264
-						origin     	(195, 1737)
-						terminus   	(3063, 1737)
+						origin     	(162, 1737)
+						terminus   	(2940, 1737)
 						ordinal    	8)
 					    (object InterMessView "navigate( )" @277
 						location   	(0, 603)
@@ -5835,7 +5835,7 @@
 						    default_color 	TRUE)
 						label      	(object SegLabel @278
 						    Parent_View 	@277
-						    location   	(887, 559)
+						    location   	(764, 559)
 						    font       	(object Font
 							size       	10
 							face       	"Arial"
@@ -5859,8 +5859,8 @@
 						supplier   	@248
 						Focus_Src  	@247
 						Focus_Entry 	@249
-						origin     	(642, 603)
-						terminus   	(1133, 603)
+						origin     	(519, 603)
+						terminus   	(1010, 603)
 						ordinal    	1)
 					    (object InterMessView "Dang ky tai khoan( )" @279
 						location   	(0, 802)
@@ -5875,7 +5875,7 @@
 						    default_color 	TRUE)
 						label      	(object SegLabel @280
 						    Parent_View 	@279
-						    location   	(664, 758)
+						    location   	(586, 758)
 						    font       	(object Font
 							size       	10
 							face       	"Arial"
@@ -5899,8 +5899,8 @@
 						supplier   	@248
 						Focus_Src  	@240
 						Focus_Entry 	@250
-						origin     	(195, 802)
-						terminus   	(1133, 802)
+						origin     	(162, 802)
+						terminus   	(1010, 802)
 						ordinal    	2)
 					    (object InterMessView "navigate( )" @281
 						location   	(0, 948)
@@ -5915,7 +5915,7 @@
 						    default_color 	TRUE)
 						label      	(object SegLabel @282
 						    Parent_View 	@281
-						    location   	(1410, 906)
+						    location   	(1287, 906)
 						    font       	(object Font
 							size       	10
 							face       	"Arial"
@@ -5939,8 +5939,8 @@
 						supplier   	@253
 						Focus_Src  	@251
 						Focus_Entry 	@254
-						origin     	(1164, 948)
-						terminus   	(1659, 948)
+						origin     	(1041, 948)
+						terminus   	(1536, 948)
 						ordinal    	3)
 					    (object InterMessView "navigate( )" @283
 						location   	(0, 1890)
@@ -5955,7 +5955,7 @@
 						    default_color 	TRUE)
 						label      	(object SegLabel @284
 						    Parent_View 	@283
-						    location   	(1913, 1846)
+						    location   	(1790, 1846)
 						    font       	(object Font
 							size       	10
 							face       	"Arial"
@@ -5979,8 +5979,8 @@
 						supplier   	@248
 						Focus_Src  	@261
 						Focus_Entry 	@252
-						origin     	(2660, 1890)
-						terminus   	(1165, 1890)
+						origin     	(2537, 1890)
+						terminus   	(1042, 1890)
 						ordinal    	9)))))
 			    (object Association "kich kiem tra"
 				quid       	"615F03F7022E"
@@ -6240,7 +6240,7 @@
 								ordinal    	3
 								quidu      	"615E9BAA03CD"
 								creation   	FALSE))))
-						class      	"Logical View::Khach hang"
+						class      	"Logical View::User"
 						quidu      	"615D743C0134"
 						persistence 	"Transient"
 						creationObj 	FALSE
@@ -6815,7 +6815,7 @@
 					mechanism_ref 	@285
 					quid       	"615E9AE003B3"
 					title      	"Basic Flow"
-					zoom       	95
+					zoom       	100
 					max_height 	28350
 					max_width  	21600
 					origin_x   	0
@@ -6837,7 +6837,7 @@
 						    location   	(180, 250)
 						    anchor_loc 	1
 						    nlines     	2
-						    max_width  	244
+						    max_width  	360
 						    justify    	0
 						    label      	"")
 						icon       	"Actor"
@@ -6845,7 +6845,7 @@
 						line_color 	3342489
 						fill_color 	13434879
 						quidu      	"615E9AF60113"
-						width      	256
+						width      	120
 						height     	1768
 						icon_height 	162
 						icon_width 	120
@@ -6966,7 +6966,7 @@
 						    y_coord    	0
 						    Nested     	TRUE))
 					    (object InterObjView "$UNNAMED$120" @319
-						location   	(1242, 247)
+						location   	(1231, 230)
 						font       	(object Font
 						    size       	10
 						    face       	"Arial"
@@ -6978,7 +6978,7 @@
 						    default_color 	TRUE)
 						label      	(object ItemLabel
 						    Parent_View 	@319
-						    location   	(1242, 272)
+						    location   	(1231, 255)
 						    anchor_loc 	1
 						    nlines     	2
 						    max_width  	471
@@ -6990,41 +6990,41 @@
 						fill_color 	13434879
 						quidu      	"615E9B790331"
 						width      	157
-						height     	1746
+						height     	1763
 						icon_height 	164
 						icon_width 	157
 						icon_y_offset 	0
 						annotation 	1
 						Focus_Of_Control 	(object Focus_Of_Control "" @320
-						    location   	(1242, 1106)
+						    location   	(1231, 1106)
 						    line_color 	3342489
 						    InterObjView 	@319
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE)
 						Focus_Of_Control 	(object Focus_Of_Control "" @321
-						    location   	(1242, 1218)
+						    location   	(1231, 1218)
 						    line_color 	3342489
 						    InterObjView 	@319
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE)
 						Focus_Of_Control 	(object Focus_Of_Control "" @322
-						    location   	(1242, 1461)
+						    location   	(1231, 1461)
 						    line_color 	3342489
 						    InterObjView 	@319
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE)
 						Focus_Of_Control 	(object Focus_Of_Control "" @323
-						    location   	(1242, 1626)
+						    location   	(1231, 1626)
 						    line_color 	3342489
 						    InterObjView 	@319
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE))
 					    (object InterObjView "$UNNAMED$121" @324
-						location   	(1675, 241)
+						location   	(1933, 237)
 						font       	(object Font
 						    size       	10
 						    face       	"Arial"
@@ -7036,7 +7036,7 @@
 						    default_color 	TRUE)
 						label      	(object ItemLabel
 						    Parent_View 	@324
-						    location   	(1675, 267)
+						    location   	(1933, 263)
 						    anchor_loc 	1
 						    nlines     	2
 						    max_width  	462
@@ -7048,20 +7048,20 @@
 						fill_color 	13434879
 						quidu      	"615E9B7B037C"
 						width      	154
-						height     	1752
+						height     	1756
 						icon_height 	153
 						icon_width 	154
 						icon_y_offset 	0
 						annotation 	1
 						Focus_Of_Control 	(object Focus_Of_Control "" @325
-						    location   	(1675, 1461)
+						    location   	(1933, 1461)
 						    line_color 	3342489
 						    InterObjView 	@324
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE))
 					    (object InterObjView "$UNNAMED$122" @326
-						location   	(2259, 229)
+						location   	(2408, 249)
 						font       	(object Font
 						    size       	10
 						    face       	"Arial"
@@ -7073,7 +7073,7 @@
 						    default_color 	TRUE)
 						label      	(object ItemLabel
 						    Parent_View 	@326
-						    location   	(2259, 255)
+						    location   	(2408, 275)
 						    anchor_loc 	1
 						    nlines     	2
 						    max_width  	687
@@ -7085,27 +7085,27 @@
 						fill_color 	13434879
 						quidu      	"615EA3E003A6"
 						width      	229
-						height     	1764
+						height     	1744
 						icon_height 	153
 						icon_width 	229
 						icon_y_offset 	0
 						annotation 	1
 						Focus_Of_Control 	(object Focus_Of_Control "" @327
-						    location   	(2259, 1218)
+						    location   	(2408, 1218)
 						    line_color 	3342489
 						    InterObjView 	@326
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE)
 						Focus_Of_Control 	(object Focus_Of_Control "" @328
-						    location   	(2259, 1349)
+						    location   	(2408, 1349)
 						    line_color 	3342489
 						    InterObjView 	@326
 						    height     	90
 						    y_coord    	0
 						    Nested     	FALSE))
 					    (object InterObjView "$UNNAMED$119" @329
-						location   	(2656, 261)
+						location   	(2900, 225)
 						font       	(object Font
 						    size       	10
 						    face       	"Arial"
@@ -7117,7 +7117,7 @@
 						    default_color 	TRUE)
 						label      	(object ItemLabel
 						    Parent_View 	@329
-						    location   	(2656, 286)
+						    location   	(2900, 250)
 						    anchor_loc 	1
 						    nlines     	2
 						    max_width  	360
@@ -7129,13 +7129,13 @@
 						fill_color 	13434879
 						quidu      	"615E9AF80021"
 						width      	120
-						height     	1732
+						height     	1768
 						icon_height 	162
 						icon_width 	120
 						icon_y_offset 	0
 						annotation 	1
 						Focus_Of_Control 	(object Focus_Of_Control "" @330
-						    location   	(2656, 1349)
+						    location   	(2900, 1349)
 						    line_color 	3342489
 						    InterObjView 	@329
 						    height     	90
@@ -7167,7 +7167,7 @@
 						    quidu      	"615E9B86011E"
 						    anchor_loc 	1
 						    nlines     	1
-						    max_width  	487
+						    max_width  	482
 						    justify    	0
 						    label      	"chon menu Danh nhap( )"
 						    pctDist    	0.500000
@@ -7207,7 +7207,7 @@
 						    quidu      	"615E9B9402B0"
 						    anchor_loc 	1
 						    nlines     	1
-						    max_width  	527
+						    max_width  	525
 						    justify    	0
 						    label      	"hien thi menu Dang nhap( )"
 						    pctDist    	0.500000
@@ -7314,7 +7314,7 @@
 						    default_color 	TRUE)
 						label      	(object SegLabel @340
 						    Parent_View 	@339
-						    location   	(939, 1062)
+						    location   	(933, 1062)
 						    font       	(object Font
 							size       	10
 							face       	"Arial"
@@ -7339,7 +7339,7 @@
 						Focus_Src  	@315
 						Focus_Entry 	@320
 						origin     	(652, 1106)
-						terminus   	(1226, 1106)
+						terminus   	(1215, 1106)
 						ordinal    	4)
 					    (object InterMessView "getTaiKhoan( )" @341
 						location   	(0, 1461)
@@ -7354,7 +7354,7 @@
 						    default_color 	TRUE)
 						label      	(object SegLabel @342
 						    Parent_View 	@341
-						    location   	(1458, 1417)
+						    location   	(1581, 1417)
 						    font       	(object Font
 							size       	10
 							face       	"Arial"
@@ -7378,8 +7378,8 @@
 						supplier   	@324
 						Focus_Src  	@322
 						Focus_Entry 	@325
-						origin     	(1257, 1461)
-						terminus   	(1659, 1461)
+						origin     	(1246, 1461)
+						terminus   	(1917, 1461)
 						ordinal    	7)
 					    (object InterMessView "return ket qua" @343
 						location   	(0, 1626)
@@ -7394,7 +7394,7 @@
 						    default_color 	TRUE)
 						label      	(object SegLabel @344
 						    Parent_View 	@343
-						    location   	(939, 1584)
+						    location   	(934, 1584)
 						    font       	(object Font
 							size       	10
 							face       	"Arial"
@@ -7418,7 +7418,7 @@
 						supplier   	@309
 						Focus_Src  	@323
 						Focus_Entry 	@316
-						origin     	(1226, 1626)
+						origin     	(1215, 1626)
 						terminus   	(653, 1626)
 						ordinal    	8)
 					    (object SelfMessView "hien thi menu chinh( )" @345
@@ -7474,7 +7474,7 @@
 						    default_color 	TRUE)
 						label      	(object SegLabel @348
 						    Parent_View 	@347
-						    location   	(1750, 1174)
+						    location   	(1819, 1174)
 						    font       	(object Font
 							size       	10
 							face       	"Arial"
@@ -7498,8 +7498,8 @@
 						supplier   	@326
 						Focus_Src  	@321
 						Focus_Entry 	@327
-						origin     	(1257, 1218)
-						terminus   	(2243, 1218)
+						origin     	(1246, 1218)
+						terminus   	(2392, 1218)
 						ordinal    	5)
 					    (object InterMessView "doc bang TaiKhoan( )" @349
 						location   	(0, 1349)
@@ -7514,7 +7514,7 @@
 						    default_color 	TRUE)
 						label      	(object SegLabel @350
 						    Parent_View 	@349
-						    location   	(2457, 1305)
+						    location   	(2653, 1305)
 						    font       	(object Font
 							size       	10
 							face       	"Arial"
@@ -7538,8 +7538,8 @@
 						supplier   	@329
 						Focus_Src  	@328
 						Focus_Entry 	@330
-						origin     	(2274, 1349)
-						terminus   	(2640, 1349)
+						origin     	(2423, 1349)
+						terminus   	(2884, 1349)
 						ordinal    	6)))))
 			    (object Association "$UNNAMED$123"
 				quid       	"615E9DC003C9"
@@ -7723,7 +7723,7 @@
 								ordinal    	5
 								quidu      	"615F141A02C0"
 								creation   	FALSE))))
-						class      	"Logical View::Khach hang"
+						class      	"Logical View::User"
 						quidu      	"615D743C0134"
 						persistence 	"Transient"
 						creationObj 	FALSE
@@ -8280,7 +8280,7 @@
 					origin_y   	0
 					items      	(list diagram_item_list
 					    (object InterObjView "$UNNAMED$132" @375
-						location   	(220, 225)
+						location   	(220, 238)
 						font       	(object Font
 						    size       	10
 						    face       	"Arial"
@@ -8292,10 +8292,10 @@
 						    default_color 	TRUE)
 						label      	(object ItemLabel
 						    Parent_View 	@375
-						    location   	(220, 250)
+						    location   	(220, 263)
 						    anchor_loc 	1
 						    nlines     	2
-						    max_width  	324
+						    max_width  	360
 						    justify    	0
 						    label      	"")
 						icon       	"Actor"
@@ -8303,8 +8303,8 @@
 						line_color 	3342489
 						fill_color 	13434879
 						quidu      	"615F16CF0385"
-						width      	294
-						height     	1211
+						width      	120
+						height     	1198
 						icon_height 	162
 						icon_width 	120
 						icon_y_offset 	0
@@ -8909,7 +8909,7 @@
 		quid       	"615F24270337"
 		exportControl 	"Public"
 		logical_models 	(list unit_reference_list
-		    (object Class "Nguoi quan ly"
+		    (object Class "Nguoiquantri"
 			quid       	"615FB0130064"
 			stereotype 	"Actor")
 		    (object Class_Category "Mo hinh phan tich"
@@ -9485,7 +9485,7 @@
 								ordinal    	22
 								quidu      	"615F34C40201"
 								creation   	FALSE))))
-						class      	"Logical View::Quan li tai khoan::Nguoi quan ly"
+						class      	"Logical View::Quan li tai khoan::Nguoiquantri"
 						quidu      	"615FB0130064"
 						persistence 	"Transient"
 						creationObj 	FALSE
@@ -9536,6 +9536,24 @@
 						line_color 	3342489
 						fill_color 	13434879
 						quidu      	"615F2E8C033F"
+						compartment 	(object Compartment
+						    Parent_View 	@410
+						    location   	(724, 1003)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    icon_style 	"Icon"
+						    fill_color 	13434879
+						    anchor     	2
+						    nlines     	16
+						    max_width  	828
+						    justify    	1)
 						width      	808
 						height     	942
 						annotation 	8
@@ -9576,6 +9594,24 @@
 						line_color 	3342489
 						fill_color 	13434879
 						quidu      	"615F2EBE02C3"
+						compartment 	(object Compartment
+						    Parent_View 	@411
+						    location   	(737, 168)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    icon_style 	"Icon"
+						    fill_color 	13434879
+						    anchor     	2
+						    nlines     	3
+						    max_width  	518
+						    justify    	1)
 						width      	512
 						height     	292
 						annotation 	8
@@ -9616,6 +9652,24 @@
 						line_color 	3342489
 						fill_color 	13434879
 						quidu      	"615F2EA60264"
+						compartment 	(object Compartment
+						    Parent_View 	@412
+						    location   	(2946, 275)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    icon_style 	"Icon"
+						    fill_color 	13434879
+						    anchor     	2
+						    nlines     	26
+						    max_width  	440
+						    justify    	1)
 						width      	440
 						height     	1442
 						annotation 	8
@@ -9656,6 +9710,24 @@
 						line_color 	3342489
 						fill_color 	13434879
 						quidu      	"615F2DF30046"
+						compartment 	(object Compartment
+						    Parent_View 	@413
+						    location   	(1369, 438)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    icon_style 	"Icon"
+						    fill_color 	13434879
+						    anchor     	2
+						    nlines     	6
+						    max_width  	1268
+						    justify    	1)
 						width      	1234
 						height     	442
 						annotation 	8
@@ -9685,7 +9757,7 @@
 							supplier   	@413
 							vertices   	(list Points
 							    (1632, 861)
-							    (1739, 757))
+							    (1741, 757))
 							line_style 	0
 							label      	(object SegLabel @416
 							    Parent_View 	@415
@@ -9727,7 +9799,7 @@
 							supplier   	@410
 							vertices   	(list Points
 							    (1632, 861)
-							    (1523, 963))
+							    (1523, 965))
 							line_style 	0
 							label      	(object SegLabel @418
 							    Parent_View 	@417
@@ -9775,7 +9847,7 @@
 							supplier   	@413
 							vertices   	(list Points
 							    (1299, 300)
-							    (1359, 320))
+							    (1359, 321))
 							line_style 	0
 							label      	(object SegLabel @421
 							    Parent_View 	@420
@@ -9938,10 +10010,10 @@
 					max_height 	28350
 					max_width  	21600
 					origin_x   	0
-					origin_y   	4882
+					origin_y   	4671
 					items      	(list diagram_item_list
 					    (object InterObjView "$UNNAMED$155" @429
-						location   	(182, 225)
+						location   	(182, 248)
 						font       	(object Font
 						    size       	10
 						    face       	"Arial"
@@ -9953,10 +10025,10 @@
 						    default_color 	TRUE)
 						label      	(object ItemLabel
 						    Parent_View 	@429
-						    location   	(182, 250)
+						    location   	(182, 273)
 						    anchor_loc 	1
 						    nlines     	2
-						    max_width  	324
+						    max_width  	360
 						    justify    	0
 						    label      	"")
 						icon       	"Actor"
@@ -9965,7 +10037,7 @@
 						fill_color 	13434879
 						quidu      	"615FB02A002B"
 						width      	120
-						height     	4729
+						height     	4706
 						icon_height 	162
 						icon_width 	120
 						icon_y_offset 	0
@@ -11975,7 +12047,7 @@
 							ordinal    	9
 							quidu      	"615FAF7D034A"
 							creation   	FALSE))))
-					class      	"Logical View::Quan li tai khoan::Nguoi quan ly"
+					class      	"Logical View::Quan li tai khoan::Nguoiquantri"
 					quidu      	"615FB0130064"
 					persistence 	"Transient"
 					creationObj 	FALSE
@@ -12527,7 +12599,7 @@
 					    location   	(180, 250)
 					    anchor_loc 	1
 					    nlines     	2
-					    max_width  	324
+					    max_width  	360
 					    justify    	0
 					    label      	"")
 					icon       	"Actor"
