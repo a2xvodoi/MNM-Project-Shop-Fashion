@@ -4,11 +4,13 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const expressLayouts = require('express-ejs-layouts');
+const db = require('./config/db');
 
 const router = require('./routes');
 
 const app = express();
-
+// .net require
+require('dotenv').config()
 // view engine setup
 app.use(expressLayouts);
 app.set('views', path.join(__dirname, 'views'));
@@ -20,6 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// db.connect();
 router(app);
 
 // catch 404 and forward to error handler
