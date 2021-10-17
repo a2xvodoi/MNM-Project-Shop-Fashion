@@ -4,4 +4,8 @@ hoặc có thể tạo branch theo task work nếu làm theo cách này sẽ ph�
 - Khi cảm thấy công việc của mình xong thì sẽ tạo pull request để mọi người check code(comment chỗ nào cần sửa) 
 và khi không còn comment nữa-> nhóm trưởng sẽ merge code vô branch main
 - Cách tạo pull request:
+<<<<<<< HEAD
 	+ Đây là ví dụ pull request
+=======
+	+ gg đi
+>>>>>>> ebac54aeea0d1ac8ff3ab3f4791ed880267aaffc
