@@ -10,8 +10,6 @@ module.exports = {
         Product.find({})
             .then(products => {
                 const data = {
-                    title: 'Bảo trì sản phẩm',
-                    layout: './admin/layouts/main',
                     products: products,
                 };
                 res.render('admin/products/index', data);
@@ -44,8 +42,6 @@ module.exports = {
         Category.find({})
             .then(categories => {
                 const data = {
-                    title: 'Thêm sản phẩm',
-                    layout: './admin/layouts/main',
                     categories: categories,
                 };
                 res.render('admin/products/create', data);
@@ -94,8 +90,6 @@ module.exports = {
         Promise.all([Product.findOne({ _id: req.params._id }), Category.find({})])
             .then(([product, categories]) => {
                 const data = {
-                    title: 'Chỉnh sửa sản phẩm',
-                    layout: './admin/layouts/main',
                     product: product,
                     categories: categories,
                 };

@@ -6,10 +6,8 @@ module.exports = {
         Category.find({})
             .then(categories => {
                 const data = {
-                    title: 'Bảo trì danh mục',
-                    layout: './admin/layouts/main',
                     categories: categories,
-                }
+                };
                 res.render('admin/categories/index', data);
             })
             .catch(next);
@@ -25,7 +23,7 @@ module.exports = {
             };
             const category = await new Category(req.body);
             category.save(opts);
-
+            
             await session.commitTransaction();
             session.endSession();
             req.session.message = {
@@ -66,7 +64,7 @@ module.exports = {
                 status: 'success',
             };
             console.log('success');
-            res.redirect('back')
+            res.redirect('/admin/categories');
         } catch (error) {
             req.session.message = {
                 type: 'update',
