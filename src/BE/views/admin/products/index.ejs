@@ -1,64 +1,117 @@
 <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Fixed Header Table</h3>
+	<div class="col-12">
+		<div class="card">
+			<div class="card-header">
+				<div class="d-flex align-items-center">
+					<h3 class="card-title">Products</h3>
+					<a href="/admin/products/create">
+						<div class="btn btn-success ml-3">Thêm mới</div>
+					</a>
+				</div>
+				<div class="card-tools">
+					<div class="input-group input-group-sm" style="width: 150px;">
+						<input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
-          <div class="card-tools">
-            <div class="input-group input-group-sm" style="width: 150px;">
-              <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-default">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body table-responsive p-0" style="height: 300px;">
-          <table class="table table-head-fixed table-striped">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>User</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Reason</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>183</td>
-                <td>John Doe</td>
-                <td>11-7-2014</td>
-                <td><span class="tag tag-success">Approved</span></td>
-                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                <td class="text-right">
-                    <a class="btn btn-primary btn-sm" href="#">
-                        <i class="fas fa-folder">
-                        </i>
-                        View
-                    </a>
-                    <a class="btn btn-info btn-sm" href="#">
-                        <i class="fas fa-pencil-alt">
-                        </i>
-                        Edit
-                    </a>
-                    <a class="btn btn-danger btn-sm" href="#">
-                        <i class="fas fa-trash">
-                        </i>
-                        Delete
-                    </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- /.card-body -->
-      </div>
-      <!-- /.card -->
-    </div>
-  </div>
+						<div class="input-group-append">
+							<button type="submit" class="btn btn-default">
+								<i class="fas fa-search"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.card-header -->
+			<div class="card-body table-responsive p-0">
+				<table class="table table-head-fixed table-striped">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Product Name</th>
+							<th>Avatar</th>
+							<th>Quantity</th>
+							<th>Price</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% products.forEach(product => { %>
+							<tr>
+								<td>
+									<%= product._id %>
+								</td>
+								<td>
+									<%= product.name %>
+								</td>
+								<td>
+									<img src="<%= product.avatar %> " alt="" width="100px" height="100px">
+								</td>
+								<td>
+									<%= product.quantity %>
+								</td>
+								<td>
+									<%= product.price %>
+								</td>
+								<td class="text-right">
+									<a class="btn btn-primary btn-sm" href="#">
+										<i class="fas fa-folder">
+										</i>
+										View
+									</a>
+									<a class="btn btn-info btn-sm" href="/admin/products/<%= product._id %>/edit">
+										<i class="fas fa-pencil-alt">
+										</i>
+										Edit
+									</a>
+									<a class="btn btn-danger btn-sm" href="#" data-toggle="modal" data-target="#deleteModal" data-_id="<%= product._id %>" data-type="products">
+										<i class="fas fa-trash">
+										</i>
+										Delete
+									</a>
+								</td>
+							</tr>
+						<% }) %>
+					</tbody>
+				</table>
+			</div>
+			<!-- /.card-body -->
+		</div>
+		<!-- /.card -->
+	</div>
+</div>
+<%- include('../partials/delete-modal') %>
+<% if (message && message.type === 'create' && message.status === 'success') { %>
+	<script>
+		Swal.fire(
+			'Success!',
+			'Thêm sản phẩm thành công!',
+			'success'
+		)
+	</script>
+<% } %>
+<% if (message && message.type === 'update' && message.status === 'success') { %>
+	<script>
+		Swal.fire(
+			'Success!',
+			'Cập nhật sản phẩm thành công!',
+			'success'
+		)
+	</script>
+<% } %>
+<% if (message && message.type === 'delete' && message.status === 'success') { %>
+	<script>
+		Swal.fire(
+			'Success!',
+			'Xoá sản phẩm thành công!',
+			'success'
+		)
+	</script>
+<% } %>
+<% if (message && message.type === 'delete' && message.status === 'error') { %>
+	<script>
+		Swal.fire(
+			'Error!',
+			'Xoá sản phẩm thành công!',
+			'error'
+		)
+	</script>
+<% } %>
