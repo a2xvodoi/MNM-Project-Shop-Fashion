@@ -1,21 +1,30 @@
 const mongoose = require('mongoose');
-const slug = require('mongoose-slug-generator');
+const shortid = require('shortid');
 const Schema = mongoose.Schema;
 
-mongoose.plugin(slug);
-
 const Product = new Schema({
-  ten: String,
-  anh: String,
-  luongCo: { type: Number, default: 0 },
-  gia: { type: Number, default: 0 },
-  mauSac: String,
-  kichThuoc: { type: String, default: "XXL" },
-  slugDm: String,
-  slug: { type: String, slug: "ten" , unique: true},
-},{
-    timestamps: true,
-}
-);
+	_id: {
+		type: String,
+		default: shortid.generate
+	},
+	name: {
+		type: String,
+		unique: true,
+		required: true,
+	},
+	avatar: String,
+	price: {
+		type: Number,
+		default: 0
+	},
+	quantity: {
+		type: Number,
+		default: 0
+	},
+	description: String,
+	slugDm: String,
+}, {
+	timestamps: true,
+});
 
-module.exports = mongoose.model('product',Product);
+module.exports = mongoose.model('product', Product);

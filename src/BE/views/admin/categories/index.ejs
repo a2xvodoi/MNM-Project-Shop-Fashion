@@ -1,0 +1,157 @@
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-header">
+				<div class="d-flex align-items-center">
+					<h3 class="card-title">Danh mục</h3>
+                    <div class="btn btn-success ml-3" data-toggle="modal" data-target="#categoryModal">Thêm mới</div>
+				</div>
+				<div class="card-tools">
+					<div class="input-group input-group-sm" style="width: 150px;">
+						<input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+						<div class="input-group-append">
+							<button type="submit" class="btn btn-default">
+								<i class="fas fa-search"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.card-header -->
+			<div class="card-body table-responsive p-0">
+				<table class="table table-head-fixed table-striped">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Tên dan mục</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+                        <% categories.forEach(category => { %>
+							<tr>
+								<td>
+									<%= category._id %>
+								</td>
+								<td>
+									<%= category.name %>
+								</td>
+								<td class="text-right">
+									<div class="btn btn-info btn-sm" data-toggle="modal" data-target="#categoryModal" data-type="update" data-_id="<%= category._id %>">
+										<i class="fas fa-pencil-alt">
+										</i>
+										Edit
+									</div>
+									<div class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-_id="<%= category._id %>" data-type="categories">
+										<i class="fas fa-trash">
+										</i>
+										Delete
+									</div>
+								</td>
+							</tr>
+						<% }) %>
+					</tbody>
+				</table>
+			</div>
+			<!-- /.card-body -->
+		</div>
+		<!-- /.card -->
+	</div>
+</div>
+
+<div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="categoryModalLabel">Thêm danh mục</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="POST" name="form-category">
+          <div class="form-group">
+            <label for="name" class="col-form-label">Tên danh mục:</label>
+            <input type="text" class="form-control" id="name" name="name">
+          </div>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <button type="submit" class="btn btn-primary btn-confirm">Xác nhận</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/delete-modal') %>
+<% if (message && message.type === 'create' && message.status === 'success') { %>
+	<script>
+		Swal.fire(
+			'Success!',
+			'Thêm danh mục thành công!',
+			'success'
+		)
+	</script>
+<% } %>
+<% if (message && message.type === 'update' && message.status === 'success') { %>
+	<script>
+		Swal.fire(
+			'Success!',
+			'Cập nhật danh mục thành công!',
+			'success'
+		)
+	</script>
+<% } %>
+<% if (message && message.type === 'delete' && message.status === 'success') { %>
+	<script>
+		Swal.fire(
+			'Success!',
+			'Xoá danh mục thành công!',
+			'success'
+		)
+	</script>
+<% } %>
+<% if (message && message.type === 'create' && message.status === 'error') { %>
+	<script>
+		Swal.fire(
+			'Error!',
+			'Thêm danh mục thất bại!',
+			'error'
+		)
+	</script>
+<% } %>
+<% if (message && message.type === 'update' && message.status === 'error') { %>
+	<script>
+		Swal.fire(
+			'Error!',
+			'Cập nhật danh mục thất bại!',
+			'error'
+		)
+	</script>
+<% } %>
+<% if (message && message.type === 'delete' && message.status === 'error') { %>
+	<script>
+		Swal.fire(
+			'Error!',
+			'Xoá danh mục thất bại!',
+			'error'
+		)
+	</script>
+<% } %>
+<script>
+    var formDelete = document.forms['form-category'];
+    $('#categoryModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var _id = button.data('_id');
+        var type = button.data('type');
+        var modal = $(this);
+        if (type === 'update') {
+            $('#categoryModalLabel').text('Cập nhật danh mục');
+            $('.btn-confirm').click((e) =>{
+            e.preventDefault();
+            formDelete.action = `/admin/categories/${_id}/update?_method=PATCH`;
+            formDelete.submit();
+        })   
+        }
+    })
+</script>
