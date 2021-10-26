@@ -5,6 +5,9 @@ const productController = require('../../controllers/admin/ProductController');
 const categoryController = require('../../controllers/admin/CategoryController');
 
 /* GET dashboard page. */
+router.get('/', homeController.index);
+
+/* GET dashboard page. */
 router.get('/dashboard', homeController.index);
 
 /* GET list product page. */

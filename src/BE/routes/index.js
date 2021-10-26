@@ -7,7 +7,7 @@ function router(app){
     app.use('/', indexRoute);
 
     //Pages Admin
-    app.use('/admin',require('../middleware/admin/Alert'), indexAdRoute);
+    app.use('/admin', require('../widgets/links'), require('../middleware/admin/Alert'), indexAdRoute);
 
     // catch 404 and forward to error handler
     app.use(function(req, res, next) {

@@ -22,31 +22,20 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
-       with font-awesome or any other icon font library -->
-                <li class="nav-item menu-open">
-                    <a href="/admin/dashboard" class="nav-link active">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/admin/categories" class="nav-link">
-                        <i class="nav-icon fa fa-bars"></i>
-                        <p>
-                            Categories
-                        </p>
-                    </a>
-                <li class="nav-item">
-                    <a href="/admin/products" class="nav-link">
-                        <i class="nav-icon fas fa-tshirt"></i>
-                        <p>
-                            Products
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
+                with font-awesome or any other icon font library -->
+                <% if (links) { %>
+                    <% links.forEach(link => { %>
+                        <li class="nav-item menu-open">
+                            <a href="<%= link.link %>" class="nav-link <%= link.active ? 'active' : '' %>">
+                                <i class="nav-icon fas <%= link.icon  %> "></i>
+                                <p>
+                                    <%= link.name %>
+                                </p>
+                            </a>
+                        </li>
+                    <% }) %>
+                <% } %>
+                <!-- <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-copy"></i>
                         <p>
@@ -105,7 +94,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
