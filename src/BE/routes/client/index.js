@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+const Product = require('../../models/Product');
 
 /* GET home page. */
 router.get('/', (req, res, next) =>{
@@ -69,6 +72,15 @@ router.get('/info', (req, res, next) =>{
     res.render('client/user-info', { 
         layout: './client/layouts/main',
     });
+});
+
+router.get('/search', (req, res, next) =>{
+
+    const {search_product} = req.query;
+    console.log(search_product);
+    Product.find({where : {name:{[Op.like]: '%' +search_product+'%'  } } })
+    .then(products => res.json(products))
+    .catch(next)
 });
 
 module.exports = router;
