@@ -1,4 +1,4 @@
-const Formidable = require('formidable');
+// const Formidable = require('formidable');
 const cloudinary = require('../../models/ModelCloudinary');
 
 const Product = require('../../models/Product');
@@ -7,7 +7,7 @@ const Category = require('../../models/Category');
 module.exports = {
     // get /admin/product
     index : (req, res, next) => {
-        Product.find({})
+        Product.find({}).populate('category')
             .then(products => {
                 const data = {
                     products: products,
@@ -51,18 +51,32 @@ module.exports = {
     // post /admin/product/create-product
     store: async (req, res, next) => {
         // parse a file upload
-        const form = new Formidable();
+        // const form = new Formidable({multiples: true});
         const session = await Product.startSession();
         session.startTransaction();
         try {
             const opts = { session, new: true };
-            form.parse(req, async (err, fields, files) => {
-                // const cloud = await cloudinary.uploadSingle(files.avatar.path);
-                var data = {
-                    ...fields,
-                    // avatar: cloud.url,
-                };
-                const product = await new Product(data);
+            // form.parse(req, async (err, fields, files) => {
+            //     res.json(fields);return;
+            //     // const cloud = await cloudinary.uploadSingle(files.avatar.path);
+            //     var data = {
+            //         ...fields,
+            //         // avatar: cloud.url,
+            //     };
+            //     const product = await new Product(data);
+            //     product.save(opts);
+                
+            //     await session.commitTransaction();
+            //     session.endSession();
+            //     console.log('success');
+            //     req.session.message = {
+            //         type: 'create',
+            //         status: 'success',
+            //     };
+            //     res.redirect('/admin/products');
+            // });
+            const data = req.body;
+            const product = await new Product(data);
                 product.save(opts);
                 
                 await session.commitTransaction();
@@ -72,8 +86,8 @@ module.exports = {
                     type: 'create',
                     status: 'success',
                 };
-                res.redirect('/admin/products');
-            });
+                res.json({status: 'success'});
+                // res.redirect('/admin/products');
         } catch (error) {
             console.log(error);
             req.session.message = {
@@ -82,7 +96,8 @@ module.exports = {
             };
             await session.abortTransaction();
             session.endSession();
-            res.redirect('back');
+            // res.redirect('back');
+            res.json({status: 'failure'});
         }
     },
     // get /admin/product/:_id/edit

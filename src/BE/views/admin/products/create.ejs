@@ -3,7 +3,7 @@
 <section class="content">
     <div class="container-fluid">
         <h3>Thêm mới sản phẩm</h3>
-        <form method="post" action="" enctype="multipart/form-data">
+        <form method="post" action="">
             <div class="card-body">
                 <div class="form-group">
                     <label for="name">Product Name</label>
@@ -11,12 +11,36 @@
                 </div>
                 <div class="form-group">
                     <label for="avatar">Avatar</label>
-                    <input type="file" id="avatar" name="avatar" class="form-control">
+                    <!-- <input type="file" id="avatar" name="avatar" class="form-control"> -->
+                    <input type="text" id="avatar" name="avatar" class="form-control">
                     <img src="" alt="avatar" width="100px" height="100px" class="img-avatar my-3">
                 </div>
                 <div class="form-group">
-                    <label for="quantity">Quantity</label>
-                    <input type="number" id="quantity" name="quantity" class="form-control">
+                    <label for="avatar">Other Image</label>
+                    <!-- <input type="file" id="avatar" name="avatar" class="form-control"> -->
+                    <input type="text" id="avatar" name="otherImg" class="form-control">
+                    <input type="text" name="otherImg" class="form-control">
+                    <input type="text" name="otherImg" class="form-control">
+                    <input type="text" name="otherImg" class="form-control">
+                    <img src="" alt="avatar" width="100px" height="100px" class="img-avatar my-3">
+                </div>
+                <div class="form-group">
+                    <label for="size_color">Size color</label>
+                    <input type="text" id="size_color" name="size_color[size]" class="form-control">
+                    <input type="text" name="size_color[color]" class="form-control">
+                    <input type="text" name="size_color[quantity]" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="size_color">Size color2</label>
+                    <input type="text" name="size_color[size]" class="form-control">
+                    <input type="text" name="size_color[color]" class="form-control">
+                    <input type="text" name="size_color[quantity]" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="size_color">Size color3</label>
+                    <input type="text" name="size_color[size]" class="form-control">
+                    <input type="text" name="size_color[color]" class="form-control">
+                    <input type="text" name="size_color[quantity]" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="price">Price</label>
@@ -28,16 +52,16 @@
                         style="margin-top: 0px; margin-bottom: 0px; height: 99px;" name="description"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="category-id">Category</label>
-                    <select id="category-id" class="form-control custom-select" name="category-id">
-                        <option selected="" disabled="">Select one</option>
-                        <option>On Hold</option>
-                        <option>Canceled</option>
-                        <option>Success</option>
+                    <label for="category">Category</label>
+                    <select id="category" class="form-control custom-select" name="category">
+                        <option>--- Chọn danh mục ---</option>
+                        <% categories.forEach(category => { %>
+                            <option value="<%= category._id %>"><%= category.name %> </option>
+                        <% }) %>
                     </select>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary" type="submit">Thêm mới</button>
+                    <button class="btn btn-primary btn-submit" type="submit">Thêm mới</button>
                     <button class="btn btn-danger" type="button">Huỷ bỏ</button>
                 </div>
             </div>
@@ -59,4 +83,49 @@
 </script>
 <% } %>
 <script src="/js/changeImage.js"></script>
+<script>
+    $('.btn-submit').click((e)=>{
+        e.preventDefault();
+
+        const name = $('input[name="name"]').val();
+        const avatar = $('input[name="avatar"]').val();
+        const description = $('textarea[name="description"]').val();
+        const category = $('select[name="category"]').val();
+        const otherImg = $('input[name="otherImg"]').map(function(){return $(this).val();}).get();
+        const size = $('input[name="size_color[size]"]').map(function(){return $(this).val();}).get();
+        const color = $('input[name="size_color[color]"]').map(function(){return $(this).val();}).get();
+        const quantity = $('input[name="size_color[quantity]"]').map(function(){return $(this).val();}).get();
+        const size_color = [];
+        for (let index = 0; index < size.length; index++) {
+            if (size[index] === '' || color[index] === '' || quantity[index] === '') {
+                continue;
+            }
+            size_color.push({
+                    'size': size[index],
+                    'color': color[index],
+                    'quantity': quantity[index],
+                })
+            
+        }
+        // console.log($('input[name="size_color[color]"]'));
+        const data = {
+            name, avatar, otherImg, size_color, description, category
+        }
+        console.log(data);return;
+        $.ajax({
+            type: "POST",
+            url: "/admin/products/create",
+            data: data,
+            dataType: "JSON",
+            success: function (response) {
+                console.log(response);
+                if (response.status == 'success') {
+                    window.location.href = '/admin/products';
+                    return;
+                }
+                window.location.href = '/admin/products/create';
+            }
+        });
+    })
+</script>
 <%- include('../layouts/foot')%>

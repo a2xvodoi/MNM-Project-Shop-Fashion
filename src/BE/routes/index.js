@@ -2,12 +2,21 @@ const createError = require('http-errors');
 const indexRoute = require('./client');
 const indexAdRoute = require('./admin/index');
 
+const passport = require('passport');
+
 function router(app){
     //Pages Client
     app.use('/', indexRoute);
 
     //Pages Admin
-    app.use('/admin', require('../widgets/links'), require('../middleware/admin/Alert'), indexAdRoute);
+    app.use('/admin', (req, res, next) => {
+        res.locals.user = req.user;
+        next();
+    }, 
+    passport.initialize(), passport.session(), 
+    require('../widgets/links'), require('../middleware/admin/Alert'), 
+    // require('../middleware/admin/Auth').requiredLogin,
+    indexAdRoute);
 
     // catch 404 and forward to error handler
     app.use(function(req, res, next) {

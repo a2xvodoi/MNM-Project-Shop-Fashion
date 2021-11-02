@@ -13,16 +13,34 @@ const Product = new Schema({
 		required: true,
 	},
 	avatar: String,
+	otherImg: [String],
 	price: {
 		type: Number,
-		default: 0
+		default: 0,
+		min: 0,
 	},
-	quantity: {
-		type: Number,
-		default: 0
-	},
+	size_color: [
+		{
+			size: {
+				type: String,
+        		enum: ['XL', 'L', 'M'],
+			},
+			color: {
+				type: String,
+				enum: ['Đen', 'Trắng', 'Xám'],
+			},
+			quantity: {
+				type: Number,
+				default: 0,
+				min: 0,
+			},
+		}
+	],
 	description: String,
-	slugDm: String,
+	category: {
+		type: String,
+		ref: 'category',
+	}
 }, {
 	timestamps: true,
 });

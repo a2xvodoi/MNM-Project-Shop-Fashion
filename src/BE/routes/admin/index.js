@@ -8,7 +8,21 @@ const categoryController = require('../../controllers/admin/CategoryController')
 router.get('/', homeController.index);
 
 /* GET dashboard page. */
-router.get('/dashboard', homeController.index);
+router.get('/dashboard',(req, res, next)=>{
+  if (req.isAuthenticated) {
+    next()
+  }
+  res.redirect('/admin/login');
+}, homeController.index);
+
+/* GET login page. */
+router.get('/login', homeController.login);
+
+/* POST login page. */
+router.post('/login', homeController.postLogin);
+
+/* POST logout page. */
+router.post('/logout', homeController.logout);
 
 /* GET list product page. */
 router.get('/products', productController.index);
