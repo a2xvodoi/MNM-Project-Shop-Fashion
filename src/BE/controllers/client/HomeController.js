@@ -25,3 +25,18 @@ module.exports.json = (req, res, next) =>{
     })
     .catch(next);
 }
+
+module.exports.get('/search', (req, res, next) =>{
+    const {search_product} = req.query;
+        console.log(search_product);
+     
+       Product.find({name: {$regex: search_product,$options: 'i'  }}).exec()
+
+            .then(products => {
+                const data = {
+                    products: products,
+                };
+                res.render('client/list-product', data);
+            })
+            .catch(next);
+});

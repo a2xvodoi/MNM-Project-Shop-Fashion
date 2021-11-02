@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
+
 const Product = require('../../models/Product');
 
 /* GET home page. */
@@ -73,14 +72,52 @@ router.get('/info', (req, res, next) =>{
         layout: './client/layouts/main',
     });
 });
+/* GET info user page. */
+router.get('/search', (req, res, next) =>{
+    const {search_product} = req.query;
+        console.log(search_product);
+     
+       Product.find({name: {$regex: search_product,$options: 'i'  }}).exec()
 
+            .then(products => {
+                const data = {
+                    products: products,
+                };
+                res.render('client/list-product', data);
+            })
+            .catch(next);
+});
+
+/*
 router.get('/search', (req, res, next) =>{
 
     const {search_product} = req.query;
     console.log(search_product);
-    Product.find({where : {name:{[Op.like]: '%' +search_product+'%'  } } })
-    .then(products => res.json(products))
+ 
+   Product.find({name: {$regex: search_product,$options: 'i'  }}).exec()
+   
+    .then(
+        products => res.json(products))
     .catch(next)
+        
+ 
 });
+*/
+
+// router.get('/search', (req, res, next) =>{
+
+//         const {search_product} = req.query;
+//         console.log(search_product);
+     
+//        Product.find({name: {$regex: search_product,$options: 'i'  }}).exec()
+
+//             .then(products => {
+//                 const data = {
+//                     products: products,
+//                 };
+//                 res.render('client/list-product', data);
+//             })
+//             .catch(next);
+// }
 
 module.exports = router;
