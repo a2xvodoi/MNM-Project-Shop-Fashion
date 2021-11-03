@@ -1,7 +1,5 @@
 const Product = require('../../models/product');
 const Category = require('../../models/category');
-const { toObj } = require('../../util/mongooes');
-const { multiToObj } = require('../../util/mongooes');
 
 module.exports.info = (req, res, next) => {
     Promise.all([
@@ -95,3 +93,15 @@ module.exports.list = (req, res, next) => {
         });
     })
 };
+
+module.exports.detail = (req, res, next) => {
+    Product.findById(req.params._id)
+        .then(product => {
+            const data = {
+                product: product,
+            };
+            res.render('client/product-detail', data);
+        })
+        .catch(next);
+};
+

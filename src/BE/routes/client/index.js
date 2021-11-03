@@ -72,6 +72,7 @@ router.get('/info', (req, res, next) =>{
         layout: './client/layouts/main',
     });
 });
+
 /* GET info user page. */
 router.get('/search', (req, res, next) =>{
     const {search_product} = req.query;
@@ -88,36 +89,16 @@ router.get('/search', (req, res, next) =>{
             .catch(next);
 });
 
-/*
-router.get('/search', (req, res, next) =>{
 
-    const {search_product} = req.query;
-    console.log(search_product);
- 
-   Product.find({name: {$regex: search_product,$options: 'i'  }}).exec()
-   
-    .then(
-        products => res.json(products))
-    .catch(next)
-        
- 
+router.get('/products/:_id', (req, res, next) => {
+    Product.findById(req.params._id)
+        .then(product => {
+            const data = {
+                product: product,
+            };
+            res.render('client/product-detail', data);
+        })
+        .catch(next);
 });
-*/
-
-// router.get('/search', (req, res, next) =>{
-
-//         const {search_product} = req.query;
-//         console.log(search_product);
-     
-//        Product.find({name: {$regex: search_product,$options: 'i'  }}).exec()
-
-//             .then(products => {
-//                 const data = {
-//                     products: products,
-//                 };
-//                 res.render('client/list-product', data);
-//             })
-//             .catch(next);
-// }
 
 module.exports = router;
