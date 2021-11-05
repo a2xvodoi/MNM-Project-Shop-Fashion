@@ -1,7 +1,5 @@
-const Product = require('../../models/product');
-const Category = require('../../models/category');
-const { toObj } = require('../../util/mongooes');
-const { multiToObj } = require('../../util/mongooes');
+const Product = require('../../models/Product');
+const Category = require('../../models/Category');
 
 module.exports.info = (req, res, next) => {
     Promise.all([
@@ -16,13 +14,6 @@ module.exports.info = (req, res, next) => {
                 session: req.session,
             });
         })
-        // Product.findOne({slug: req.params.infoProduct,slugDm: req.params.listProducts})
-        //     .then(product => {
-        //         res.render('client/info-product', { title: req.params.infoProduct,
-        //         product: toObj(product),
-        //      });
-        //         // res.json(Product);
-        //     })
         .catch(next);
 };
 
@@ -95,3 +86,19 @@ module.exports.list = (req, res, next) => {
         });
     })
 };
+
+module.exports.detail = (req, res, next) => {
+    Promise.all([
+        Product.findById(req.params._id),
+        Product.find({})
+    ])
+        .then(([product, listProducts]) => {
+            const data = {
+                product: product,
+                listProducts: listProducts,
+            };
+            res.render('client/product-detail', data);
+        })
+        .catch(next);
+};
+

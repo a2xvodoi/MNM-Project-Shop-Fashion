@@ -730,6 +730,7 @@ h2 {
 .product-item .product-image {
     position: relative;
     overflow: hidden;
+    object-fit: cover;
 }
 
 .product-item .product-image a {
@@ -741,6 +742,7 @@ h2 {
 .product-item .product-image img {
     width: 100%; 
     transition: all .3s;
+    height: 350px;
 }
 
 .product-item:hover .product-image img {

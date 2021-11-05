@@ -1,6 +1,5 @@
-const Product = require('../../models/product');
-const Category = require('../../models/category');
-const {multiToObj} = require('../../util/mongooes');
+const Product = require('../../models/Product');
+const Category = require('../../models/Category');
 
 module.exports.index = (req, res, next)=>{
     Promise.all([Product.find({}).limit(3),Category.find({}).sort({tenDm: -1})])
@@ -26,7 +25,7 @@ module.exports.json = (req, res, next) =>{
     .catch(next);
 }
 
-module.exports.get('/search', (req, res, next) =>{
+module.exports.search = (req, res, next) =>{
     const {search_product} = req.query;
         console.log(search_product);
      
@@ -39,4 +38,4 @@ module.exports.get('/search', (req, res, next) =>{
                 res.render('client/list-product', data);
             })
             .catch(next);
-});
+};

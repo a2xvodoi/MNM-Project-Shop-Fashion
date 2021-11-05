@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const Product = require('../../models/Product');
+const productController = require('../../controllers/client/ProductController');
+const homeController = require('../../controllers/client/HomeController');
 
 /* GET home page. */
 router.get('/', (req, res, next) =>{
@@ -72,52 +73,10 @@ router.get('/info', (req, res, next) =>{
         layout: './client/layouts/main',
     });
 });
+
 /* GET info user page. */
-router.get('/search', (req, res, next) =>{
-    const {search_product} = req.query;
-        console.log(search_product);
-     
-       Product.find({name: {$regex: search_product,$options: 'i'  }}).exec()
+router.get('/search', homeController.search);
 
-            .then(products => {
-                const data = {
-                    products: products,
-                };
-                res.render('client/list-product', data);
-            })
-            .catch(next);
-});
-
-/*
-router.get('/search', (req, res, next) =>{
-
-    const {search_product} = req.query;
-    console.log(search_product);
- 
-   Product.find({name: {$regex: search_product,$options: 'i'  }}).exec()
-   
-    .then(
-        products => res.json(products))
-    .catch(next)
-        
- 
-});
-*/
-
-// router.get('/search', (req, res, next) =>{
-
-//         const {search_product} = req.query;
-//         console.log(search_product);
-     
-//        Product.find({name: {$regex: search_product,$options: 'i'  }}).exec()
-
-//             .then(products => {
-//                 const data = {
-//                     products: products,
-//                 };
-//                 res.render('client/list-product', data);
-//             })
-//             .catch(next);
-// }
+router.get('/products/:_id', productController.detail);
 
 module.exports = router;
