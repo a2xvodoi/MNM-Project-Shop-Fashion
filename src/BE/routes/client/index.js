@@ -77,7 +77,6 @@ router.get('/info', (req, res, next) =>{
 /* GET info user page. */
 router.get('/search', homeController.search);
 
-// router.get('/products/:_id', productController.detail);
 router.get('/products/:_id', productController.detail);
 
 module.exports = router;
