@@ -89,37 +89,43 @@
 
         const name = $('input[name="name"]').val();
         const avatar = $('input[name="avatar"]').val();
+        const price = $('input[name="price"]').val();
         const description = $('textarea[name="description"]').val();
         const category = $('select[name="category"]').val();
         const otherImg = $('input[name="otherImg"]').map(function(){return $(this).val();}).get();
         const size = $('input[name="size_color[size]"]').map(function(){return $(this).val();}).get();
         const color = $('input[name="size_color[color]"]').map(function(){return $(this).val();}).get();
         const quantity = $('input[name="size_color[quantity]"]').map(function(){return $(this).val();}).get();
-        const size_color = [];
+        var size_color = [];
         for (let index = 0; index < size.length; index++) {
             if (size[index] === '' || color[index] === '' || quantity[index] === '') {
                 continue;
             }
             size_color.push({
-                    'size': size[index],
-                    'color': color[index],
-                    'quantity': quantity[index],
-                })
+                'size': size[index],
+                'color': color[index],
+                'quantity': quantity[index],
+            })
             
         }
         // console.log($('input[name="size_color[color]"]'));
         const data = {
-            name, avatar, otherImg, size_color, description, category
+            name: name,
+            avatar: avatar,
+            otherImg: otherImg,
+            price: price,
+            size_color: size_color,
+            description: description,
+            category: category
         }
-        console.log(data);return;
         $.ajax({
             type: "POST",
             url: "/admin/products/create",
-            data: data,
+            data: { data: JSON.stringify(data)},
             dataType: "JSON",
             success: function (response) {
-                console.log(response);
-                if (response.status == 'success') {
+                // console.log(response);
+                if (response.status === 'success') {
                     window.location.href = '/admin/products';
                     return;
                 }

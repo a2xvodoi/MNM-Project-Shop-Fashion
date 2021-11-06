@@ -78,8 +78,10 @@ router.get('/search', (req, res, next) =>{
 
     const {search_product} = req.query;
     console.log(search_product);
-    Product.find({where : {name:{[Op.like]: '%' +search_product+'%'  } } })
-    .then(products => res.json(products))
+    Product.find({name: {$regex: search_product, $options: 'i'}})
+    .then(products => {
+        res.json(products)
+    })
     .catch(next)
 });
 
