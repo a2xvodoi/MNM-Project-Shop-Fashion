@@ -74,9 +74,10 @@ router.get('/info', (req, res, next) =>{
     });
 });
 
-/* GET info user page. */
+/* GET search product page. */
 router.get('/search', homeController.search);
 
+/* GET info product page. */
 router.get('/products/:_id', productController.detail);
 
 module.exports = router;

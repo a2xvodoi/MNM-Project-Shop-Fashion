@@ -75,7 +75,8 @@ module.exports = {
             //     };
             //     res.redirect('/admin/products');
             // });
-            const data = req.body;
+            const data = JSON.parse(req.body.data);
+            // console.log(data); return;
             const product = await new Product(data);
                 product.save(opts);
                 
