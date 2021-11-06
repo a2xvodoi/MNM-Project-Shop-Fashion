@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
-const Product = require('../../models/Product');
+
+const productController = require('../../controllers/client/ProductController');
+const homeController = require('../../controllers/client/HomeController');
 
 /* GET home page. */
 router.get('/', (req, res, next) =>{
@@ -74,15 +74,10 @@ router.get('/info', (req, res, next) =>{
     });
 });
 
-router.get('/search', (req, res, next) =>{
+/* GET search product page. */
+router.get('/search', homeController.search);
 
-    const {search_product} = req.query;
-    console.log(search_product);
-    Product.find({name: {$regex: search_product, $options: 'i'}})
-    .then(products => {
-        res.json(products)
-    })
-    .catch(next)
-});
+/* GET info product page. */
+router.get('/products/:_id', productController.detail);
 
 module.exports = router;
