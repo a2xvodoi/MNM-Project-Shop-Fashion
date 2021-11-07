@@ -1,17 +1,18 @@
 const Product = require('../../models/Product');
 const Category = require('../../models/Category');
 
+
+
 module.exports.index = (req, res, next)=>{
-    Promise.all([Product.find({}).limit(3),Category.find({}).sort({tenDm: -1})])
+    Promise.all([Product.find({}).limit(3),Category.find({}).sort({createdAt: -1})])
     .then(([products,category])=>{
-        res.render('client/index', { title: 'w_fashion',
-        products:multiToObj(products),
-        category: multiToObj(category),
-        session: req.session,
+        res.render('client/index', {
+        products:products,
+        category: category,
         });
     })
     .catch(next);
-    
+
 };
 
 module.exports.json = (req, res, next) =>{
@@ -38,4 +39,16 @@ module.exports.search = (req, res, next) =>{
                 res.render('client/list-product', data);
             })
             .catch(next);
+};
+module.exports.listProduct = (req, res, next) =>{
+
+    Product.find({category: req.params.category}).exec()
+
+         .then(products => {
+             const data = {
+                 products: products,
+             };
+             res.render('client/list-product', data);
+         })
+         .catch(next);
 };

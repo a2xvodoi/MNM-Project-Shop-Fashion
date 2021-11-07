@@ -5,10 +5,10 @@ const accountController= require('../../controllers/client/AccountController');
 const productController = require('../../controllers/client/ProductController');
 const homeController = require('../../controllers/client/HomeController');
 
+
 /* GET home page. */
-router.get('/', (req, res, next) => {
-    res.render('client/index');
-});
+router.get('/',homeController.index)
+
 
 /* GET list product page. */
 router.get('/list-product', (req, res, next) => {
@@ -64,6 +64,9 @@ router.post('/register', accountController.postRegister);
 router.get('/thanh-cong', function (req, res, next) {
     res.json('thành công');
 })
+/* GET list-product page. */
+router.get('/:category', homeController.listProduct);
+
 //
 
 module.exports = router;
