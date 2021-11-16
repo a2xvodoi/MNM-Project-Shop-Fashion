@@ -684,6 +684,7 @@ h2 {
 }
 
 .product-item .product-title {
+    height: 90px;
     padding: 15px;
     text-align: center;
     background: #000000;
@@ -731,6 +732,7 @@ h2 {
     position: relative;
     overflow: hidden;
     object-fit: cover;
+    height:350px;
 }
 
 .product-item .product-image a {

@@ -3,12 +3,20 @@ const Category = require('../../models/Category');
 
 
 module.exports.index = (req, res, next)=>{
-    Promise.all([Product.find({}).limit(3),Category.find({}).sort({createdAt: -1})])
-    .then(([products,category])=>{
+    Promise.all([
+        Product.find({}).limit(3),
+        Category.find({}).sort({createdAt: -1}),
+        Product.find({}).limit(5).sort({createdAt: -1}),
+        
+    ])
+    .then(([products,category,recentProducts])=>{
         res.render('client/index', {
-        products:products,
-        category: category,
+            products,
+            category,
+            
+            recentProducts
         });
+        console.log({products:products, category:category})
     })
     .catch(next);
 
@@ -52,3 +60,5 @@ module.exports.listProduct = (req, res, next) =>{
          })
          .catch(next);
 };
+
+
