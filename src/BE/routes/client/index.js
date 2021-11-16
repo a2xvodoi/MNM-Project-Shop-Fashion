@@ -8,16 +8,6 @@ const homeController = require('../../controllers/client/HomeController');
 /* GET home page. */
 router.get('/',homeController.index)
 
-/* GET list product page. */
-router.get('/list-product', (req, res, next) => {
-    res.render('client/list-product');
-});
-
-/* GET detail product page. */
-router.get('/product-detail', (req, res, next) => {
-    res.render('client/product-detail');
-});
-
 /* GET cart page. */
 router.get('/cart', (req, res, next) => {
     res.render('client/cart');
@@ -42,9 +32,6 @@ router.get('/contact', (req, res, next) => {
 router.get('/login', (req, res, next) => {
     res.render('client/login');
 });
-
-/* GET register page. */
-router.get('/register', accountController.register);
 
 /* GET info user page. */
 router.get('/info', (req, res, next) => {

@@ -87,18 +87,17 @@ module.exports.list = (req, res, next) => {
     })
 };
 
-module.exports.detail = (req, res, next) => {
-    Promise.all([
-        Product.findById(req.params._id),
-        Product.find({})
-    ])
-        .then(([product, listProducts]) => {
-            const data = {
-                product: product,
-                listProducts: listProducts,
-            };
-            res.render('client/product-detail', data);
-        })
-        .catch(next);
+module.exports.detail = async (req, res, next) => {
+    try {
+        const product = await Product.findById(req.params._id);
+        const listProducts =  await Product.find({category: product.category, _id: { $ne: product._id }});
+        const data = {
+            product: product,
+            listProducts: listProducts,
+        };
+        return res.render('client/product-detail', data);
+    } catch (error) {
+        next(error);
+    }
 };
 

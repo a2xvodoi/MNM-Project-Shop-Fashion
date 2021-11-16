@@ -684,6 +684,7 @@ h2 {
 }
 
 .product-item .product-title {
+    height: 90px;
     padding: 15px;
     text-align: center;
     background: #000000;
@@ -731,6 +732,7 @@ h2 {
     position: relative;
     overflow: hidden;
     object-fit: cover;
+    height:350px;
 }
 
 .product-item .product-image a {
@@ -2214,6 +2216,17 @@ h2 {
 /**********************************/
 /********** Footer CSS ************/
 /**********************************/
+#map{
+    display: flex;
+    justify-content: center;
+    background-color: #FFFFFF;
+    padding-bottom: 20px;
+}
+
+#map iframe{
+    width: calc(100vw - 60px)!important;
+}
+
 .footer {
     position: relative;
     padding: 30px 0 0 0;
@@ -2361,7 +2374,7 @@ h2 {
 /**********************************/
 .footer-bottom {
     position: relative;
-    padding: 25px 0;
+    padding: 10px 0;
     background: #000000;
 }
 
