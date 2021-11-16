@@ -3,35 +3,14 @@ const Category = require('../../models/Category');
 
 
 module.exports.index = (req, res, next)=>{
-    Promise.all([
-        Product.find({}).limit(3),
-        Category.find({}).sort({createdAt: -1}),
-        Product.find({}).limit(5).sort({createdAt: -1}),
-        
-    ])
-    .then(([products,category,recentProducts])=>{
-        res.render('client/index', {
-            products,
-            category,
-            
-            recentProducts
-        });
-        console.log({products:products, category:category})
-    })
-    .catch(next);
-
-};
-
-module.exports.json = (req, res, next) =>{
-    Promise.all([Product.find({}).sort({createdAt: -1}),Category.find({})])
-    .then(([products,category])=>{
-        res.json({
-            products: products,
-            category: category,
+        Product.find({}).limit(5).sort({createdAt: 1})
+        .then(products=>{
+            res.render('client/index', {
+                products,
+            });
         })
-    })
-    .catch(next);
-}
+        .catch(next);
+};
 
 module.exports.search = (req, res, next) =>{
     const {search_product} = req.query;

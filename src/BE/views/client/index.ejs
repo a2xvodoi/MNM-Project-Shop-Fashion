@@ -7,15 +7,15 @@
                     <nav class="navbar bg-light">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Home</a>
+                                <a class="nav-link" href="/">Trang chủ</a>
                             </li>
-                            <% category.forEach(element=> { %>
+                            <% categories.forEach(element=> { %>
                                 <li class="nav-item">
                                     <a class="nav-link" href="/<%= element._id %> ">
                                         <%= element.name %>
                                     </a>
                                 </li>
-                                <% }) %>
+                            <% }) %>
                         </ul>
                     </nav>
                 </div>
@@ -24,22 +24,22 @@
                         <div class="header-slider-item">
                             <img src="img/slider-1.jpg" alt="Slider Image" />
                             <div class="header-slider-caption">
-                                <p>Some text goes here that describes the image</p>
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a>
+                                <!-- <p>Some text goes here that describes the image</p>
+                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a> -->
                             </div>
                         </div>
                         <div class="header-slider-item">
                             <img src="img/slider-2.jpg" alt="Slider Image" />
                             <div class="header-slider-caption">
-                                <p>Some text goes here that describes the image</p>
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a>
+                                <!-- <p>Some text goes here that describes the image</p>
+                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a> -->
                             </div>
                         </div>
                         <div class="header-slider-item">
                             <img src="img/slider-3.jpg" alt="Slider Image" />
                             <div class="header-slider-caption">
-                                <p>Some text goes here that describes the image</p>
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a>
+                                <!-- <p>Some text goes here that describes the image</p>
+                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a> -->
                             </div>
                         </div>
                     </div>
@@ -49,13 +49,13 @@
                         <div class="img-item">
                             <img src="img/category-1.jpg" />
                             <a class="img-text" href="">
-                                <p>Some text goes here that describes the image</p>
+                                <!-- <p>Some text goes here that describes the image</p> -->
                             </a>
                         </div>
                         <div class="img-item">
                             <img src="img/category-2.jpg" />
                             <a class="img-text" href="">
-                                <p>Some text goes here that describes the image</p>
+                                <!-- <p>Some text goes here that describes the image</p> -->
                             </a>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                     <div class="category-item ch-400">
                         <img src="img/category-3.jpg" />
                         <a class="category-name" href="">
-                            <p>Some text goes here that describes the image</p>
+                            <!-- <p>Some text goes here that describes the image</p> -->
                         </a>
                     </div>
                 </div>
@@ -96,13 +96,13 @@
                     <div class="category-item ch-250">
                         <img src="img/category-4.jpg" />
                         <a class="category-name" href="">
-                            <p>Some text goes here that describes the image</p>
+                            <!-- <p>Some text goes here that describes the image</p> -->
                         </a>
                     </div>
                     <div class="category-item ch-150">
                         <img src="img/category-5.jpg" />
                         <a class="category-name" href="">
-                            <p>Some text goes here that describes the image</p>
+                            <!-- <p>Some text goes here that describes the image</p> -->
                         </a>
                     </div>
                 </div>
@@ -110,13 +110,13 @@
                     <div class="category-item ch-150">
                         <img src="img/category-6.jpg" />
                         <a class="category-name" href="">
-                            <p>Some text goes here that describes the image</p>
+                            <!-- <p>Some text goes here that describes the image</p> -->
                         </a>
                     </div>
                     <div class="category-item ch-250">
                         <img src="img/category-7.jpg" />
                         <a class="category-name" href="">
-                            <p>Some text goes here that describes the image</p>
+                            <!-- <p>Some text goes here that describes the image</p> -->
                         </a>
                     </div>
                 </div>
@@ -124,7 +124,7 @@
                     <div class="category-item ch-400">
                         <img src="img/category-8.jpg" />
                         <a class="category-name" href="">
-                            <p>Some text goes here that describes the image</p>
+                            <!-- <p>Some text goes here that describes the image</p> -->
                         </a>
                     </div>
                 </div>
@@ -142,12 +142,12 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6">
-                    <h1>Subscribe Our Newsletter</h1>
+                    <h1>Đăng kí nhận thông tin mới nhất</h1>
                 </div>
                 <div class="col-md-6">
                     <div class="form">
-                        <input type="email" value="Your email here">
-                        <button>Submit</button>
+                        <input type="email" placeholder="Email ...">
+                        <button style="width: fit-content;">Đăng kí</button>
                     </div>
                 </div>
             </div>
@@ -159,10 +159,10 @@
     <div class="recent-product product">
         <div class="container-fluid">
             <div class="section-header">
-                <h1>Recent Product</h1>
+                <h1>Sản phẩm mới nhất</h1>
             </div>
             <div class="row align-items-center product-slider product-slider-4">
-                <% recentProducts.forEach(function(product){%>
+                <% products.forEach(function(product){%>
                     <div class="col-lg-3">
                         <div class="product-item">
                             <div class="product-title">
@@ -170,7 +170,7 @@
                                 
                             </div>
                             <div class="product-image">
-                                <a href="product-detail.html">
+                                <a href="/products/<%= product._id %>">
                                     <img src=<%= product.avatar %> alt=`image of ${<%= product.name %>}`>
                                 </a>
                                 <div class="product-action">
@@ -180,8 +180,8 @@
                                 </div>
                             </div>
                             <div class="product-price">
-                                <h3><span>$</span><%= product.price %></h3>
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                                <h3><%= product.price %><span>đ</span></h3>
+                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Mua ngay</a>
                             </div>
                         </div>
                     </div>

@@ -6,7 +6,7 @@ const passport = require('passport');
 
 function router(app){
     //Pages Client
-    app.use('/', indexRoute);
+    app.use('/', require('../widgets/category-client'), indexRoute);
 
     //Pages Admin
     app.use('/admin', (req, res, next) => {
