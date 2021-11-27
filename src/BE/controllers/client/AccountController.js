@@ -1,4 +1,5 @@
 const User= require('../../models/User');
+const bcrypt = require('bcryptjs');
 // module.exports.detail = (req, res, next) => {
 //     if (req.session.account.tenDangNhap === req.params.tenDangNhap) {
 //         User.findOne({ tenDangNhap: req.params.tenDangNhap })
@@ -41,7 +42,7 @@ module.exports.postRegister = async function (req, res, next) {
             //     status: 'success',
             // };
             console.log('success');
-            res.redirect('/thanh-cong');
+            res.redirect('/login');
         } catch (error) {
             // req.session.message = {
             //     type: 'create',
@@ -56,44 +57,38 @@ module.exports.postRegister = async function (req, res, next) {
 };
 
 
-// module.exports.login = (req, res, next) => {
-//     if (accountMiddleware.isLogin(req)) {
-//         next();
-//     } else {
-//         res.render('client/user/login', {
-//             title: 'login',
-//             session: req.session,
-//         });
-//     }
-// };
+module.exports.login = (req, res, next) => {
+    res.render('client/login');
+};
 
-// module.exports.postLogin = (req, res, next) => {
-//     let err = accountMiddleware.validateLogin(req);
-//     let data = req.body;
-//     accountMiddleware.outError(req,res,err);
-//     User.findOne({ tenDangNhap: data.tenDangNhap})
-//     .then(user => {
-//         let err = {err: false};
-//         if (!user) {
-//             err.userCheck = 'Tên tài khoản không tồn tại!!!';
-//             err.err = true;
-//             accountMiddleware.outError(req,res,err);
-//             return;
-//         }
-//         if (user.matKhau !== md5(req.body.matKhau)) {
-//             err.matKhauCheck = 'Mật khẩu không đúng!!!';
-//             err.err = true;
-//             accountMiddleware.outError(req,res,err);
-//             return;
-//         }
-//         accountMiddleware.accountSession(req,user);
-//         res.redirect('/');
-//     })
-//     .catch(next);
-// };
+module.exports.postLogin = async (req, res, next) => {
+    // res.json(req.body);
+    const user_name = req.body.user_name;
+    const password  = req.body.password;
+    
+    try {
+        const user = await User.findOne({ user_name});
 
-// module.exports.logout = (req, res, next) => {
-//     req.session.destroy(function (err) {
-//     })
-//     res.redirect('/account/login');
-// };
+        if (!user) {
+            res.json('Không tìm thấy user');
+            return;
+        }
+        const isCorrectPassword = await user.isValidPassword(password);
+
+        if (!isCorrectPassword) return res.json('Mật khẩu sai');
+        req.session.customer = {
+            _id: user._id,
+            user_name: user.user_name,
+            email: user.email,
+        }
+        res.redirect('/');
+    } catch (error) {
+        next(error);
+    }
+};
+
+module.exports.logout = (req, res, next) => {
+    req.session.destroy(function (err) {
+    })
+    res.redirect('/');
+};
