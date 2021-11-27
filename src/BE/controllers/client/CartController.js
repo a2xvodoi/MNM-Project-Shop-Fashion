@@ -1,9 +1,63 @@
-const Product = require('../../models/product');
-const User = require('../../models/user');
-const DetailOrder = require('../../models/detailOrder');
-const cartMiddleware = require('../../middleware/cart.middleware');
+const Product = require('../../models/Product');
+const User = require('../../models/User');
+const Cart = require('../../models/Cart');
 
 module.exports.cart = (req, res, next)=>{
+    // res.json(req.session.cart);
+    // return;
+    const userId = "FGGx4VnQs";
+
+    Cart.findOne({ userId })
+        .then(cart => {
+            const data = {
+                userId: cart.userId,
+                products: cart.products,
+            }
+            res.render('client/cart', data);
+        })
+        .catch(next);
+}
+
+module.exports.addCart = async (req, res) => {
+    console.log(req.body);
+    const { productId, productAvatar, name, price, quantity } = req.body;
+  
+    const userId = "FGGx4VnQs"; //TODO: the logged in user id
+  
+    try {
+      let cart = await Cart.findOne({ userId });
+  
+      if (cart) {
+        //cart exists for user
+        let itemIndex = cart.products.findIndex(p => p.productId == productId);
+  
+        if (itemIndex > -1) {
+          //product exists in the cart, update the quantity
+          let productItem = cart.products[itemIndex];
+          productItem.quantity = quantity;
+          cart.products[itemIndex] = productItem;
+        } else {
+          //product does not exists in cart, add new item
+          cart.products.push({ productId, productAvatar, name, price, quantity });
+        }
+        cart = await cart.save();
+        return res.status(201).send(cart);
+      } else {
+        //no cart for user, create new cart
+        const newCart = await Cart.create({
+          userId,
+          products: [{ productId, productAvatar, name, price, quantity }]
+        });
+  
+        return res.status(201).send(newCart);
+      }
+    } catch (err) {
+      console.log(err);
+      res.status(500).send("Something went wrong");
+    }
+};
+
+/* module.exports.cart = (req, res, next)=>{
     // res.json(req.session.cart);
     // return;
     res.render('client/cart/cart',{
@@ -84,4 +138,4 @@ module.exports.postOrder = (req, res,next) =>{
     detailOrder.save()
     .then(() => res.redirect('/'))
     .catch(next);
-}
+} */
