@@ -44,11 +44,16 @@ router.get('/search', homeController.search);
 /* GET info product page. */
 router.get('/products/:_id', productController.detail);
 
-//
+/* Register user */
+router.get('/register', accountController.register);
 router.post('/register', accountController.postRegister);
-router.get('/thanh-cong', function (req, res, next) {
-    res.json('thành công');
-})
+
+/* Login user */
+router.get('/login', accountController.login);
+router.post('/login', accountController.postLogin);
+
+/* Logout user */
+router.get('/logout', accountController.logout);
 
 /* GET list-product page. */
 router.get('/:category', homeController.listProduct);
