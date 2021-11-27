@@ -16,13 +16,23 @@
                     <% }) %>
                 </div>
                 <div class="navbar-nav ml-auto">
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Tài khoản</a>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item">Đăng nhập</a>
-                            <a href="#" class="dropdown-item">Đăng kí</a>
+                    <% if (customer) { %>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= customer.user_name %></a>
+                            <div class="dropdown-menu">
+                                <a href="" class="dropdown-item">Thông tin</a>
+                                <a href="/logout" class="dropdown-item">Đăng xuất</a>
+                            </div>
                         </div>
-                    </div>
+                    <% } else { %>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Tài khoản</a>
+                            <div class="dropdown-menu">
+                                <a href="/login" class="dropdown-item">Đăng nhập</a>
+                                <a href="/register" class="dropdown-item">Đăng kí</a>
+                            </div>
+                        </div>
+                    <% } %>
                 </div>
             </div>
         </nav>
