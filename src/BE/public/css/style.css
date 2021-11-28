@@ -1284,6 +1284,10 @@ h2 {
     background: #FF6F61;
 }
 
+.product-detail .btn-group .btn.active {
+    background-color: #FF6F61;
+    color: #fff;
+}
 
 /**********************************/
 /********** Sidebar CSS ***********/

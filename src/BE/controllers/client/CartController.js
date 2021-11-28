@@ -20,7 +20,7 @@ module.exports.cart = (req, res, next)=>{
 
 module.exports.addCart = async (req, res) => {
     console.log(req.body);
-    const { productId, productAvatar, name, price, quantity } = req.body;
+    const { productId, size, color, quantity } = req.body;
   
     const userId = "FGGx4VnQs"; //TODO: the logged in user id
   

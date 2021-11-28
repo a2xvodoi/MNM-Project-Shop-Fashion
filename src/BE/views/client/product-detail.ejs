@@ -42,17 +42,17 @@
                                     </div>
                                     <div class="p-size">
                                         <h4>Size:</h4>
-                                        <div class="btn-group btn-group-sm">
+                                        <div class="product-size-group btn-group btn-group-sm">
                                             <% product.size_color.forEach(index => { %>
-                                                <button type="button" class="btn"><%= index.size %></button>
+                                                <button type="button" class="btn btn-size"><%= index.size %></button>
                                             <% }); %> 
                                         </div> 
                                     </div>
                                     <div class="p-color">
                                         <h4>Color:</h4>
-                                        <div class="btn-group btn-group-sm">
+                                        <div class="product-color-group btn-group btn-group-sm">
                                             <% product.size_color.forEach(index => { %>
-                                                <button type="button" class="btn"><%= index.color %></button>
+                                                <button type="button" class="btn btn-color"><%= index.color %></button>
                                             <% }); %> 
                                         </div> 
                                     </div>
@@ -62,8 +62,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    
+                        </div> 
+                           
                 </div>
                 
                 <div class="row product-detail-bottom">
