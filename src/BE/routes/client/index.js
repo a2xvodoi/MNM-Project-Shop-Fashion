@@ -10,8 +10,9 @@ router.get('/',homeController.index)
 
 /* GET cart page. */
 router.get('/cart', cartController.cart);
-router.post('/addCart', cartController.addCart);
-
+router.post('/cart/addCart', cartController.create);
+router.patch('/cart/:id/update', cartController.update);
+router.delete('/cart/:id/destroy', cartController.destroy);
 
 /* GET pay page. */
 router.get('/pay', (req, res, next) => {
