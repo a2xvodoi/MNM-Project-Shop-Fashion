@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const accountController= require('../../controllers/client/AccountController');
-
+const cartController= require('../../controllers/client/CartController');
 const productController = require('../../controllers/client/ProductController');
 const homeController = require('../../controllers/client/HomeController');
 
@@ -9,9 +9,10 @@ const homeController = require('../../controllers/client/HomeController');
 router.get('/',homeController.index)
 
 /* GET cart page. */
-router.get('/cart', (req, res, next) => {
-    res.render('client/cart');
-});
+router.get('/cart', cartController.cart);
+router.post('/cart/addCart', cartController.create);
+router.patch('/cart/:id/update', cartController.update);
+router.delete('/cart/:id/destroy', cartController.destroy);
 
 /* GET pay page. */
 router.get('/pay', (req, res, next) => {
