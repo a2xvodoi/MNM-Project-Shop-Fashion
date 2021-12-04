@@ -1,6 +1,11 @@
 /**********************************/
+
+
 /********** General CSS ***********/
+
+
 /**********************************/
+
 body {
     color: #353535;
     font-family: 'Open Sans', sans-serif;
@@ -39,8 +44,13 @@ h2 {
 
 
 /**********************************/
+
+
 /******** Back to Top CSS *********/
+
+
 /**********************************/
+
 .back-to-top {
     position: fixed;
     display: none;
@@ -65,8 +75,13 @@ h2 {
 
 
 /**********************************/
+
+
 /********* Form Input CSS *********/
+
+
 /**********************************/
+
 .form-control,
 .custom-select {
     width: 100%;
@@ -118,8 +133,13 @@ h2 {
 
 
 /**********************************/
+
+
 /******* Normal Slider CSS ********/
+
+
 /**********************************/
+
 .normal-slider .slick-prev,
 .normal-slider .slick-next {
     width: 40px;
@@ -198,8 +218,13 @@ h2 {
 
 
 /**********************************/
+
+
 /********** Top Bar CSS ***********/
+
+
 /**********************************/
+
 .top-bar {
     padding: 3px 0;
     font-size: 14px;
@@ -221,9 +246,8 @@ h2 {
 
 @media (max-width: 575.98px) {
     .top-bar {
-        border-bottom: 1px solid rgba(255,255,255,.1);
+        border-bottom: 1px solid rgba(255, 255, 255, .1);
     }
-    
     .top-bar .col-sm-6:first-child,
     .top-bar .col-sm-6:last-child {
         text-align: center;
@@ -232,8 +256,13 @@ h2 {
 
 
 /**********************************/
+
+
 /*********** Nav Bar CSS **********/
+
+
 /**********************************/
+
 .nav {
     position: relative;
 }
@@ -267,17 +296,14 @@ h2 {
     .nav .navbar {
         background: #FF6F61 !important;
     }
-    
     .nav .navbar-brand {
         display: none;
     }
-    
     .nav .navbar-dark a.nav-link {
         color: #ffffff;
         font-size: 14px;
         text-transform: uppercase;
     }
-    
     .nav .navbar-dark a.nav-link:hover,
     .nav .navbar-dark a.nav-link.active {
         color: #000000;
@@ -288,16 +314,13 @@ h2 {
     .nav {
         padding: 5px 0;
     }
-    
     .nav,
     .nav .navbar {
         background: #000000 !important;
     }
-    
     .nav a.nav-link {
         padding: 5px 0;
     }
-    
     .nav .dropdown-menu {
         box-shadow: none;
     }
@@ -305,8 +328,13 @@ h2 {
 
 
 /**********************************/
+
+
 /********* Bottom Bar CSS *********/
+
+
 /**********************************/
+
 .bottom-bar {
     padding: 15px 0;
     background: #ffffff;
@@ -393,7 +421,6 @@ h2 {
         text-align: center;
         margin-bottom: 15px;
     }
-    
     .bottom-bar .user {
         margin-bottom: 0;
     }
@@ -401,8 +428,13 @@ h2 {
 
 
 /**********************************/
+
+
 /*********** Header CSS ***********/
+
+
 /**********************************/
+
 .header {
     position: relative;
 }
@@ -437,10 +469,10 @@ h2 {
 .header .navbar a {
     color: #353535;
 }
+
 .header .navbar a:hover {
     color: #FF6F61;
 }
-
 
 .header .navbar i {
     color: #FF6F61;
@@ -513,9 +545,9 @@ h2 {
 }
 
 .header .img-item img {
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .header .img-text {
@@ -532,7 +564,7 @@ h2 {
 }
 
 .header .img-text:hover {
-    opacity: 1;     
+    opacity: 1;
 }
 
 .header .img-text p {
@@ -546,13 +578,18 @@ h2 {
 }
 
 .header .img-text:hover p {
-    margin: 0;       
+    margin: 0;
 }
 
 
 /**********************************/
+
+
 /********* Breadcrumb CSS *********/
+
+
 /**********************************/
+
 .breadcrumb-wrap {
     position: relative;
     width: 100%;
@@ -565,10 +602,14 @@ h2 {
 }
 
 
+/**********************************/
+
+
+/********** Category CSS **********/
+
 
 /**********************************/
-/********** Category CSS **********/
-/**********************************/
+
 .category {
     position: relative;
     padding: 0 15px;
@@ -603,9 +644,9 @@ h2 {
 }
 
 .category .category-item img {
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .category .category-name {
@@ -622,7 +663,7 @@ h2 {
 }
 
 .category .category-name:hover {
-    opacity: 1;     
+    opacity: 1;
 }
 
 .category .category-name p {
@@ -636,13 +677,18 @@ h2 {
 }
 
 .category .category-name:hover p {
-    margin: 0;       
+    margin: 0;
 }
 
 
 /**********************************/
+
+
 /*********** Feature CSS **********/
+
+
 /**********************************/
+
 .feature {
     position: relative;
 }
@@ -677,8 +723,13 @@ h2 {
 
 
 /**********************************/
+
+
 /******** Product Item CSS ********/
+
+
 /**********************************/
+
 .product-item {
     position: relative;
 }
@@ -732,7 +783,7 @@ h2 {
     position: relative;
     overflow: hidden;
     object-fit: cover;
-    height:350px;
+    height: 350px;
 }
 
 .product-item .product-image a {
@@ -742,7 +793,7 @@ h2 {
 }
 
 .product-item .product-image img {
-    width: 100%; 
+    width: 100%;
     transition: all .3s;
     height: 350px;
 }
@@ -768,7 +819,7 @@ h2 {
 }
 
 .product-item:hover .product-image .product-action {
-    opacity: 1; 
+    opacity: 1;
 }
 
 .product-item .product-image .product-action a {
@@ -840,8 +891,13 @@ h2 {
 
 
 /**********************************/
+
+
 /******** Featured Product ********/
+
+
 /**********************************/
+
 .featured-product {
     position: relative;
     padding: 30px 0;
@@ -912,8 +968,13 @@ h2 {
 
 
 /**********************************/
+
+
 /******** Product View CSS ********/
+
+
 /**********************************/
+
 .product-view {
     position: relative;
     width: 100%;
@@ -1036,8 +1097,13 @@ h2 {
 
 
 /**********************************/
+
+
 /******* Product Detail CSS *******/
+
+
 /**********************************/
+
 .product-detail {
     position: relative;
     width: 100%;
@@ -1090,6 +1156,10 @@ h2 {
 
 .product-detail .product-content {
     padding: 30px;
+}
+
+.modal-content {
+    width: 300px;
 }
 
 @media (min-width: 768px) {
@@ -1289,9 +1359,15 @@ h2 {
     color: #fff;
 }
 
+
 /**********************************/
+
+
 /********** Sidebar CSS ***********/
+
+
 /**********************************/
+
 .sidebar-widget {
     padding: 30px;
     background: #ffffff;
@@ -1356,11 +1432,11 @@ h2 {
 }
 
 .sidebar-widget.brands ul li {
-    margin-bottom: 12px; 
+    margin-bottom: 12px;
 }
 
 .sidebar-widget.brands ul li:last-child {
-    margin-bottom: 0; 
+    margin-bottom: 0;
 }
 
 .sidebar-widget.brands ul li a {
@@ -1389,7 +1465,7 @@ h2 {
 }
 
 .sidebar-widget.brands ul li a:hover {
-    padding-left: 10px; 
+    padding-left: 10px;
 }
 
 .sidebar-widget.brands ul li span {
@@ -1441,8 +1517,13 @@ h2 {
 
 
 /**********************************/
+
+
 /************ Cart CSS ************/
+
+
 /**********************************/
+
 .cart-page {
     position: relative;
     margin-top: 30px;
@@ -1633,8 +1714,13 @@ h2 {
 
 
 /**********************************/
+
+
 /********** Wishlist CSS **********/
+
+
 /**********************************/
+
 .wishlist-page {
     position: relative;
     padding: 30px 0;
@@ -1726,8 +1812,13 @@ h2 {
 
 
 /**********************************/
+
+
 /********** Checkout CSS **********/
+
+
 /**********************************/
+
 .checkout {
     position: relative;
     padding-top: 30px;
@@ -1819,8 +1910,13 @@ h2 {
 
 
 /**********************************/
+
+
 /********* My Account CSS *********/
+
+
 /**********************************/
+
 .my-account {
     position: relative;
     padding: 30px 0;
@@ -1875,8 +1971,13 @@ h2 {
 
 
 /**********************************/
+
+
 /******* Call to Action CSS *******/
+
+
 /**********************************/
+
 .call-to-action {
     position: relative;
     padding: 30px 0;
@@ -1914,7 +2015,6 @@ h2 {
     .call-to-action .col-md-6:last-child {
         text-align: center;
     }
-    
     .call-to-action h1 {
         margin-bottom: 20px;
     }
@@ -1922,8 +2022,13 @@ h2 {
 
 
 /**********************************/
+
+
 /********* Newsletter CSS *********/
+
+
 /**********************************/
+
 .newsletter {
     position: relative;
     padding: 30px 0;
@@ -1974,11 +2079,9 @@ h2 {
     .newsletter {
         text-align: center;
     }
-    
     .newsletter h1 {
         margin-bottom: 20px;
     }
-    
     .newsletter .form {
         margin: 0 auto;
     }
@@ -1986,8 +2089,13 @@ h2 {
 
 
 /**********************************/
+
+
 /*********** Brand CSS ************/
+
+
 /**********************************/
+
 .brand {
     position: relative;
     margin-bottom: 30px;
@@ -1996,12 +2104,12 @@ h2 {
 }
 
 .brand .brand-item {
-    text-align: center; 
+    text-align: center;
 }
 
 .brand .brand-item img {
     max-width: 100%;
-    margin: auto; 
+    margin: auto;
 }
 
 .brand .slick-prev,
@@ -2065,8 +2173,13 @@ h2 {
 
 
 /**********************************/
+
+
 /*********** Review CSS ***********/
+
+
 /**********************************/
+
 .review {
     margin-bottom: 30px;
 }
@@ -2089,9 +2202,9 @@ h2 {
 }
 
 .review .review-img img {
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .review .review-text {
@@ -2135,8 +2248,13 @@ h2 {
 
 
 /**********************************/
+
+
 /********** Contact CSS ***********/
+
+
 /**********************************/
+
 .contact {
     position: relative;
     padding-top: 30px;
@@ -2202,8 +2320,13 @@ h2 {
 
 
 /**********************************/
+
+
 /****** Register & Login CSS ******/
+
+
 /**********************************/
+
 .login {
     position: relative;
     padding-top: 30px;
@@ -2218,16 +2341,21 @@ h2 {
 
 
 /**********************************/
+
+
 /********** Footer CSS ************/
+
+
 /**********************************/
-#map{
+
+#map {
     display: flex;
     justify-content: center;
     background-color: #FFFFFF;
     padding-bottom: 20px;
 }
 
-#map iframe{
+#map iframe {
     width: calc(100vw - 60px)!important;
 }
 
@@ -2246,7 +2374,7 @@ h2 {
 .footer .footer-widget h2 {
     font-size: 25px;
     white-space: nowrap;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
 }
 
 .footer .footer-widget ul {
@@ -2256,11 +2384,11 @@ h2 {
 }
 
 .footer .footer-widget ul li {
-    margin-bottom: 12px; 
+    margin-bottom: 12px;
 }
 
 .footer .footer-widget ul li:last-child {
-    margin-bottom: 0; 
+    margin-bottom: 0;
 }
 
 .footer .footer-widget ul li a {
@@ -2324,7 +2452,7 @@ h2 {
 .footer .payment {
     padding-top: 25px;
     padding-bottom: 25px;
-    border-top: 1px solid rgba(0,0,0,.1);
+    border-top: 1px solid rgba(0, 0, 0, .1);
 }
 
 @media (min-width: 992px) {
@@ -2351,11 +2479,10 @@ h2 {
     .footer .payment-method {
         margin-bottom: 15px;
     }
-    
     .footer .payment-method,
     .footer .payment-security {
-        text-align: center; 
-    } 
+        text-align: center;
+    }
 }
 
 .footer .payment-method h2,
@@ -2374,8 +2501,13 @@ h2 {
 
 
 /**********************************/
+
+
 /******** Footer Bottom CSS *******/
+
+
 /**********************************/
+
 .footer-bottom {
     position: relative;
     padding: 10px 0;
@@ -2410,6 +2542,6 @@ h2 {
 @media (max-width: 768.98px) {
     .footer-bottom .copyright,
     .footer-bottom .template-by {
-        text-align: center; 
-    } 
+        text-align: center;
+    }
 }

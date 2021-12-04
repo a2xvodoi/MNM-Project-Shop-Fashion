@@ -1,6 +1,6 @@
-$(document).ready(function () {
+$(document).ready(function() {
     //Add to card
-    $('.add-to-cart').click((e)=>{
+    $('.add-to-cart').click((e) => {
         e.preventDefault();
 
         const _id = $('input[name="_id"]').val();
@@ -9,7 +9,7 @@ $(document).ready(function () {
         const color = $('.btn-color.active').text();
 
         const data = {
-            "productId" : _id,
+            "productId": _id,
             "quantity": quantity,
             "size": size,
             "color": color
@@ -17,35 +17,35 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: "/cart/addCart",
-            data: {data: JSON.stringify(data)},
+            data: { data: JSON.stringify(data) },
             dataType: "JSON",
-            success: function (response) {
+            success: function(response) {
                 return false;
             }
         });
     })
 
     // Update cart
-    $('input[name="quantity"]').change(function(){
+    $('input[name="quantity"]').change(function() {
         const id = $(this).closest('.cart-product').data('id');
         const quantity = $(this).val();
         updateCart(id, quantity);
     });
 
-    $('.qty button').on('click', function () {
+    $('.qty button').on('click', function() {
         const id = $(this).closest('.cart-product').data('id');
         const quantity = $(this).closest('.qty').find('input[name="quantity"]').val();
         updateCart(id, quantity);
     });
 
     //Remove cart
-    $('.remove-cart').click(function(){
-        const that = $(this).closest('.cart-product');  
+    $('.remove-cart').click(function() {
+        const that = $(this).closest('.cart-product');
         const id = that.data('id');
         $.ajax({
             type: "DELETE",
             url: `/cart/${id}/destroy`,
-            success: function (response) {
+            success: function(response) {
                 console.log(response)
                 if (response.status === 200) {
                     that.html('');
@@ -62,10 +62,10 @@ const updateCart = (id, quantity) => {
     $.ajax({
         type: "PATCH",
         url: `/cart/${id}/update`,
-        data: {data: JSON.stringify(data)},
+        data: { data: JSON.stringify(data) },
         dataType: "JSON",
-        success: function (response) {
-            
+        success: function(response) {
+
         }
     });
 }
