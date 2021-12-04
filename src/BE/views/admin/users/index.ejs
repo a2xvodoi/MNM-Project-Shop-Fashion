@@ -1,0 +1,139 @@
+<%- include('../layouts/head',{title: 'Quản lý tài khoản'}) %>
+	<!-- Main content -->
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-header">
+							<div class="d-flex align-items-center">
+								<h3 class="card-title">Tài Khoản</h3>
+								<a href="/admin/users/create">
+									<div class="btn btn-success ml-3">Thêm mới</div>
+								</a>
+							</div>
+							<div class="card-tools">
+								<div class="input-group input-group-sm" style="width: 150px;">
+									<input type="text" name="table_search" class="form-control float-right"
+										placeholder="Search">
+
+									<div class="input-group-append">
+										<button type="submit" class="btn btn-default">
+											<i class="fas fa-search"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /.card-header -->
+						<div class="card-body table-responsive p-0">
+							<table class="table table-head-fixed table-striped">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>User Name</th>
+										<th>Full Name</th>
+										<th>Số điện thoại</th>
+										<th>Email</th>
+										<th>Quyền</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<% users.forEach(user => { %>
+									<tr>
+										<td>
+											<%= user._id %>
+										</td>
+										<td>
+											<%=user.user_name %>
+										</td>
+										<td>
+											<%=user.full_name %>
+										</td>
+										<td>
+											<%=user.phone %>
+										</td>
+										<td>
+											<%=user.email %>
+										</td>
+										<td>
+											<%=user.userType %>
+										</td>
+										<td class="text-right">
+											<a class="btn btn-primary btn-sm" href="/admin/users/<%= user._id %>/view">
+												<i class="fas fa-folder">
+												</i>
+												View
+											</a>
+											<a class="btn btn-info btn-sm" href="/admin/users/<%= user._id %>/edit">
+												<i class="fas fa-pencil-alt">
+												</i>
+												Edit
+											</a>
+											<div class="btn btn-danger btn-sm" data-toggle="modal"
+												data-target="#deleteModal" data-_id="<%= user._id %>"
+												data-type="users">
+												<i class="fas fa-trash">
+												</i>
+												Delete
+											</div>
+										</td>
+									</tr>
+									<% }) %>
+								</tbody>
+							
+							</table>
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<!-- /.card -->
+				</div>
+			</div>
+		</div><!-- /.container-fluid -->
+	</section>
+	<!-- /.content -->
+
+<!-- Footer Start -->
+<%- include('../partials/footer') %>
+<!-- Footer Bottom End -->
+
+
+<%- include('../partials/delete-modal') %>
+<% if (message && message.type === 'create' && message.status === 'success') { %>
+	<script>
+		Swal.fire(
+			'Success!',
+			'Thêm tài khoản thành công!',
+			'success'
+		)
+	</script>
+	<% } %>
+<% if (message && message.type === 'update' && message.status === 'success') { %>
+		<script>
+			Swal.fire(
+				'Success!',
+				'Cập nhật sản phẩm thành công!',
+				'success'
+			)
+		</script>
+<% } %>
+<% if (message && message.type === 'delete' && message.status === 'success') { %>
+	<script>
+		Swal.fire(
+			'Success!',
+			'Xoá tài khoản thành công!',
+			'success'
+		)
+	</script>
+<% } %>
+<% if (message && message.type === 'delete' && message.status === 'error') { %>
+	<script>
+		Swal.fire(
+			'Error!',
+			'Xoá tài khoản  thất bại!',
+			'error'
+		)
+	</script>
+	<% } %>
+<%- include('../layouts/foot')%>

@@ -3,6 +3,7 @@ const router = express.Router();
 const homeController = require('../../controllers/admin/HomeController');
 const productController = require('../../controllers/admin/ProductController');
 const categoryController = require('../../controllers/admin/CategoryController');
+const userController = require('../../controllers/admin/UserController');
 
 /* GET dashboard page. */
 router.get('/', homeController.index);
@@ -53,5 +54,21 @@ router.patch('/categories/:_id/update', categoryController.update);
 
 /* DELETE delete category page. */
 router.delete('/categories/:_id/destroy', categoryController.destroy);
+
+/* GET list user page. */
+router.get('/users', userController.index);
+
+/* DELETE delete user page. */
+router.delete('/users/:_id/destroy', userController.destroy);
+/* Get store user page. */
+router.get('/users/create', userController.create);
+/* POST create user page. */
+router.post('/users/create', userController.store);
+/* GET edit user page. */
+router.get('/users/:_id/edit', userController.edit); 
+/* PUT update user page. */
+router.put('/users/:_id/update', userController.update);
+/* get view user page. */
+router.get('/users/:_id/view', userController.view);
 
 module.exports = router;
