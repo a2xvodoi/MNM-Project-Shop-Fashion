@@ -10,29 +10,31 @@
                 <div class="navbar-nav mr-auto">
                     <a href="/" class="nav-item nav-link active">Trang chủ</a>
                     <% categories.forEach(element=> { %>
-                            <a class="nav-item nav-link" href="/<%= element._id %> ">
-                                <%= element.name %>
-                            </a>
-                    <% }) %>
+                        <a class="nav-item nav-link" href="/<%= element._id %> ">
+                            <%= element.name %>
+                        </a>
+                        <% }) %>
                 </div>
                 <div class="navbar-nav ml-auto">
                     <% if (customer) { %>
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= customer.user_name %></a>
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                <%= customer.user_name %>
+                            </a>
                             <div class="dropdown-menu">
-                                <a href="" class="dropdown-item">Thông tin</a>
+                                <a href="/user-info" class="dropdown-item">Thông tin</a>
                                 <a href="/logout" class="dropdown-item">Đăng xuất</a>
                             </div>
                         </div>
-                    <% } else { %>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Tài khoản</a>
-                            <div class="dropdown-menu">
-                                <a href="/login" class="dropdown-item">Đăng nhập</a>
-                                <a href="/register" class="dropdown-item">Đăng kí</a>
+                        <% } else { %>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Tài khoản</a>
+                                <div class="dropdown-menu">
+                                    <a href="/login" class="dropdown-item">Đăng nhập</a>
+                                    <a href="/register" class="dropdown-item">Đăng kí</a>
+                                </div>
                             </div>
-                        </div>
-                    <% } %>
+                            <% } %>
                 </div>
             </div>
         </nav>
