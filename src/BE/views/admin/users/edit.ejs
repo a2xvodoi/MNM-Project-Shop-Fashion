@@ -1,0 +1,59 @@
+<%- include('../layouts/head',{title: 'Chỉnh sửa tài khoản'}) %>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <h3>Chỉnh sửa tài khoản: <%= users.user_name %> </h3>
+        <form method="post" action="/admin/users/<%= users._id %>/update?_method=PUT">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="user_name">User Name</label>
+                    <input type="text" id="user_name" name="user_name" class="form-control" value="<%= users.user_name %>">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" value="<%= users.password %>">
+                </div>
+                <div class="form-group">
+                    <label for="full_name">Full name</label>
+                    <input type="text" id="full_name" name="full_name" class="form-control" value="<%= users.full_name %>">
+                </div>
+                <div class="form-group">
+                    <label for="birthday">Birthday</label>
+                    <input type="date" id="birthday" name="birthday" class="form-control" value="<%= users.birthday %>">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="phone" id="phone" name="phone" class="form-control" value="<%= users.phone %>">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" value="<%= users.email %>">
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" class="form-control" value="<%= users.address %>">
+                </div>
+                <div class="form-group">
+                    <label for="userType">userType</label>
+                    <select id="userType" class="form-control custom-select" name="userType" value="<%= users.userType %>">
+                        <option>user</option>
+                        <option>admin</option>
+                        <option>moderator</option> 
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-submit" type="submit"> Chỉnh sửa</button>
+                    <a href="/admin/users"><button class="btn btn-danger" type="button">Huỷ bỏ</button></a>
+                </div>
+            </div>
+        </form>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+<!-- Footer Start -->
+<%- include('../partials/footer') %>
+<!-- Footer Bottom End -->
+
+<%- include('../layouts/foot')%>

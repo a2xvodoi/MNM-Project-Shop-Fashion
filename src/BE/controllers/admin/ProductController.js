@@ -150,7 +150,7 @@ module.exports = {
             res.redirect('back');
         }
     },
-    // delete /admin/product/delete/:_id
+    // delete /admin/product/delete/:_id 
     destroy: async (req, res, next) => {
         const session = await Product.startSession();
         session.startTransaction();

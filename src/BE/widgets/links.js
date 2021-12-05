@@ -21,6 +21,12 @@ module.exports = (req, res, next) => {
             icon: 'fa fa-bars',
             active: active === 'categories' ? true : false,
         },
+        {
+            link: '/admin/users',
+            name: 'Quản lí tài khoản',
+            icon: 'fas fa-user',
+            active: active === 'users' ? true : false,
+        },
     ];
     next();
 }

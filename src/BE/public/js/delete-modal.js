@@ -9,7 +9,10 @@ $('#deleteModal').on('show.bs.modal', function (event) {
             modal.find('.modal-body').html('Bạn có chắc muốn xoá sản phẩm này?');
             break;
         case 'categories':
-            modal.find('.modal-body').html('Bạn có chắc muốn xoá danh mục này này?');
+            modal.find('.modal-body').html('Bạn có chắc muốn xoá danh mục này?');
+            break;
+        case 'users':
+            modal.find('.modal-body').html('Bạn có chắc muốn xoá tài khoản này?');
             break;
     }
 
