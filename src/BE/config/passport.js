@@ -117,6 +117,7 @@ passport.use(
 
                 if (!isCorrectPassword) return done(null, false, { message: 'Incorrect password.' });
 
+                if (user.userType === 'user') return done(null, false, { message: 'unauthorized' });
                 done(null, user);
             } catch (error) {
                 done(error);

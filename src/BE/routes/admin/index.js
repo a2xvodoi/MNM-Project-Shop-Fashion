@@ -5,16 +5,13 @@ const productController = require('../../controllers/admin/ProductController');
 const categoryController = require('../../controllers/admin/CategoryController');
 const userController = require('../../controllers/admin/UserController');
 
+const size_color = require('../../widgets/size_color');
+
 /* GET dashboard page. */
 router.get('/', homeController.index);
 
 /* GET dashboard page. */
-router.get('/dashboard',(req, res, next)=>{
-  if (req.isAuthenticated) {
-    next()
-  }
-  res.redirect('/admin/login');
-}, homeController.index);
+router.get('/dashboard', homeController.index);
 
 /* GET login page. */
 router.get('/login', homeController.login);
@@ -29,16 +26,22 @@ router.post('/logout', homeController.logout);
 router.get('/products', productController.index);
 
 /* GET add product page. */
-router.get('/products/create', productController.create);
+router.get('/products/create', size_color, productController.create);
 
 /* POST store product page. */
 router.post('/products/create', productController.store);
 
 /* GET edit product page. */
-router.get('/products/:_id/edit', productController.edit);
+router.get('/products/:_id/edit', size_color, productController.edit);
 
 /* PUT edit product page. */
 router.put('/products/:_id/update', productController.update);
+
+/* POST upload file page. */
+router.post('/products/:_id/upload/:type', productController.upload);
+
+/* GET detail product page. */
+router.get('/products/:id', productController.detail);
 
 /* DELETE delete product page. */
 router.delete('/products/:_id/destroy', productController.destroy);

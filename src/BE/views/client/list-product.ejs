@@ -62,7 +62,7 @@
                                     </a>
                                     <div class="product-action">
                                         <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                        <a href="#"><i class="fa fa-heart"></i></a>
+                                        <a href="#" class="wishlist-add" data-id="<%= product._id %>"><i class="fa fa-heart"></i></a>
                                         <a href="#"><i class="fa fa-search"></i></a>
                                     </div>
                                 </div>
@@ -101,3 +101,4 @@
 </div>
 <!-- Product List End --> 
 <%- include('layouts/foot') %>
+<%- include('partials/add-wishlist') %>

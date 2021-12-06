@@ -1,11 +1,43 @@
-// const Formidable = require('formidable');
-// const cloudinary = require('../../models/ModelCloudinary');
-
 const Product = require('../../models/Product');
 const Category = require('../../models/Category');
 
+var formidable = require('formidable');
+var mv = require('mv');
+
+/**
+ * Save single file
+ */
+const uploadSingle = (file) => {
+    let oldPath = file.filepath;
+    let newPath = 'public/upload/products/' + file.originalFilename;
+    mv(oldPath, newPath, function (err) {
+        if (err) throw err;
+    });
+    return '/upload/products/' + file.originalFilename;
+}
+
+/**
+ * Save multiple file
+ */
+ const uploadMulti = (files) => {
+     var path = [];
+     files.forEach(file => {
+        let oldPath = file.filepath;
+        let newPath = 'public/upload/products/' + file.originalFilename;
+        mv(oldPath, newPath, function (err) {
+            if (err) throw err;
+        });
+        path = [
+            ...path,
+            '/upload/products/' + file.originalFilename,
+        ]
+    });
+    
+    return path;
+}
+
 module.exports = {
-    // get /admin/product
+    // get /admin/products
     index : (req, res, next) => {
         Product.find({}).populate('category')
             .then(products => {
@@ -16,27 +48,17 @@ module.exports = {
             })
             .catch(next);
     },
-    // get /admin/product/:_id
-    // detail: async (req, res, next) => {
-    //     try {
-    //         const q = await Product.findOne({ _id: req.params._id });
-    //         Category.findOne({ _id: toObj(q)._idDm })
-    //             .exec((err, category) => {
-    //                 if (err) {
-    //                     res.json('Đã có lỗi xảy ra!');
-    //                 }
-    //                 res.render('admin/product/detailProduct', {
-    //                     title: 'Chi tiết sản phẩm',
-    //                     layout: 'mainAd.hbs',
-    //                     product: q,
-    //                     category: category,
-    //                     session: req.session,
-    //                 })
-    //             })
-    //     } catch (er) {
-    //         res.send("Đã có lỗi xảy ra !!!   " + er + '<br>' + 'Vui lòng kiểm tra lại đường dẫn !!!');
-    //     }
-    // },
+
+    // get /admin/products/:_id
+    detail: async (req, res, next) => {
+        try {
+            const product = await Product.findOne({ _id: req.params.id }).populate('category');
+            res.render('admin/products/detail', {product: product})
+        } catch (err) {
+            next(err);
+        }
+    },
+
     // get /admin/product/:_id
     create: (req, res, next) => {
         Category.find({})
@@ -48,109 +70,69 @@ module.exports = {
             })
             .catch(next);
     },
-    // post /admin/product/create-product
+
+    // post /admin/product/create
     store: async (req, res, next) => {
-        // parse a file upload
-        // const form = new Formidable({multiples: true});
         const session = await Product.startSession();
         session.startTransaction();
         try {
             const opts = { session, new: true };
-            // form.parse(req, async (err, fields, files) => {
-            //     res.json(fields);return;
-            //     // const cloud = await cloudinary.uploadSingle(files.avatar.path);
-            //     var data = {
-            //         ...fields,
-            //         // avatar: cloud.url,
-            //     };
-            //     const product = await new Product(data);
-            //     product.save(opts);
-                
-            //     await session.commitTransaction();
-            //     session.endSession();
-            //     console.log('success');
-            //     req.session.message = {
-            //         type: 'create',
-            //         status: 'success',
-            //     };
-            //     res.redirect('/admin/products');
-            // });
+            
             const data = JSON.parse(req.body.data);
-            // console.log(data); return;
             const product = await new Product(data);
-                product.save(opts);
-                
-                await session.commitTransaction();
-                session.endSession();
-                console.log('success');
-                req.session.message = {
-                    type: 'create',
-                    status: 'success',
-                };
-                res.json({status: 'success'});
-                // res.redirect('/admin/products');
-        } catch (error) {
-            console.log(error);
-            req.session.message = {
-                type: 'create',
-                status: 'error',
-            };
-            await session.abortTransaction();
+            product.save(opts);
+            console.log('success');
+            await session.commitTransaction();
             session.endSession();
-            // res.redirect('back');
-            res.json({status: 'failure'});
-        }
-    },
-    // get /admin/product/:_id/edit
-    edit: (req, res, next) => {
-        Promise.all([Product.findOne({ _id: req.params._id }), Category.find({})])
-            .then(([product, categories]) => {
-                const data = {
-                    product: product,
-                    categories: categories,
-                };
-                res.render('admin/products/edit', data);
-            })
-            .catch(next);
-    
-    },
-    // put /admin/product/:_id/update
-    update: async (req, res, next) => {
-        // parse a file upload
-        const form = new Formidable();
-        const session = await Product.startSession();
-        session.startTransaction();
-        try {
-            const opts = { session, new: true };
-            form.parse(req, async (err, fields, files) => {
-                // const cloud = await cloudinary.uploadSingle(files.avatar.path);
-                var data = {
-                    ...fields,
-                    // avatar: cloud.url,
-                };
-                await Product.findOneAndUpdate({ _id: req.params._id }, data, opts);
-                
-                await session.commitTransaction();
-                session.endSession();
-                req.session.message = {
-                    type: 'update',
-                    status: 'success',
-                };
-                console.log('success');
-                res.redirect('/admin/products');
+            res.json({
+                status: 200,
+                _id: product._id,
+                type: 'create',
             });
         } catch (error) {
-            req.session.message = {
-                type: 'update',
-                status: 'error',
-            };
             console.log(error);
             await session.abortTransaction();
             session.endSession();
-            res.redirect('back');
+            res.json({status: 401});
         }
     },
-    // delete /admin/product/delete/:_id 
+
+    // get /admin/product/:_id/edit
+    edit: (req, res, next) => {
+        Product.findOne({ _id: req.params._id }).populate('category')
+        .then((product) =>{
+            // console.log(product);
+            res.render('admin/products/edit', {product: product});
+        })
+        .catch(next);
+    },
+
+    // put /admin/product/:_id/update
+    update: async (req, res, next) => {
+        const session = await Product.startSession();
+        session.startTransaction();
+        try {
+            const opts = { session, new: true };
+            
+            const data = JSON.parse(req.body.data);
+            await Product.findOneAndUpdate({ _id: req.params._id }, data, opts);
+
+            await session.commitTransaction();
+            session.endSession();
+            res.json({
+                status: 200,
+                _id: req.params._id,
+                type: 'update',
+            });
+        } catch (error) {
+            console.log(error);
+            await session.abortTransaction();
+            session.endSession();
+            res.json({status: 401});
+        }
+    },
+
+    // delete /admin/product/delete/:_id
     destroy: async (req, res, next) => {
         const session = await Product.startSession();
         session.startTransaction();
@@ -173,6 +155,67 @@ module.exports = {
                 type: 'delete',
                 status: 'error',
             };
+            console.log(error);
+            await session.abortTransaction();
+            session.endSession();
+            res.redirect('back');
+        }
+    },
+
+    upload: async (req, res, next) => {
+        const form = formidable({ multiples: true });
+
+        const session = await Product.startSession();
+        session.startTransaction();
+        try {
+            const opts = { session, new: true };
+
+            // parse a file upload
+            form.parse(req, async function (err, fields, files) {
+                const avatar = files.avatar.originalFilename != '' ? uploadSingle(files.avatar) : '';
+                var otherImg = '';
+                if (typeof files.otherImg.length !== 'undefined') {
+                    otherImg = uploadMulti(files.otherImg);
+                } else {
+                    otherImg = files.otherImg.originalFilename != '' ? uploadSingle(files.otherImg) : '';
+                }
+                const data = {
+                    avatar: avatar, 
+                    otherImg: otherImg
+                };
+
+                await Product.findOneAndUpdate({ _id: req.params._id }, data, opts);
+
+                await session.commitTransaction();
+                session.endSession();
+
+                if (req.params.type === 'create') {
+                    req.session.message = {
+                        type: 'create',
+                        status: 'success',
+                    };
+                }
+                if (req.params.type === 'update') {
+                    req.session.message = {
+                        type: 'update',
+                        status: 'success',
+                    };
+                }
+                res.redirect('/admin/products');
+            })
+        } catch (error) {
+            if (req.params.type === 'create') {
+                req.session.message = {
+                    type: 'create',
+                    status: 'error',
+                };
+            }
+            if (req.params.type === 'update') {
+                req.session.message = {
+                    type: 'create',
+                    status: 'error',
+                };
+            }
             console.log(error);
             await session.abortTransaction();
             session.endSession();

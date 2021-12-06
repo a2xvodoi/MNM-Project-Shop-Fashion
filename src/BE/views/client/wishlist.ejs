@@ -2,45 +2,78 @@
 <!-- Wishlist Start -->
 <div class="wishlist-page">
     <div class="container-fluid">
-        <div class ="title-wishlist"> 
+        <div class="title-wishlist">
             <div class="row mb-5 ml-3">
-                <h2>WHISHLIST</h2>
+                <h2>Danh sách yêu thích</h2>
             </div>
         </div>
         <div class="wishlist-page-inner">
+            <% if (!wishlistProducts) { %>
+            <div class="w-100 text-center">Không có sản phẩm yêu thích</div>
+            <% } else { %>
+            <% if (wishlistProducts.length) { %>
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Product</th>
-                                    <th>Price</th>
-                                    <th>Category</th>
-                                    <th>Add to Cart</th>
-                                    <th>Remove</th>
+                                    <th>Sản phẩm</th>
+                                    <th>Giá</th>
+                                    <th>Danh mục</th>
+                                    <th>Thêm giỏ hàng</th>
+                                    <th>Xoá</th>
                                 </tr>
                             </thead>
                             <tbody class="align-middle">
-                                <tr>
-                                    <td>
-                                        <div class="img">
-                                            <a href="#"><img src="img/product-6.jpg" alt="Image"></a>
-                                            <p>Product Name</p>
-                                        </div>
-                                    </td>
-                                    <td>$99</td>
-                                    <td>Trẻ em</td>
-                                    <td><button class="btn-cart">Add to Cart</button></td>
-                                    <td><button><i class="fa fa-trash"></i></button></td>
-                                </tr>
+                                <% wishlistProducts.forEach(wishlist => { %>
+                                    <tr class="wishlist-product" data-id="<%= wishlist._id %>">
+                                        <td>
+                                            <div class="img">
+                                                <a href="/products/<%= wishlist.productId._id %>"><img src="<%= wishlist.productId.avatar %>" alt="Image"></a>
+                                                <p><%= wishlist.productId.name %> </p>
+                                            </div>
+                                        </td>
+                                        <td><%= wishlist.productId.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) %></td>
+                                        <td>
+                                            <% categories.forEach(category => { %>
+                                                <% if (category._id === wishlist.productId.category) { %>
+                                                    <%= category.name %> 
+                                                <% } %>
+                                            <% }) %>
+                                        </td>
+                                        <td><button class="btn-cart">Add to Cart</button></td>
+                                        <td><button class="remove-wishlist"><i class="fa fa-trash"></i></button></td>
+                                    </tr>
+                                <% }) %>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+            <% } else { %>
+            <div class="w-100 text-center">Không có sản phẩm yêu thích</div>
+            <% } %>
+            <% } %>
         </div>
     </div>
 </div>
 <!-- Wishlist End -->
 <%- include('layouts/foot') %>
+
+<script>
+    //Remove cart
+    $('.remove-wishlist').click(function() {
+        const that = $(this).closest('.wishlist-product');
+        const id = that.data('id');
+        $.ajax({
+            type: "DELETE",
+            url: `/wishlist/${id}/destroy`,
+            success: function(response) {
+                if (response.status === 201) {
+                    that.html('');
+                }
+            }
+        });
+    })
+</script>

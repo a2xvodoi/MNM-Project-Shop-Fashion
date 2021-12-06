@@ -1,15 +1,15 @@
-const Product = require('../../models/Product');
 const User = require('../../models/User');
 const Cart = require('../../models/Cart');
 
 module.exports.cart = (req, res, next) => {
     const userId = req.session.customer._id;
-    // const userId = "RXGnbhx6P";
-    // const userId = req.session.customer
     Cart.findOne({ userId }).populate('products.productId')
         .then(cart => {
+            req.session.customer.cart = {
+                length: cart ? cart.products.length : 0
+            };
             const data = {
-                cartProducts: cart.products,
+                cartProducts: cart ? cart.products: null,
             }
             res.render('client/cart', data);
         })
@@ -49,7 +49,12 @@ module.exports.create = async(req, res) => {
                 });
             }
             cart = await cart.save();
-            return res.status(201).send(cart);
+            req.session.customer.cart = {
+                length : cart.products.length
+            };
+            return res.status(201).json({
+                quantityCart: req.session.customer.cart.length
+            });
         } else {
             //no cart for user, create new cart
             const newCart = await Cart.create({
@@ -62,7 +67,12 @@ module.exports.create = async(req, res) => {
                 }]
             });
 
-            return res.status(201).send(newCart);
+            req.session.customer.cart = {
+                length : cart.products.length
+            };
+            return res.status(201).json({
+                quantityCart: req.session.customer.cart.length
+            });
         }
     } catch (err) {
         console.log(err);
@@ -92,7 +102,13 @@ module.exports.update = async(req, res, next) => {
                 return res.json('');
             }
             cart = await cart.save();
-            return res.status(201).send(cart);
+            
+            req.session.customer.cart = {
+                length : cart.products.length
+            };
+            return res.status(201).json({
+                quantityCart: req.session.customer.cart.length
+            });
         } else {
             return res.status(201).send('');
         }
@@ -120,7 +136,14 @@ module.exports.destroy = async(req, res, next) => {
                 return res.json('');
             }
             cart = await cart.save();
-            return res.json({ status: 200 });
+            
+            req.session.customer.cart = {
+                length : cart.products.length
+            };
+            return res.status(201).json({
+                status: 201,
+                quantityCart: req.session.customer.cart.length
+            });
         } else {
             return res.status(201).send('');
         }
@@ -130,14 +153,6 @@ module.exports.destroy = async(req, res, next) => {
     }
 }
 
-// module.exports.deleteAll = (req, res, next) =>{
-//     let status = false;
-//     if (req.session.cart) {
-//         cartMiddleware.cleanCart(req);
-//         status = true;
-//     }
-//     res.json({status: status});
-// }
 // GET order /dat-hang
 
 module.exports.order = async(req, res, next) => {

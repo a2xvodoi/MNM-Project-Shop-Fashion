@@ -1,18 +1,31 @@
-module.exports =(req, res, next) => {
-    if (req.session.customer) {
-        const pathLogin = req._parsedOriginalUrl.pathname;
-        if ((pathLogin === '/login')) {
-            res.redirect('/');
+module.exports = {
+    login : (req, res, next) =>{
+        if (!req.session.customer) {
+            if (req.method !== 'GET') {
+                res.json({status: 403});
+                return;
+            }
+            res.redirect('/login');
+            return;
         }
+        next();
+    },
+    identity : (req, res, next) => {
+        if (req.session.customer) {
+            const pathLogin = req._parsedOriginalUrl.pathname;
+            if ((pathLogin === '/login')) {
+                res.redirect('/');
+            }
+            const customer = req.session.customer;
 
-        res.locals.customer = req.session.customer;
-        next();
-    } else {
-        res.locals.customer = false;
-        next();
+            res.locals.customer = customer;
+            next();
+        } else {
+            res.locals.customer = false;
+            next();
+        }
     }
 }
-
 // module.exports.checkValidateFormLogin = (req, res, next) =>{
 //     let errors ={err: false};
 //     if (!req.body.tenDangNhap) {

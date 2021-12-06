@@ -253,30 +253,6 @@
     $(document).ready(function() {
         $('.btn-size:first').addClass('active');
         $('.btn-color:first').addClass('active');
-        let subtotal = 0;
-        let shipCost = 100000;
-        let list = $('.total').closest('tr');
-        list.each(function() {
-            subtotal += parseFloat($(this).children('.total').text());
-        })
-        let grandtotal = subtotal + shipCost;
-
-        $('#sub-total').html(`${subtotal} VNĐ`);
-        $('#ship-cost').html(`${shipCost} VNĐ`);
-        $('#grand-total').html(`${grandtotal} VNĐ`);
     });
 
 })(jQuery);
-
-
-
-// const activeClass = function (group) {
-//     const btnContainer = document.getElementById(group);
-//     var btns = btnContainer.getElementsByClassName("btn");
-//     for (var i = 0; i < btns.length; i++) {
-//         btns[i].addEventListener("click", function() {
-//           var current = document.getElementsByClassName("active");
-//           current[0].className = current[0].className.replace(" active", "");
-//           this.className += " active";
-//         });
-// }
