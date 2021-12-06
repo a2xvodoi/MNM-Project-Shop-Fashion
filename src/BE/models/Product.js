@@ -23,11 +23,11 @@ const Product = new Schema({
 		{
 			size: {
 				type: String,
-        		enum: ['XL', 'L', 'M'],
+        		enum: ['4XL', '3XL','2XL','XL', 'L', 'M', 'S'],
 			},
 			color: {
 				type: String,
-				enum: ['Đen', 'Trắng', 'Xám'],
+				enum: ['Đỏ', 'Tím tham', 'Xanh', 'Vàng', 'Ghi đậm', 'Ghi nhạt', 'Cam', 'Nâu', 'Hồng', 'Đen', 'Rêu', 'Be', 'Ghi', 'Trắng', 'Xanh dương', 'Xanh lá'],
 			},
 			quantity: {
 				type: Number,

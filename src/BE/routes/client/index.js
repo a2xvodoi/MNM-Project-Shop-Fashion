@@ -2,26 +2,29 @@ const express = require("express");
 const router = express.Router();
 const accountController = require("../../controllers/client/AccountController");
 const cartController = require("../../controllers/client/CartController");
+const wishlistController = require("../../controllers/client/WishlistController");
 const productController = require("../../controllers/client/ProductController");
 const homeController = require("../../controllers/client/HomeController");
+
+const {login} = require('../../middleware/client/Auth');
 
 /* GET home page. */
 router.get("/", homeController.index);
 
 /* GET cart page. */
-router.get("/cart", cartController.cart);
-router.post("/cart/addCart", cartController.create);
-router.patch("/cart/:id/update", cartController.update);
-router.delete("/cart/:id/destroy", cartController.destroy);
+router.get('/cart', login, cartController.cart);
+router.post('/cart/addCart', login, cartController.create);
+router.patch('/cart/:id/update', login, cartController.update);
+router.delete('/cart/:id/destroy', login, cartController.destroy);
+
+/* GET wishlist page. */
+router.get("/wishlist", login, wishlistController.wishlist);
+router.post('/wishlist/addWishlist', login, wishlistController.create);
+router.delete('/wishlist/:id/destroy', login, wishlistController.destroy);
 
 /* GET pay page. */
 router.get("/pay", (req, res, next) => {
     res.render("client/pay");
-});
-
-/* GET wishlist page. */
-router.get("/wishlist", (req, res, next) => {
-    res.render("client/wishlist");
 });
 
 /* GET contact page. */
@@ -29,17 +32,10 @@ router.get("/contact", (req, res, next) => {
     res.render("contact");
 });
 
-/* GET login page. */
-router.get("/login", (req, res, next) => {
-    res.render("client/login");
-});
-
 /* GET info user page. */
-router.get("/info", (req, res, next) => {
-    res.render("client/user-info");
-});
-/* GET info user page. */
-router.get("/user-info", accountController.userInfo);
+router.get("/user/show", login, accountController.show);
+router.put("/user/update", login, accountController.update);
+router.patch("/user/update-password", login, accountController.updatePassword);
 
 /* GET search product page. */
 router.get("/search", homeController.search);

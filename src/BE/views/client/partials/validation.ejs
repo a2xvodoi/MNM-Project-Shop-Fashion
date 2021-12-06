@@ -1,0 +1,30 @@
+<script src="/bower_components/jquery-validation/dist/jquery.validate.min.js"></script>
+<script>
+    $('#form-validation-user-info').validate({
+        rules: { 
+            user_name: {
+                required: true,
+            },
+            full_name: {
+                required: true,
+            },
+            phone: {
+                required: true,
+            },
+            email: { 
+                required: true, 
+                email: true, 
+                minlength: 6
+            },
+            address: {
+                required: true
+            },
+            new_password: {
+
+            },
+            new_password_confirm: {
+                equalTo: "#new_password"
+            }
+        }, 
+    })
+</script>

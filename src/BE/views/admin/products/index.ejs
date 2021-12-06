@@ -57,7 +57,7 @@
 										<%= product.price %>
 									</td>
 									<td class="text-right">
-										<a class="btn btn-primary btn-sm" href="#">
+										<a class="btn btn-primary btn-sm" href="/admin/products/<%= product._id %>">
 											<i class="fas fa-folder">
 											</i>
 											View
@@ -124,7 +124,7 @@
 <script>
 	Swal.fire(
 		'Error!',
-		'Xoá sản phẩm thành công!',
+		'Xoá sản phẩm thất bại!',
 		'error'
 	)
 </script>

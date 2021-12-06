@@ -46,8 +46,7 @@ $(document).ready(function() {
             type: "DELETE",
             url: `/cart/${id}/destroy`,
             success: function(response) {
-                console.log(response)
-                if (response.status === 200) {
+                if (response.status === 201) {
                     that.html('');
                 }
             }
@@ -65,7 +64,7 @@ const updateCart = (id, quantity) => {
         data: { data: JSON.stringify(data) },
         dataType: "JSON",
         success: function(response) {
-
+            window.location.reload();
         }
     });
 }

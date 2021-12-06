@@ -1,0 +1,65 @@
+<input type="hidden" name="type-submit" value="<%= type %> ">
+
+<script>
+    $('.btn-submit').click((e)=>{
+        e.preventDefault();
+
+        const typeSubmit = $('input[name="type-submit"]').val();
+        const id = $('input[name="name"]').data('id');
+        const name = $('input[name="name"]').val();
+        const price = $('input[name="price"]').val();
+        const avatar = $('#avatar')[0].files[0];
+        const description = tinymce.get("description").getContent();
+        const category = $('select[name="category"]').val();
+        const otherImg = $('input[name="otherImg"]').map(function(){return $(this).val();}).get();
+        const size = $('select[name="size_color[size]"]').map(function(){return $(this).val();}).get();
+        const color = $('select[name="size_color[color]"]').map(function(){return $(this).val();}).get();
+        const quantity = $('input[name="size_color[quantity]"]').map(function(){return $(this).val();}).get();
+        
+        var size_color = [];
+        for (let index = 0; index < size.length; index++) {
+            if (size[index] === '' || color[index] === '' || quantity[index] === '') {
+                continue;
+            }
+            size_color = [
+                ...size_color,
+                {
+                    'size': size[index],
+                    'color': color[index],
+                    'quantity': quantity[index],
+                }
+            ];
+        }
+
+        const data = {
+            name: name,
+            price: price,
+            size_color: size_color,
+            description: description,
+            category: category
+        }
+        var url = "/admin/products/" + typeSubmit;
+        var typeMethod = 'POST';
+        if (id) {
+            typeMethod = 'PUT';
+            url = `/admin/products/${id.trim()}/${typeSubmit}`;
+        }
+        $.ajax({
+            method: typeMethod,
+            type: typeMethod,
+            url: url,
+            data: { data: JSON.stringify(data)},
+            dataType: "JSON",
+            success: function (response) {
+                if (response.status === 200) {
+                    let formUpload = $('form[name="upload-files"]');
+                    console.log(formUpload);
+                    formUpload.attr('action', `/admin/products/${response._id}/upload/${response.type}`);
+                    $('form[name="upload-files"]').submit();
+                    return false;
+                }
+                window.location.href = '/admin/products/create';
+            }
+        });
+    })
+</script>

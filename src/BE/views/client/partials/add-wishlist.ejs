@@ -1,0 +1,24 @@
+<script>
+    $('.wishlist-add').click(function(e){
+        e.preventDefault();
+
+        const id = $(this).data('id');
+
+        const data = {
+            "productId": id,
+        };
+        $.ajax({
+            type: "POST",
+            url: "/wishlist/addWishlist",
+            data: { data: JSON.stringify(data) },
+            dataType: "JSON",
+            success: function(response) {
+                if (response.status === 403) {
+                    window.location.href = '/login';
+                    return false;
+                }
+                return false;
+            }
+        });
+    })
+</script>
