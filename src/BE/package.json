@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-	"postinstall": "./node_modules/bower/bin/bower install"
+	"postinstall": "node_modules/bower/bin/bower install"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
