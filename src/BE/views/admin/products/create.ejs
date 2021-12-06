@@ -20,11 +20,12 @@
                     </div>
                 </form>
                 <div class="form-group add-form-size-color">
-                    <label for="size_color">Size color <i class="fas fa-plus-circle btn-add-form"
-                            style="cursor: pointer;font-size: 20px;"></i></label>
-                    <div class="add-form ">
+                    <label for="size_color">Product Type <i class="fas fa-plus-circle btn-add-form"
+                            style="cursor: pointer;font-size: 20px;color:#007bff"></i></label>
+                    <div class="add-form">
                         <div class="row">
                             <div class="col-4">
+                                <label>Size</label>
                                 <select class="custom-select" id="size_color" name="size_color[size]">
                                     <option selected value="">--- Chọn size ---</option>
                                     <% sizes.forEach(size=> { %>
@@ -35,6 +36,7 @@
                                 </select>
                             </div>
                             <div class="col-4">
+                                <label>Color</label>
                                 <select class="custom-select" name="size_color[color]">
                                     <option selected value="">--- Chọn color ---</option>
                                     <% colors.forEach(color=> { %>
@@ -45,7 +47,11 @@
                                 </select>
                             </div>
                             <div class="col-4">
-                                <input type="number" name="size_color[quantity]" class="form-control">
+                                <label>Quantity</label>
+                                <div class="d-flex align-items-center">
+                                    <input type="number" name="size_color[quantity]" class="form-control">
+                                    <i class="fas fa-minus-circle" style="margin-left:10px;cursor: pointer;color:red"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
