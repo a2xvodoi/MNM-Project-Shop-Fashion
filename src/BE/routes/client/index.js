@@ -5,6 +5,7 @@ const cartController = require("../../controllers/client/CartController");
 const wishlistController = require("../../controllers/client/WishlistController");
 const productController = require("../../controllers/client/ProductController");
 const homeController = require("../../controllers/client/HomeController");
+const orderController = require("../../controllers/client/OrderController");
 
 const {login} = require('../../middleware/client/Auth');
 
@@ -23,9 +24,8 @@ router.post('/wishlist/addWishlist', login, wishlistController.create);
 router.delete('/wishlist/:id/destroy', login, wishlistController.destroy);
 
 /* GET pay page. */
-router.get("/pay", (req, res, next) => {
-    res.render("client/pay");
-});
+router.get("/order", login, orderController.create);
+router.post("/order", login, orderController.store);
 
 /* GET contact page. */
 router.get("/contact", (req, res, next) => {
@@ -55,6 +55,6 @@ router.post("/login", accountController.postLogin);
 router.get("/logout", accountController.logout);
 
 /* GET list-product page. */
-router.get("/:category", homeController.listProduct);
+router.get("/:category", productController.listProduct);
 
 module.exports = router;

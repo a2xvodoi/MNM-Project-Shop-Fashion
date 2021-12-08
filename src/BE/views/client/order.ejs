@@ -1,0 +1,94 @@
+<%- include('layouts/head') %>
+<!-- Checkout Start -->
+<div class="checkout">
+    <div class="container-fluid"> 
+        <% if (cartProducts && cartProducts.length) { %>
+            <form action="" method="post">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="checkout-inner">
+                            <div class="billing-address">
+                                <h2>Địa chỉ thanh toán</h2>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>Họ tên</label>
+                                        <input class="form-control" type="text" placeholder="Họ tên" name="full_name">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>E-mail</label>
+                                        <input class="form-control" type="email" placeholder="Email" name="email">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>Số điện thoại</label>
+                                        <input class="form-control" type="text" placeholder="Số điện thoại" name="phone">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>Địa chỉ</label>
+                                        <input class="form-control" type="text" placeholder="Địa chỉ" name="address">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="checkout-inner">
+                            <div class="checkout-summary">
+                                <h1>Tổng giỏ hàng</h1>
+                                <% var total = 0 %> 
+                                <% cartProducts.forEach(cart => { %>
+                                    <% total += cart.quantity * cart.productId.price %>
+                                    <div class="d-flex align-items-center justify-content-between mb-2" style="font-size: 12px;">
+                                        <img src="<%= cart.productId.avatar %>" alt="" width="50px" height="60px">
+                                        <div class="mx-2"><%= cart.productId.name %> - <%= cart.size %> - <%= cart.color %> - <%= cart.quantity %> </div>
+                                        <div><%= cart.productId.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) %> </div>
+                                    </div>
+                                <% }) %>
+                                <hr>
+                                <% var ship = 10000 %>
+                                <p class="ship-cost">Phí vận chuyển<span><%= ship.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) %></span></p>
+                                <h2>Tổng tiền<span><%= (total + ship).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) %> </span></h2>
+                            </div>
+        
+                            <div class="checkout-payment">
+                                <div class="payment-methods">
+                                    <h1>Phương thức thanh toán</h1>
+                                    <div class="payment-method">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="payment-1" name="payment" value="0">
+                                            <label class="custom-control-label" for="payment-1">Thanh toán khi nhận hàng (COD)</label>
+                                        </div>
+                                        <div class="payment-content text-center" id="payment-1-show">
+                                            <p>
+                                                Giao hàng và thanh toán tận nơi trên Toàn Quốc. <br>
+                                                Miễn phí ship với đơn hàng trên 500k <br>
+                                                Thời gian giao hàng: TP.HCM trong 1-2 ngày. Tỉnh thành khác từ 2-4 ngày. <br>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="payment-method">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="payment-2" name="payment" value="1">
+                                            <label class="custom-control-label" for="payment-2">Thanh toán online</label>
+                                        </div>
+                                        <div class="payment-content" id="payment-2-show">
+                                            <p>
+                                                exp
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="checkout-btn">
+                                    <button type="submit">Hoàn tất đơn hàng</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        <% } else { %>
+            <div class="font-italic text-center w-100">Không có sản phẩm nào trong giỏ hàng</div>
+        <% } %>
+    </div>
+</div>
+<!-- Checkout End -->
+<%- include('layouts/foot') %>

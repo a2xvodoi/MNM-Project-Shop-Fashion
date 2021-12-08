@@ -1,106 +1,99 @@
 <%- include('../layouts/head',{title: 'Thêm mới sản phẩm' }) %>
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
-            <h3>Thêm mới sản phẩm</h3>
-            <div class="card-body">
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <h3>Thêm mới sản phẩm</h3>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="name">Product Name</label>
+                <input type="text" id="name" name="name" class="form-control" />
+            </div>
+            <form method="post" enctype="multipart/form-data" name="upload-files">
                 <div class="form-group">
-                    <label for="name">Product Name</label>
-                    <input type="text" id="name" name="name" class="form-control">
+                    <label for="avatar">Avatar</label>
+                    <input type="file" id="avatar" name="avatar" class="form-control" />
+                    <img src="" alt="avatar" width="100px" height="100px" class="img-avatar my-3" />
                 </div>
-                <form method="post" enctype="multipart/form-data" name="upload-files">
-                    <div class="form-group">
-                        <label for="avatar">Avatar</label>
-                        <input type="file" id="avatar" name="avatar" class="form-control">
-                        <img src="" alt="avatar" width="100px" height="100px" class="img-avatar my-3">
-                    </div>
-                    <div class="form-group">
-                        <label for="otherImg">Other Image</label>
-                        <input type="file" id="otherImg" name="otherImg" class="form-control" multiple>
-                    </div>
-                </form>
-                <div class="form-group add-form-size-color">
-                    <label for="size_color">Product Type <i class="fas fa-plus-circle btn-add-form"
-                            style="cursor: pointer;font-size: 20px;color:#007bff"></i></label>
-                    <div class="add-form">
-                        <div class="row">
-                            <div class="col-4">
-                                <label>Size</label>
-                                <select class="custom-select" id="size_color" name="size_color[size]">
-                                    <option selected value="">--- Chọn size ---</option>
-                                    <% sizes.forEach(size=> { %>
-                                        <option value="<%= size %>">
-                                            <%= size %>
-                                        </option>
-                                        <% }) %>
-                                </select>
-                            </div>
-                            <div class="col-4">
-                                <label>Color</label>
-                                <select class="custom-select" name="size_color[color]">
-                                    <option selected value="">--- Chọn color ---</option>
-                                    <% colors.forEach(color=> { %>
-                                        <option value="<%= color %>">
-                                            <%= color %>
-                                        </option>
-                                        <% }) %>
-                                </select>
-                            </div>
-                            <div class="col-4">
-                                <label>Quantity</label>
-                                <div class="d-flex align-items-center">
-                                    <input type="number" name="size_color[quantity]" class="form-control">
-                                    <i class="fas fa-minus-circle" style="margin-left:10px;cursor: pointer;color:red"></i>
-                                </div>
+                <div class="form-group">
+                    <label for="otherImg">Other Image</label>
+                    <input type="file" id="otherImg" name="otherImg" class="form-control" multiple />
+                </div>
+            </form>
+            <div class="form-group add-form-size-color">
+                <label for="size_color">Product Type
+                    <i class="fas fa-plus-circle btn-add-form"
+                        style="cursor: pointer; font-size: 20px; color: #007bff"></i></label>
+                <div class="add-form">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Size</label>
+                            <select class="custom-select" id="size_color" name="size_color[size]">
+                                <option selected value="">--- Chọn size ---</option>
+                                <% sizes.forEach(size=> { %>
+                                <option value="<%= size %>"><%= size %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <label>Color</label>
+                            <select class="custom-select" name="size_color[color]">
+                                <option selected value="">--- Chọn color ---</option>
+                                <% colors.forEach(color=> { %>
+                                <option value="<%= color %>"><%= color %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <label>Quantity</label>
+                            <div class="d-flex align-items-center">
+                                <input type="number" name="size_color[quantity]" class="form-control" />
+                                <i class="fas fa-minus-circle"
+                                    style="margin-left: 10px; cursor: pointer; color: red"></i>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label for="price">Price</label>
-                    <input type="number" id="price" name="price" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="description">Product Description</label>
-                    <textarea id="description" class="form-control" rows="4" style="margin-top: 0px; margin-bottom: 0px; height: 99px;" name="description"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="category">Category</label>
-                    <select id="category" class="form-control custom-select" name="category">
-                        <option value="">--- Chọn danh mục ---</option>
-                        <% categories.forEach(category=> { %>
-                            <option value="<%= category._id %>">
-                                <%= category.name %>
-                            </option>
-                            <% }) %>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary btn-submit" type="submit">Thêm mới</button>
-                    <button class="btn btn-danger" type="button">Huỷ bỏ</button>
-                </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" id="price" name="price" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="description">Product Description</label>
+                <textarea id="description" class="form-control" rows="4"
+                    style="margin-top: 0px; margin-bottom: 0px; height: 99px" name="description"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" class="form-control custom-select" name="category">
+                    <option value="">--- Chọn danh mục ---</option>
+                    <% categories.forEach(category=> { %>
+                    <option value="<%= category._id %>"><%= category.name %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-submit" type="submit">
+                    Thêm mới
+                </button>
+                <button class="btn btn-danger" type="button">Huỷ bỏ</button>
             </div>
         </div>
-        <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-    <!-- Footer Start -->
-    <%- include('../partials/footer') %>
-        <!-- Footer Bottom End -->
-        <%- include('../partials/tinymce') %>
-
-            <% if (message && message.type==='create' && message.status==='error' ) { %>
-                <script>
-                    Swal.fire(
-                        'Error!',
-                        'Thêm sản phẩm thất bại!',
-                        'error'
-                    )
-                </script>
-                <% } %>
-                    <script src="/js/changeImage.js"></script>
-                    <script src="/js/addForm.js"></script>
-                    <%- include('../layouts/foot')%>
-
-                        <%- include('../partials/product-script', {type: 'create' }) %>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<!-- Footer Start -->
+<%- include('../partials/footer') %>
+<!-- Footer Bottom End -->
+<%- include('../partials/tinymce') %> <% if (message && message.type==='create'
+&& message.status==='error' ) { %>
+<script>
+    Swal.fire("Error!", "Thêm sản phẩm thất bại!", "error");
+</script>
+<% } %>
+<script src="/js/changeImage.js"></script>
+<script src="/js/addForm.js"></script>
+<%- include('../layouts/foot')%> <%- include('../partials/product-script',
+{type: 'create' }) %>

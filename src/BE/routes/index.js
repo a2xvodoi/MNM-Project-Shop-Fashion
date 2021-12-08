@@ -5,9 +5,6 @@ const indexAdRoute = require('./admin/index');
 const passport = require('passport');
 
 function router(app){
-    //Pages Client
-    app.use('/', require('../widgets/category-client'), require('../middleware/client/Auth').identity, indexRoute);
-
     //Pages Admin
     app.use('/admin', (req, res, next) => {
         res.locals.user = req.user;
@@ -17,6 +14,9 @@ function router(app){
     require('../widgets/links'), require('../middleware/admin/Alert'), 
     // require('../middleware/admin/Auth').requiredLogin,
     indexAdRoute);
+
+    //Pages Client
+    app.use('/', require('../widgets/category-client'), require('../middleware/client/Auth').identity, indexRoute);
 
     // catch 404 and forward to error handler
     app.use(function(req, res, next) {

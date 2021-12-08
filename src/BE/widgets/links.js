@@ -2,6 +2,9 @@ const url = require('url');
 
 module.exports = (req, res, next) => {
     const active = url.parse(req.url, true).path.split('/')[1];
+    if (active === '') {
+        res.redirect('/admin/dashboard');
+    }   
     res.locals.links = [
         {
             link: '/admin/dashboard',
@@ -20,6 +23,12 @@ module.exports = (req, res, next) => {
             name: 'Quản lí danh mục',
             icon: 'fa fa-bars',
             active: active === 'categories' ? true : false,
+        },
+        {
+            link: '/admin/orders',
+            name: 'Quản lí đơn hàng',
+            icon: 'fa fa-shopping-cart',
+            active: active === 'orders' ? true : false,
         },
         {
             link: '/admin/users',
