@@ -7,6 +7,7 @@ const orderController = require('../../controllers/admin/OrderController');
 const userController = require('../../controllers/admin/UserController');
 
 const size_color = require('../../widgets/size_color');
+const categories = require('../../widgets/category-client');
 
 /* GET dashboard page. */
 router.get('/', homeController.index);
@@ -33,7 +34,7 @@ router.get('/products/create', size_color, productController.create);
 router.post('/products/create', productController.store);
 
 /* GET edit product page. */
-router.get('/products/:_id/edit', size_color, productController.edit);
+router.get('/products/:_id/edit', categories, size_color, productController.edit);
 
 /* PUT edit product page. */
 router.put('/products/:_id/update', productController.update);

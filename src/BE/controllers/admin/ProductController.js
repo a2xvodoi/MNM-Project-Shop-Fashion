@@ -109,7 +109,6 @@ module.exports = {
     edit: (req, res, next) => {
         Product.findOne({ _id: req.params._id }).populate('category')
         .then((product) =>{
-            // console.log(product);
             res.render('admin/products/edit', {product: product});
         })
         .catch(next);
