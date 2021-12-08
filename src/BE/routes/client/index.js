@@ -55,6 +55,6 @@ router.post("/login", accountController.postLogin);
 router.get("/logout", accountController.logout);
 
 /* GET list-product page. */
-router.get("/:category", homeController.listProduct);
+router.get("/:category", productController.listProduct);
 
 module.exports = router;

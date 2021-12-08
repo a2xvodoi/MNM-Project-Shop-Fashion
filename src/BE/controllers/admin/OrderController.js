@@ -2,12 +2,20 @@ const Order = require('../../models/Order');
 
 // get /admin/order
 module.exports.index = (req, res, next) => {
-    Order.find({})
+    const page = parseInt(req.query.page) || 1;
+    const perPage = 10;
+    Order.find({}).skip((perPage * page) - perPage)
+    .limit(perPage)
     .then(orders => {
-        const data = {
-            orders: orders,
-        };
-        res.render('admin/orders/index', data);
+        Order.count((err, count) => { // count to calculate the number of pages
+            if (err) return next(err);
+            const data = {
+                orders: orders,
+                current: page,
+                pages: Math.ceil(count / perPage)
+            };
+            res.render('admin/orders/index', data);
+        })
     })
     .catch(next);
 }

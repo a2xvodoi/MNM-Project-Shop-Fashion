@@ -39,25 +39,22 @@ const uploadSingle = (file) => {
 module.exports = {
     // get /admin/products
     index : (req, res, next) => {
-        var page = parseInt(req.query.page) || 1;
-        var perPage =5;
-                //var start = (page -1) * perPage;
-                //var end = page * perPage;
+        const page = parseInt(req.query.page) || 1;
+        const perPage = 10;
         Product.find({}).populate('category').skip((perPage * page) - perPage) // in the first page the value of the skip is 0
-        .limit(perPage).then(products => {
+        .limit(perPage)
+        .then(products => {
             Product.count((err, count) => { // count to calculate the number of pages
                 if (err) return next(err);
-            const data = {
-                products: products,
-                current: page,
-                pages: Math.ceil(count / perPage)
-            };
-            
-
-            res.render('admin/products/index', data);
+                const data = {
+                    products: products,
+                    current: page,
+                    pages: Math.ceil(count / perPage)
+                };
+                res.render('admin/products/index', data);
+            })
         })
-        .catch(next); // output just 9 items
-        });
+        .catch(next);
     },
 
     // get /admin/products/:_id
