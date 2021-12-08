@@ -15,6 +15,5 @@ $(document).ready(function() {
     });
     $(".add-form-size-color").on("click", ".fa-minus-circle", function() {
         $(this).closest(".row").remove();
-        console.log($(this).closest(".row").html());
     });
 });
