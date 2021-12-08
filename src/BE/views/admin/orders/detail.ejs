@@ -1,0 +1,70 @@
+<%- include('../layouts/head',{title: 'Chi tiết đơn hàng'}) %>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <h3>Chi tiết đơn hàng</h3>
+        <div class="card-body">
+            <div class="row row-cols-md-2">
+                <div class="col">
+                    <div>Người nhận: <span class="font-italic"><%= order.full_name %></span></div>
+                    <div>Email: <span class="font-italic"><%= order.email %></div>
+                    <div>Số điện thoại: <span class="font-italic"><%= order.phone %></div>
+                    <div>Địa chỉ nhận <span class="font-italic"><%= order.email %></div>
+                </div>
+                <div class="col">
+                    <div>ID người mua: <span class="font-italic"><%= order.userId._id %></div>
+                    <div>Người mua: <span class="font-italic"><%= order.userId.full_name %></div>
+                    <div>Ngày đặt hàng: <span class="font-italic"><%= order.createdAt.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></div>
+                    <div>Trạng thái: <span class="font-italic"><%= order.status %></div>
+                </div>
+            </div>
+            <h4 class="my-2">Danh sách sản phẩm</h4>
+            <table class="table table-head-fixed table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Màu sắc</th>
+                        <th>Kích cỡ</th>
+                        <th>Số lượng</th>
+                        <th>Giá</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% var total = 0 %> 
+                    <% order.products.forEach(product => { %>
+                    <tr>
+                        <td>
+                            <%= product.productId._id %>
+                        </td>
+                        <td>
+                            <%= product.productId.name %>
+                        </td>
+                        <td>
+                            <%= product.color %> 
+                        </td>
+                        <td>
+                            <%= product.size %>
+                        </td>
+                        <td>
+                            <%= product.quantity %>
+                        </td>
+                        <td>
+                            <% total += product.quantity * product.productId.price %>
+                            <%= (product.quantity * product.productId.price).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) %>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+            <h6 class="my-2 font-italic">Phí ship: <% ship = 10000 %> <%= ship.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) %>  </h6>
+            <h5 class="my-2">Tổng tiền: <%= (total + ship).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) %> </h5>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<!-- Footer Start -->
+<%- include('../partials/footer') %>
+<!-- Footer Bottom End -->
+
+<%- include('../layouts/foot')%>

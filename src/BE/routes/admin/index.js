@@ -3,6 +3,7 @@ const router = express.Router();
 const homeController = require('../../controllers/admin/HomeController');
 const productController = require('../../controllers/admin/ProductController');
 const categoryController = require('../../controllers/admin/CategoryController');
+const orderController = require('../../controllers/admin/OrderController');
 const userController = require('../../controllers/admin/UserController');
 
 const size_color = require('../../widgets/size_color');
@@ -57,6 +58,12 @@ router.patch('/categories/:_id/update', categoryController.update);
 
 /* DELETE delete category page. */
 router.delete('/categories/:_id/destroy', categoryController.destroy);
+
+/* GET list order page. */
+router.get('/orders', orderController.index);
+
+/* GET detail order page. */
+router.get('/orders/:id', orderController.detail);
 
 /* GET list user page. */
 router.get('/users', userController.index);
