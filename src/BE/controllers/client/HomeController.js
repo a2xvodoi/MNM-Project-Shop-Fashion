@@ -21,7 +21,8 @@ module.exports.search = (req, res, next) =>{
     .skip((perPage * page) - perPage)
     .limit(perPage)
     .then(products => {
-        Product.count((err, count) => { // count to calculate the number of pages
+        Product.find({name: {$regex: search_product,$options: 'i'  }})
+        .count((err, count) => { // count to calculate the number of pages
             if (err) return next(err);
             const data = {
                 products: products,

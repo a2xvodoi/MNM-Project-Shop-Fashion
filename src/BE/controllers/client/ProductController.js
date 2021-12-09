@@ -8,7 +8,8 @@ module.exports.listProduct = (req, res, next) =>{
     Product.find({category: req.params.category}).skip((perPage * page) - perPage)
     .limit(perPage)
     .then(products => {
-        Product.count((err, count) => { // count to calculate the number of pages
+        Product.find({category: req.params.category})
+        .count((err, count) => { // count to calculate the number of pages
             if (err) return next(err);
             const data = {
                 products: products,
