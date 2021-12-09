@@ -12,7 +12,7 @@ function router(app){
     }, 
     passport.initialize(), passport.session(), 
     require('../widgets/links'), require('../middleware/admin/Alert'), 
-    require('../middleware/admin/Auth').requiredLogin,
+    // require('../middleware/admin/Auth').requiredLogin,
     indexAdRoute);
 
     //Pages Client
