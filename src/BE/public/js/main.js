@@ -1,5 +1,7 @@
 (function($) {
     "use strict";
+
+
     $(window).scroll(function() {
         if ($(window).scrollTop() >= 700) {
             $(".navbar").addClass("fixed-header");
