@@ -1,4 +1,4 @@
-<%- include('../layouts/head',{title: 'Quản lý tài khoản'}) %>
+<%- include('../layouts/head',{title: 'Phân quyền người dùng'}) %>
 	<!-- Main content -->
 	<section class="content">
 		<div class="container-fluid">
@@ -7,10 +7,7 @@
 					<div class="card">
 						<div class="card-header">
 							<div class="d-flex align-items-center">
-								<h3 class="card-title">Tài Khoản</h3>
-								<a href="/admin/users/create">
-									<div class="btn btn-success ml-3">Thêm mới</div>
-								</a>
+								<h3 class="card-title">Phân quyền</h3>
 							</div>
 							<div class="card-tools">
 								<div class="input-group input-group-sm" style="width: 150px;">
@@ -33,15 +30,14 @@
 										<th>ID</th>
 										<th>User Name</th>
 										<th>Full Name</th>
-										<th>Số điện thoại</th>
-										<th>Email</th>
-										<th>Loại tài khoản</th>
+										<th>Role</th>
+										<th>Status</th>
 										<th></th>
 									</tr>
 								</thead>
 								<tbody>
 									<% users.forEach(user => { %>
-									<tr>
+									<tr data-id="<%= user._id %>">
 										<td>
 											<%= user._id %>
 										</td>
@@ -52,32 +48,30 @@
 											<%=user.full_name %>
 										</td>
 										<td>
-											<%=user.phone %>
+											<% if (user.userType === 'moderator') { %>
+                                            <span class="text-primary">Toàn quyền</span>
+                                            <% } else { %>
+                                                <select class="custom-select sl-role">
+                                                    <% roles.forEach(role => { %>
+                                                        <option value="<%= role._id %>" <%= role._id === user.role._id ? 'selected' : ''%> ><%= role.name %></option>
+                                                    <% }) %>
+                                                </select>
+                                            <% } %>
 										</td>
 										<td>
-											<%=user.email %>
-										</td>
-										<td>
-											<%=user.userType %>
+											
 										</td>
 										<td class="text-right">
-											<a class="btn btn-primary btn-sm" href="/admin/users/<%= user._id %>/view">
-												<i class="fas fa-folder">
+											<button class="btn btn-primary btn-sm <%= user.userType === 'moderator' ? 'disable' : ''%>  btn-update">
+												<i class="fas fa-pencil-alt"></i>
 												</i>
-												View
-											</a>
-											<a class="btn btn-info btn-sm" href="/admin/users/<%= user._id %>/edit">
-												<i class="fas fa-pencil-alt">
+												Cập nhật
+											</button>
+											<button class="btn btn-info btn-sm <%= user.userType === 'moderator' ? 'disable' : ''%>  btn-lock">
+												<i class="fas fa-lock"></i>
 												</i>
-												Edit
-											</a>
-											<div class="btn btn-danger btn-sm" data-toggle="modal"
-												data-target="#deleteModal" data-_id="<%= user._id %>"
-												data-type="users">
-												<i class="fas fa-trash">
-												</i>
-												Delete
-											</div>
+												Khoá
+											</button>
 										</td>
 									</tr>
 									<% }) %>
@@ -158,43 +152,25 @@
 <!-- Footer Start -->
 <%- include('../partials/footer') %>
 <!-- Footer Bottom End -->
-
-
-<%- include('../partials/delete-modal') %>
-<% if (message && message.type === 'create' && message.status === 'success') { %>
-	<script>
-		Swal.fire(
-			'Success!',
-			'Thêm tài khoản thành công!',
-			'success'
-		)
-	</script>
-	<% } %>
-<% if (message && message.type === 'update' && message.status === 'success') { %>
-		<script>
-			Swal.fire(
-				'Success!',
-				'Cập nhật sản phẩm thành công!',
-				'success'
-			)
-		</script>
-<% } %>
-<% if (message && message.type === 'delete' && message.status === 'success') { %>
-	<script>
-		Swal.fire(
-			'Success!',
-			'Xoá tài khoản thành công!',
-			'success'
-		)
-	</script>
-<% } %>
-<% if (message && message.type === 'delete' && message.status === 'error') { %>
-	<script>
-		Swal.fire(
-			'Error!',
-			'Xoá tài khoản  thất bại!',
-			'error'
-		)
-	</script>
-	<% } %>
 <%- include('../layouts/foot')%>
+
+<script>
+    $('.btn-update').click(function(){
+        if (!$(this).hasClass('disable')) {
+            const parent = $(this).closest('tr');
+            const id = parent.data('id');
+
+            const role = parent.find('.sl-role').val();
+
+            $.ajax({
+                type: "PATCH",
+                url: `/admin/permissions/${id}/update`,
+                data: { role: role},
+                dataType: "JSON",
+                success: function (response) {
+                    console.log(response.status);
+                }
+            });
+        }
+    })
+</script>

@@ -4,24 +4,32 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-8 offset-md-2">
-                    <div class="cart-page-inner">
-                        <div class="row">
-                            <p class="location col-10">Đơn hàng của tôi</p>
-                            <p class="text-right col-2"><span>Đang giao</span></p>
-                        </div>
-                        <div class="row">
-                            <div class="col-2 image">
-                                <img src="/img/category-1.jpg" alt="ảnh">
+                    <% orders.forEach(order => { %>
+                        <div class="cart-page-inner">
+                            <div class="row">
+                                <p class="location col-10">Mã đơn hàng <%= order._id %> </p>
+                                <p class="text-right col-2"><span>Đang giao</span></p>
                             </div>
-                            <div class="col-8">
-                                <p>Quần áo nam</p>
-                                <p>Phân loại hàng: Đen, 40</p>
-                                <p>Số lượng: 2</p>
-                            </div>
-                            <div class="col-2 text-right"><span>200.000đ</span></div>
+                            <% let total = 0 %> 
+                            <% order.products.forEach(product => { %>
+                                <div class="row">
+                                    <div class="col-2 image">
+                                        <img src="<%= product.productId.avatar %>" alt="ảnh">
+                                    </div>
+                                    <div class="col-8">
+                                        <p><%= product.productId.name %></p>
+                                        <p>Phân loại hàng: <%= product.color %>, <%= product.size %></p>
+                                        <p>Số lượng: <%= product.quantity %></p>
+                                    </div>
+                                    <div class="col-2 text-right"><span><%= product.productId.price.toLocaleString('it-IT', {style: 'currency' , currency : 'VND' }) %></span></div>
+                                    <% total +=  product.productId.price*product.quantity %> 
+                                </div>
+                            <% }) %>
+                            <% let ship = 10000 %> 
+                            <div class="text-right">Phí ship: <span><%= ship.toLocaleString('it-IT', {style: 'currency' , currency : 'VND' }) %> </span></div>
+                            <div class="text-right">Tổng số tiền: <span><%= (total + ship).toLocaleString('it-IT', {style: 'currency' , currency : 'VND' }) %> </span></div>
                         </div>
-                        <div class="text-right">Tổng số tiền: <span>200.000đ</span></div>
-                    </div>
+                    <% }) %>
                 </div>
             </div>
         </div>

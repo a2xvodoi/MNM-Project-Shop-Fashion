@@ -68,9 +68,10 @@ module.exports = {
             };
 
             const data = JSON.parse(req.body.data);
-            // console.log(data); return;
             const user = await new User(data);
-
+            if (user.userType !== 'user') {
+                user.role = 'iVPO2fzrK';
+            }
             user.save(opts);
 
             await session.commitTransaction();
@@ -83,8 +84,6 @@ module.exports = {
             res.json({
                 status: 'success'
             });
-
-            //res.redirect('/admin/users');
         } catch (error) {
             console.log(error);
             req.session.message = {
@@ -123,6 +122,10 @@ module.exports = {
                 session,
                 new: true
             };
+            if (req.body.userType !== 'user') {
+                req.body.role = 'iVPO2fzrK';
+            }
+
             await User.findOneAndUpdate({
                 _id: req.params._id
             }, req.body, opts);
@@ -162,100 +165,3 @@ module.exports = {
     },
 
 }
-
-
-
-
-// // get /admin/user
-// module.exports.index = (req, res, next)=>{
-//     User.find({})
-//     .then(users =>{
-//         res.render('admin/user/index', { title: 'Quản lý tài khoản',
-//         layout: 'mainAd.hbs',
-//         users:multiToObj(users),
-//         session: req.session,
-//     });
-//         // res.json(users);
-//     })
-//     .catch(next);
-// }
-
-// // get /admin/user/create-user
-// module.exports.createUser = (req, res, next)=>{
-//     res.render('admin/user/createUser', { title: 'Thêm tài khoản',
-//     layout: 'mainAd.hbs',
-//     session: req.session,
-//     });
-// }
-
-// // post /admin/user/create-user
-
-// module.exports.postCreateUser = (req, res, next)=>{
-//     let data = req.body;
-//     data.matKhau = md5(data.matKhau);
-//     // res.json(req.body)
-//     const user = new User(data);
-//     user.save()
-//     .then(() => res.redirect('/admin/user'))
-//     .catch(next);
-// }
-
-// // get /admin/user/:userID/detail
-
-// module.exports.detailUser = (req, res, next) =>{
-//     User.findOne({_id: req.params.userID})
-//     .then(user =>{
-//         res.render('admin/user/detailUser',{
-//             title: 'Thông tin tài khoản',
-//             layout: 'mainAd.hbs',
-//             user: toObj(user),
-//             session: req.session,
-//         })
-//     })
-// }
-
-// // get /admin/user/:userID/edit
-
-// module.exports.editUser = (req, res, next) => {
-//     User.findOne({_id: req.params.userID})
-//     .then(user =>{
-//         res.render('admin/user/editUser',{
-//             title: 'Chỉnh sửa tài khoản',
-//             layout: 'mainAd.hbs',
-//             user: toObj(user),
-//             session: req.session,
-//         })
-//     })
-// }
-
-// // PUT /admin/user/:userID/edit
-
-// module.exports.putEditUser = (req, res, next) =>{
-//     User.findOneAndUpdate({_id: req.params.userID}, req.body)
-//     .then(() =>{
-//         res.redirect('/admin/user');
-//     })
-//     .catch(next);
-//     // res.json(req.body);
-// }
-
-// // get /admin/user/:userID/delete
-
-// module.exports.getDeleteUser = (req, res, next) => {
-//     User.findOne({_id: req.params.userID})
-//     .then(user =>{
-//         res.render('admin/user/deleteUser',{
-//             title: 'Xóa tài khoản',
-//             layout: 'mainAd.hbs',
-//             user: toObj(user),
-//             session: req.session,
-//         })
-//     })
-// }
-// // PUT /admin/user/:userID/edit
-
-// module.exports.deleteUser = (req, res, next) =>{
-//     User.deleteOne({ _id: req.params.userID }, req.body)
-//         .then(() => res.redirect('/admin/user'))
-//         .catch(next);
-// }

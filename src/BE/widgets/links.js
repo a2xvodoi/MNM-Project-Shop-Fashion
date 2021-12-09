@@ -36,6 +36,12 @@ module.exports = (req, res, next) => {
             icon: 'fas fa-user',
             active: active === 'users' ? true : false,
         },
+        {
+            link: '/admin/permissions',
+            name: 'Phân quyền',
+            icon: 'fas fa-user',
+            active: active === 'permissions' ? true : false,
+        },
     ];
     next();
 }

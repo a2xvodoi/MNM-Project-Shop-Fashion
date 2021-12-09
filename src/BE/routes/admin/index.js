@@ -5,9 +5,11 @@ const productController = require('../../controllers/admin/ProductController');
 const categoryController = require('../../controllers/admin/CategoryController');
 const orderController = require('../../controllers/admin/OrderController');
 const userController = require('../../controllers/admin/UserController');
+const permissionController = require('../../controllers/admin/PermissionController');
 
 const size_color = require('../../widgets/size_color');
 const categories = require('../../widgets/category-client');
+const permission = require('../../middleware/admin/Permission');
 
 /* GET dashboard page. */
 router.get('/', homeController.index);
@@ -25,61 +27,65 @@ router.post('/login', homeController.postLogin);
 router.post('/logout', homeController.logout);
 
 /* GET list product page. */
-router.get('/products', productController.index);
+router.get('/products', permission(1), productController.index);
 
 /* GET add product page. */
-router.get('/products/create', size_color, productController.create);
+router.get('/products/create', permission(1), size_color, productController.create);
 
 /* POST store product page. */
-router.post('/products/create', productController.store);
+router.post('/products/create', permission(1), productController.store);
 
 /* GET edit product page. */
-router.get('/products/:_id/edit', categories, size_color, productController.edit);
+router.get('/products/:_id/edit', permission(1), categories, size_color, productController.edit);
 
 /* PUT edit product page. */
-router.put('/products/:_id/update', productController.update);
+router.put('/products/:_id/update', permission(1), productController.update);
 
 /* POST upload file page. */
-router.post('/products/:_id/upload/:type', productController.upload);
+router.post('/products/:_id/upload/:type', permission(1), productController.upload);
 
 /* GET detail product page. */
-router.get('/products/:id', productController.detail);
+router.get('/products/:id', permission(1), productController.detail);
 
 /* DELETE delete product page. */
-router.delete('/products/:_id/destroy', productController.destroy);
+router.delete('/products/:_id/destroy', permission(1), productController.destroy);
 
 /* GET list category page. */
-router.get('/categories', categoryController.index);
+router.get('/categories', permission(2), categoryController.index);
 
 /* POST store category page. */
-router.post('/categories', categoryController.store);
+router.post('/categories', permission(2), categoryController.store);
 
 /* PATCH update category page. */
-router.patch('/categories/:_id/update', categoryController.update);
+router.patch('/categories/:_id/update', permission(2), categoryController.update);
 
 /* DELETE delete category page. */
-router.delete('/categories/:_id/destroy', categoryController.destroy);
+router.delete('/categories/:_id/destroy', permission(2), categoryController.destroy);
 
 /* GET list order page. */
-router.get('/orders', orderController.index);
+router.get('/orders', permission(3), orderController.index);
 
 /* GET detail order page. */
-router.get('/orders/:id', orderController.detail);
+router.get('/orders/:id', permission(3), orderController.detail);
 
 /* GET list user page. */
-router.get('/users', userController.index);
-
+router.get('/users', permission(4), userController.index);
 /* DELETE delete user page. */
-router.delete('/users/:_id/destroy', userController.destroy);
+router.delete('/users/:_id/destroy', permission(4), userController.destroy);
 /* Get store user page. */
-router.get('/users/create', userController.create);
+router.get('/users/create', permission(4), userController.create);
 /* POST create user page. */
-router.post('/users/create', userController.store);
+router.post('/users/create', permission(4), userController.store);
 /* GET edit user page. */
-router.get('/users/:_id/edit', userController.edit); 
+router.get('/users/:_id/edit', permission(4), userController.edit); 
 /* PUT update user page. */
-router.put('/users/:_id/update', userController.update);
+router.put('/users/:_id/update', permission(4), userController.update);
 /* get view user page. */
-router.get('/users/:_id/view', userController.view);
+router.get('/users/:_id/view', permission(4), userController.view);
+
+/* GET list user permission page. */
+router.get('/permissions', permission(5), permissionController.index);
+/* PATCH user permission page. */
+router.patch('/permissions/:id/update', permission(5), permissionController.update);
 
 module.exports = router;

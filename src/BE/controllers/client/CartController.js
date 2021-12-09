@@ -16,46 +16,10 @@ module.exports.cart = (req, res, next) => {
         .catch(next);
 };
 module.exports.buynow = (req, res, next) => {
-    // const userId = req.session.customer._id;
-    // Cart.findOne({ userId }).populate('products.productId')
-    //     .then(cart => {
-    //         req.session.customer.cart = {
-    //             length: cart ? cart.products.length : 0
-    //         };
-    //         const data = {
-    //             cartProducts: cart ? cart.products : null,
-    //         }
-    //     })
-    //     .catch(next);
     res.render("client/buy-product");
 };
 module.exports.receipt = (req, res, next) => {
-    // const userId = req.session.customer._id;
-    // Cart.findOne({ userId }).populate('products.productId')
-    //     .then(cart => {
-    //         req.session.customer.cart = {
-    //             length: cart ? cart.products.length : 0
-    //         };
-    //         const data = {
-    //             cartProducts: cart ? cart.products : null,
-    //         }
-    //     })
-    //     .catch(next);
     res.render("client/receipt");
-};
-module.exports.myorders = (req, res, next) => {
-    // const userId = req.session.customer._id;
-    // Cart.findOne({ userId }).populate('products.productId')
-    //     .then(cart => {
-    //         req.session.customer.cart = {
-    //             length: cart ? cart.products.length : 0
-    //         };
-    //         const data = {
-    //             cartProducts: cart ? cart.products : null,
-    //         }
-    //     })
-    //     .catch(next);
-    res.render("client/my-orders");
 };
 
 module.exports.create = async(req, res) => {
