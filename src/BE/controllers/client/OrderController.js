@@ -1,6 +1,16 @@
 const Cart = require('../../models/Cart');
 const Order = require('../../models/Order');
 
+// GET /my-orders
+module.exports.index = async(req, res, next) => {
+    const userId = req.session.customer._id;
+    Order.find({userId: userId}).populate('products.productId')
+    .then(orders => {
+        res.render("client/my-orders", {orders: orders});
+    })
+    .catch(next);
+}
+
 // GET order /order
 module.exports.create = async(req, res, next) => {
     const userId = req.session.customer._id;

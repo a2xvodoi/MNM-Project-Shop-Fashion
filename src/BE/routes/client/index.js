@@ -19,7 +19,6 @@ router.patch("/cart/:id/update", login, cartController.update);
 router.delete("/cart/:id/destroy", login, cartController.destroy);
 router.get("/buynow", login, cartController.buynow);
 router.get("/receipt", login, cartController.receipt);
-router.get("/my-orders", login, cartController.myorders);
 
 /* GET wishlist page. */
 router.get("/wishlist", login, wishlistController.wishlist);
@@ -27,6 +26,7 @@ router.post("/wishlist/addWishlist", login, wishlistController.create);
 router.delete("/wishlist/:id/destroy", login, wishlistController.destroy);
 
 /* GET pay page. */
+router.get("/my-orders", login, orderController.index);
 router.get("/order", login, orderController.create);
 router.post("/order", login, orderController.store);
 

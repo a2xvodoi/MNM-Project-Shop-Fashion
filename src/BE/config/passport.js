@@ -110,7 +110,7 @@ passport.use(
         },
         async (email, password, done) => {
             try {
-                const user = await User.findOne({email: email});
+                const user = await User.findOne({email: email}).populate('role');
                 if (!user) return done(null, false, { message: 'Incorrect email.' });
 
                 const isCorrectPassword = await user.isValidPassword(password);
