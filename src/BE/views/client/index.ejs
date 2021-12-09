@@ -2,62 +2,32 @@
     <!-- Main Slider Start -->
     <div class="header">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-3">
-                    <nav class="navbar bg-light">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="/">Trang chủ</a>
-                            </li>
-                            <% categories.forEach(element=> { %>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/<%= element._id %> ">
-                                        <%= element.name %>
-                                    </a>
-                                </li>
-                                <% }) %>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-md-6">
-                    <div class="header-slider normal-slider">
-                        <div class="header-slider-item">
-                            <img src="img/slider-1.jpg" alt="Slider Image" />
-                            <div class="header-slider-caption">
-                                <!-- <p>Some text goes here that describes the image</p>
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a> -->
-                            </div>
-                        </div>
-                        <div class="header-slider-item">
-                            <img src="img/slider-2.jpg" alt="Slider Image" />
-                            <div class="header-slider-caption">
-                                <!-- <p>Some text goes here that describes the image</p>
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a> -->
-                            </div>
-                        </div>
-                        <div class="header-slider-item">
-                            <img src="img/slider-3.jpg" alt="Slider Image" />
-                            <div class="header-slider-caption">
-                                <!-- <p>Some text goes here that describes the image</p>
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a> -->
-                            </div>
-                        </div>
+            <div class="banner-top carousel" data-flickity='{ "freeScroll": true, "wrapAround": true,"autoPlay":  2500 }'>
+                <div class="carousel-cell banner-item">
+                    <img src="img/slider-1.jpg" alt="">
+                    <div class="banner-text">
+                        <div class="banner-text-top">100% HEALTHY & AFFORDABLE</div>
+                        <div class="banner-text-organic">ORGANIC FRESH FRUITS</div>
+                        <div class="banner-text-small">Small Changes Big Diffrence</div>
+                        <div class="banner-text-button">SHOP NOW</div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="header-img">
-                        <div class="img-item">
-                            <img src="img/category-1.jpg" />
-                            <a class="img-text" href="">
-                                <!-- <p>Some text goes here that describes the image</p> -->
-                            </a>
-                        </div>
-                        <div class="img-item">
-                            <img src="img/category-2.jpg" />
-                            <a class="img-text" href="">
-                                <!-- <p>Some text goes here that describes the image</p> -->
-                            </a>
-                        </div>
+                <div class="carousel-cell banner-item">
+                    <img src="img/slider-2.jpg" alt="">
+                    <div class="banner-text">
+                        <div class="banner-text-top">100% HEALTHY & AFFORDABLE</div>
+                        <div class="banner-text-organic">ORGANIC FRESH FRUITS</div>
+                        <div class="banner-text-small">Small Changes Big Diffrence</div>
+                        <div class="banner-text-button">SHOP NOW</div>
+                    </div>
+                </div>
+                <div class="carousel-cell banner-item">
+                    <img src="img/slider-3.jpg" alt="">
+                    <div class="banner-text">
+                        <div class="banner-text-top">100% HEALTHY & AFFORDABLE</div>
+                        <div class="banner-text-organic">ORGANIC FRESH FRUITS</div>
+                        <div class="banner-text-small">Small Changes Big Diffrence</div>
+                        <div class="banner-text-button">SHOP NOW</div>
                     </div>
                 </div>
             </div>
@@ -198,3 +168,4 @@
     <!-- Recent Product End -->
     <%- include('layouts/foot') %>
         <%- include('partials/add-wishlist') %>
+            <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>

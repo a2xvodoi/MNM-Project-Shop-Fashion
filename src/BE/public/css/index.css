@@ -1,0 +1,109 @@
+.header {
+    margin-top: 130px;
+    padding: 200px 0;
+    background-color: red;
+}
+
+.banner-top {
+    margin-top: -185px;
+    height: 600px;
+}
+
+.banner-item {
+    width: 100vw !important;
+    height: 600px;
+    counter-increment: gallery-cell;
+}
+
+.banner-item img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.banner-item .banner-text {
+    position: absolute;
+    top: 35%;
+    left: 20%;
+    z-index: 999;
+}
+
+.banner-text-top {
+    font-weight: 700;
+    font-size: 12.8px;
+    opacity: 0;
+}
+
+.banner-text-organic {
+    width: 370px;
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-top: 12px;
+    opacity: 0;
+}
+
+.banner-text-small {
+    font-size: 20px;
+    margin-top: 7px;
+    opacity: 0;
+}
+
+.banner-text-button {
+    margin-top: 25px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 18px 15px;
+    width: 130px;
+    border-radius: 25px;
+    background-color: #222222;
+    color: #ffffff;
+    opacity: 0;
+}
+
+.banner-text-button:hover {
+    background-color: #89c74a;
+}
+
+.flickity-page-dots {
+    bottom: 10px;
+}
+
+.banner-top:hover .flickity-button {
+    opacity: 1;
+    background-color: transparent;
+}
+
+.banner-top .flickity-page-dots .dot {
+    width: 13px;
+    height: 13px;
+    opacity: 1;
+    background: #ffffff;
+}
+
+.banner-top .flickity-page-dots .dot.is-selected {
+    background: #89c74a;
+}
+
+.banner-item.is-selected .banner-text .banner-text-top {
+    -webkit-animation: textra 0.8s forwards;
+    animation: textra 0.8s forwards;
+}
+
+.banner-item.is-selected .banner-text .banner-text-organic {
+    -webkit-animation: textra 1s forwards;
+    animation: textra 1s forwards;
+}
+
+.banner-item.is-selected .banner-text .banner-text-small {
+    -webkit-animation: textra 1.4s forwards;
+    animation: textra 1.4s forwards;
+}
+
+.banner-item.is-selected .banner-text .banner-text-button {
+    -webkit-animation: btnup 1.4s forwards;
+    animation: btnup 1.4s forwards;
+}
