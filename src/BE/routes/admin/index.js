@@ -27,10 +27,10 @@ router.post('/login', homeController.postLogin);
 router.post('/logout', homeController.logout);
 
 /* GET list product page. */
-router.get('/products', permission(1), productController.index);
+router.get('/products', permission(1), categories, productController.index);
 
 /* GET add product page. */
-router.get('/products/create', permission(1), size_color, productController.create);
+router.get('/products/create', permission(1), categories, size_color, productController.create);
 
 /* POST store product page. */
 router.post('/products/create', permission(1), productController.store);

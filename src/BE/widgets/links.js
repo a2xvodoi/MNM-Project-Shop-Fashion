@@ -1,7 +1,7 @@
 const url = require('url');
 
 module.exports = (req, res, next) => {
-    const active = url.parse(req.url, true).path.split('/')[1];
+    const active = req._parsedUrl.pathname.split('/')[2];
     if (active === '') {
         res.redirect('/admin/dashboard');
     }   

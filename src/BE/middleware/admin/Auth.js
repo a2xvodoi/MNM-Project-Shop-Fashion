@@ -1,5 +1,5 @@
 module.exports.requiredLogin =(req, res, next) => {
-    const pathLogin = req._parsedOriginalUrl.pathname;
+    const pathLogin = req._parsedUrl.pathname;
     if (!req.user && !(pathLogin === '/admin/login')) {
         res.redirect('/admin/login');
     }
