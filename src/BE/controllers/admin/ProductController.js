@@ -57,7 +57,6 @@ module.exports = {
                     pages: Math.ceil(count / perPage),
                     query: filter,
                 };
-                console.log(data.query)
                 res.render('admin/products/index', data);
             })
         })
@@ -76,14 +75,7 @@ module.exports = {
 
     // get /admin/product/:_id
     create: (req, res, next) => {
-        Category.find({})
-            .then(categories => {
-                const data = {
-                    categories: categories,
-                };
-                res.render('admin/products/create', data);
-            })
-            .catch(next);
+        res.render('admin/products/create');
     },
 
     // post /admin/product/create

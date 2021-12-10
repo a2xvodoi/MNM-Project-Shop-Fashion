@@ -13,42 +13,31 @@
 							</a>
 						</div>
 						<div class="card-tools col-md-6">
-							<!-- <div class="input-group input-group-sm" style="width: 150px;">
-								<input type="text" name="table_search" class="form-control float-right"
-									placeholder="Search">
-
-								<div class="input-group-append">
-									<button type="submit" class="btn btn-default">
-										<i class="fas fa-search"></i>
-									</button>
-								</div>
-							</div> -->
 							<a href="#collapseFilter" class="btn btn-default text-primary float-sm-right"
 								data-toggle="collapse">
 								<i class="fas fa-filter"></i>
 								Lọc
 							</a>
 						</div>
-						<% if (Object.keys(query).length !== 0) { %>
-						 
-						<% } %>
 						<div class="collapse mt-3 w-100 <%= Object.keys(query).length !== 0 ? 'show' : '' %>" id="collapseFilter">
 							<div class="card card-body">
 								<form action="" method="get">
 									<div class="form-row">
 										<div class="form-group col-md-3">
 											<label for="_id">ID</label>
-											<input type="text" class="form-control" id="_id" name="_id"/>
+											<input type="text" class="form-control" id="_id" name="_id" value="<%= query._id %>"/>
 										</div>
 										<div class="form-group col-md-5">
 											<label for="name">Tên sản phẩm</label>
-											<input type="text" class="form-control" id="name" name="name"/>
+											<input type="text" class="form-control" id="name" name="name" value="<%= query.name ? query.name.$regex : ''%>"/>
 										</div>
 										<div class="form-group col-md-4">
 											<label for="category">Danh mục</label>
 											<select id="category" class="form-control" name="category">
 												<option value="" selected>Danh mục</option>
-												<option>...</option>
+												<% categories.forEach(category => { %>
+													<option value="<%= category._id %>" <%= query.category === category._id ? 'selected' : '' %> ><%= category.name %></option>
+												<% }) %>
 											</select>
 										</div>
 									</div>
@@ -75,33 +64,39 @@
 								</tr>
 							</thead>
 							<tbody>
-								<% products.forEach(product => { %>
-								<tr>
-									<td><%= product._id %></td>
-									<td><%= product.name %></td>
-									<td>
-										<img src="<%= product.avatar %> " alt="" width="100px" height="100px" />
-									</td>
-									<td><%= product.category.name %></td>
-									<td><%= product.price %></td>
-									<td class="text-right">
-										<a class="btn btn-primary btn-sm" href="/admin/products/<%= product._id %>">
-											<i class="fas fa-folder"> </i>
-											View
-										</a>
-										<a class="btn btn-info btn-sm" href="/admin/products/<%= product._id %>/edit">
-											<i class="fas fa-pencil-alt"> </i>
-											Edit
-										</a>
-										<a class="btn btn-danger btn-sm" href="#" data-toggle="modal"
-											data-target="#deleteModal" data-_id="<%= product._id %>"
-											data-type="products">
-											<i class="fas fa-trash"> </i>
-											Delete
-										</a>
-									</td>
-								</tr>
-								<% }) %>
+								<% if (products && products.length) { %>
+									<% products.forEach(product => { %>
+										<tr>
+											<td><%= product._id %></td>
+											<td><%= product.name %></td>
+											<td>
+												<img src="<%= product.avatar %> " alt="" width="100px" height="100px" />
+											</td>
+											<td><%= product.category.name %></td>
+											<td><%= product.price %></td>
+											<td class="text-right">
+												<a class="btn btn-primary btn-sm" href="/admin/products/<%= product._id %>">
+													<i class="fas fa-folder"> </i>
+													View
+												</a>
+												<a class="btn btn-info btn-sm" href="/admin/products/<%= product._id %>/edit">
+													<i class="fas fa-pencil-alt"> </i>
+													Edit
+												</a>
+												<a class="btn btn-danger btn-sm" href="#" data-toggle="modal"
+													data-target="#deleteModal" data-_id="<%= product._id %>"
+													data-type="products">
+													<i class="fas fa-trash"> </i>
+													Delete
+												</a>
+											</td>
+										</tr>
+									<% }) %>
+								<% } else { %>
+									<tr class="font-italic w-100 text-center">
+										<td colspan="7">Không tìm thấy sản phẩm nào!</td>
+									</tr>
+								<% } %>
 							</tbody>
 						</table>
 					</div>
@@ -110,6 +105,7 @@
 						<% if(pages > 0) { %>
 						<!-- show pagination if there is pages -->
 						<nav class="mx-auto">
+							<% var q = Object.keys(query).length !== 0 ? ('&_id=' + (query._id ? query_id : '') + '&name=' + (query.name ? query.name.$regex: '') + '&category=' + (query.category ? query.category : '')) : '' %>
 							<ul class="pagination">
 								<!-- FIRST ITEM -->
 								<% if(current == 1) { %>
@@ -118,7 +114,7 @@
 								</li>
 								<% } else { %>
 								<li class="page-item">
-									<a class="page-link" href="?page=1<%= Object.keys(query).length !== 0 ? ('&_id=' + (query._id ? query_id : '') + '&name=' + (query.name ? query.name.$regex: '') + '&category=' + (query.category ? query.category : '')) : '' %>">First</a>
+									<a class="page-link" href="?page=1<%= q %>">First</a>
 								</li>
 								<% } %>
 								<!-- ITEMS  -->
@@ -130,11 +126,11 @@
 								<% } %> <% for(; i <= (Number(current) + 4) && i <= pages; i++)
                 { %> <% if(i == current) { %>
 								<li class="page-item active">
-									<a class="page-link" href="?page=<%= i %><%= Object.keys(query).length !== 0 ? ('&_id=' + (query._id ? query_id : '') + '&name=' + (query.name ? query.name.$regex: '') + '&category=' + (query.category ? query.category : '')) : '' %>"> <%= i %> </a>
+									<a class="page-link" href="?page=<%= i %><%= q %>"> <%= i %> </a>
 								</li>
 								<% } else { %>
 								<li class="page-item">
-									<a class="page-link" href="?page=<%= i %><%= Object.keys(query).length !== 0 ? ('&_id=' + (query._id ? query_id : '') + '&name=' + (query.name ? query.name.$regex: '') + '&category=' + (query.category ? query.category : '')) : '' %>"> <%= i %> </a>
+									<a class="page-link" href="?page=<%= i %><%= q %>"> <%= i %> </a>
 								</li>
 								<% } %> <% if (i == Number(current) + 4 && i < pages) { %>
 								<li class="page-item disabled">
