@@ -97,7 +97,7 @@ h2 {
 .form-control:focus,
 .custom-select:focus {
     box-shadow: none;
-    border-color: #FF6F61;
+    border-color: #9f78ff;
 }
 
 .custom-radio,
@@ -1134,7 +1134,7 @@ a.btn-category {
 .product-view {
     position: relative;
     width: 100%;
-    padding: 100px 0 0 0;
+    padding: 130px 0 30px 0;
 }
 
 .product-view .product-view-top {
@@ -1274,7 +1274,7 @@ a.btn-category {
 .product-detail {
     position: relative;
     width: 100%;
-    padding: 180px 0 80px 0;
+    padding: 130px 0 30px 0;
 }
 
 .product-detail .product-detail-top,
@@ -1543,6 +1543,14 @@ a.btn-category {
     color: #fff;
 }
 
+.btn-size,
+.btn-color,
+.btn-add {
+    background-color: #000;
+    color: #fff;
+    margin-right: 10px;
+}
+
 
 /**********************************/
 
@@ -1710,7 +1718,7 @@ a.btn-category {
 
 .cart-page {
     position: relative;
-    margin-top: 30px;
+    margin-top: 130px;
 }
 
 .cart-page .cart-page-inner {
@@ -1771,7 +1779,7 @@ a.btn-category {
     font-size: 14px;
     text-align: center;
     color: #ffffff;
-    background: #FF6F61;
+    background: #9F78FF;
     border: none;
     border-radius: 4px;
 }
@@ -1798,7 +1806,8 @@ a.btn-category {
     border: none;
 }
 
-.cart-page .coupon {
+
+/* .cart-page .coupon {
     position: relative;
     width: 100%;
     margin-bottom: 15px;
@@ -1837,7 +1846,7 @@ a.btn-category {
 .cart-page .coupon button:hover {
     color: #ffffff;
     background: #FF6F61;
-}
+} */
 
 .cart-page .cart-summary {
     position: relative;
@@ -1867,7 +1876,8 @@ a.btn-category {
     margin: 0;
 }
 
-.cart-page .cart-summary .cart-btn button {
+
+/* .cart-page .cart-summary .cart-btn button {
     margin-top: 15px;
     width: calc(50% - 15px);
     height: 50px;
@@ -1894,6 +1904,18 @@ a.btn-category {
 .cart-page .cart-summary .cart-btn button:first-child:hover {
     color: #ffffff;
     background: #FF6F61;
+} */
+
+.cart-btn {
+    background-color: #000;
+    color: #fff;
+    margin-right: 10px;
+    width: 100%;
+}
+
+.buy-btn {
+    background-color: #000;
+    color: #fff;
 }
 
 
@@ -1907,7 +1929,7 @@ a.btn-category {
 
 .wishlist-page {
     position: relative;
-    padding: 30px 0;
+    padding: 130px 0 30px 0;
 }
 
 .wishlist-page .wishlist-page-inner {
@@ -2103,7 +2125,7 @@ a.btn-category {
 
 .my-account {
     position: relative;
-    padding: 30px 0;
+    margin: 130px 0 30px 0;
 }
 
 .my-account .nav.nav-pills .nav-link {
@@ -2151,6 +2173,17 @@ a.btn-category {
 
 .my-account .tab-content .table td {
     vertical-align: middle;
+}
+
+.btn-update-info,
+.btn-update-password {
+    background-color: #9f78ff;
+    color: #fff;
+}
+
+.btn-update-info:hover,
+.btn-update-password:hover {
+    background-color: #6610f2;
 }
 
 
@@ -2304,6 +2337,10 @@ a.btn-category {
 .btn-collection:hover {
     background-color: #6610f2;
     color: #fff;
+}
+
+.collection img {
+    width: 100%;
 }
 
 
@@ -2563,7 +2600,7 @@ a.btn-category {
 
 .login {
     position: relative;
-    padding-top: 30px;
+    padding-top: 130px;
 }
 
 .login .login-form,
@@ -2571,6 +2608,16 @@ a.btn-category {
     padding: 30px;
     background: #ffffff;
     margin-bottom: 30px;
+}
+
+.login-btn {
+    background-color: #9F78FF;
+    color: #fff;
+}
+
+.login-btn:hover {
+    background-color: #6610f2;
+    transition: ease-in 0.4s;
 }
 
 
@@ -2596,7 +2643,7 @@ a.btn-category {
 .footer {
     margin-top: 30px;
     position: relative;
-    padding: 100px 50px;
+    padding: 100px 50px 30px 50px;
     background: #1D2547;
     color: #fff;
 }
