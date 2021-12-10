@@ -56,7 +56,7 @@ h2 {
 .back-to-top {
     position: fixed;
     display: none;
-    background: #9F78FF;
+    background: #47c9e5;
     color: #ffffff;
     width: 40px;
     height: 40px;
@@ -97,7 +97,7 @@ h2 {
 .form-control:focus,
 .custom-select:focus {
     box-shadow: none;
-    border-color: #FF6F61;
+    border-color: #9f78ff;
 }
 
 .custom-radio,
@@ -122,7 +122,7 @@ h2 {
 .btn:focus {
     color: #ffffff;
     box-shadow: none;
-    background-color: #9F78FF;
+    background-color: #47c9e5;
 }
 
 
@@ -341,6 +341,26 @@ h2 {
     box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
 }
 
+.account-btn {
+    color: #1D2547;
+    cursor: pointer;
+    background-color: #eee;
+    height: 40px;
+    padding: 0 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    transition: all 0.25s linear;
+}
+
+.account-btn:hover,
+.account-btn:active {
+    background-color: #47c9e5;
+    color: #fff;
+}
+
 .search input {
     padding: 5px 10px;
     border-radius: 5px;
@@ -413,7 +433,7 @@ div a.icons {
 div.icons:hover,
 div a.icons:hover {
     color: #fff;
-    background-color: #9F78FF;
+    background-color: #47c9e5;
 }
 
 .navbar-dark .navbar-nav .active>.nav-link,
@@ -424,7 +444,7 @@ div a.icons:hover {
 }
 
 .header {
-    padding: 80px 0 0 0;
+    padding: 93px 0 0 0;
 }
 
 @media (min-width: 768px) {
@@ -769,7 +789,7 @@ div a.icons:hover {
     line-height: 80px;
     font-size: 40px;
     font-family: 'Times New Roman', Times, serif;
-    background-color: rgba(29, 37, 71, 0.5);
+    background-color: #90d4e45d;
     transition: all 0.3s linear;
 }
 
@@ -783,7 +803,7 @@ a.btn-category {
     padding: 10px 20px;
     color: #fff;
     font-size: 20px;
-    background-color: #9F78FF;
+    background-color: #47c8e5b6;
     opacity: 0;
     transition: all 0.25s linear;
 }
@@ -1004,7 +1024,7 @@ a.btn-category {
     width: 50%;
     transform: translateX(-50%);
     opacity: 0;
-    border: 1px solid #6610f2;
+    border: 1px solid #47c9e5;
     display: flex;
     justify-content: center;
     font-size: 18px;
@@ -1021,7 +1041,7 @@ a.btn-category {
 .product-item:hover .product-price .btn,
 .product-item .product-price .btn:hover {
     color: #fff;
-    background: #9F78FF;
+    background: #47c9e5;
 }
 
 .product-item .product-price .btn i {
@@ -1081,7 +1101,7 @@ a.btn-category {
 .product .slick-prev:focus,
 .product .slick-next:hover,
 .product .slick-next:focus {
-    background: #9F78FF;
+    background: #47c9e5;
     color: #fff;
 }
 
@@ -1089,7 +1109,7 @@ a.btn-category {
 .normal-slider .slick-prev:focus,
 .normal-slider .slick-next:hover,
 .normal-slider .slick-next:focus {
-    background-color: #9F78FF;
+    background-color: #47c9e5;
 }
 
 .normal-slider .slick-prev:hover::before,
@@ -1134,7 +1154,7 @@ a.btn-category {
 .product-view {
     position: relative;
     width: 100%;
-    padding: 100px 0 0 0;
+    padding: 130px 0 30px 0;
 }
 
 .product-view .product-view-top {
@@ -1274,7 +1294,7 @@ a.btn-category {
 .product-detail {
     position: relative;
     width: 100%;
-    padding: 180px 0 80px 0;
+    padding: 130px 0 30px 0;
 }
 
 .product-detail .product-detail-top,
@@ -1403,8 +1423,8 @@ a.btn-category {
     font-size: 16px;
     text-align: center;
     color: #ffffff;
-    background: #9F78FF;
-    border: none;
+    background: #47c9e5;
+    border: 0;
 }
 
 .product-detail .product-content .quantity button.btn-minus {
@@ -1443,7 +1463,7 @@ a.btn-category {
 .product-detail .nav.nav-pills .nav-link:hover,
 .product-detail .nav.nav-pills .nav-link.active {
     color: #fff;
-    background: #9F78FF;
+    background: #47c9e5;
 }
 
 .product-detail .tab-content {
@@ -1539,8 +1559,16 @@ a.btn-category {
 }
 
 .product-detail .btn-group .btn.active {
-    background-color: #9F78FF;
+    background-color: #47c9e5;
     color: #fff;
+}
+
+.btn-size,
+.btn-color,
+.btn-add {
+    border: 1px solid #000;
+    color: #000;
+    margin-right: 10px;
 }
 
 
@@ -1710,7 +1738,7 @@ a.btn-category {
 
 .cart-page {
     position: relative;
-    margin-top: 30px;
+    margin-top: 130px;
 }
 
 .cart-page .cart-page-inner {
@@ -1771,7 +1799,7 @@ a.btn-category {
     font-size: 14px;
     text-align: center;
     color: #ffffff;
-    background: #FF6F61;
+    background: #47c9e5;
     border: none;
     border-radius: 4px;
 }
@@ -1798,7 +1826,8 @@ a.btn-category {
     border: none;
 }
 
-.cart-page .coupon {
+
+/* .cart-page .coupon {
     position: relative;
     width: 100%;
     margin-bottom: 15px;
@@ -1837,7 +1866,7 @@ a.btn-category {
 .cart-page .coupon button:hover {
     color: #ffffff;
     background: #FF6F61;
-}
+} */
 
 .cart-page .cart-summary {
     position: relative;
@@ -1867,7 +1896,8 @@ a.btn-category {
     margin: 0;
 }
 
-.cart-page .cart-summary .cart-btn button {
+
+/* .cart-page .cart-summary .cart-btn button {
     margin-top: 15px;
     width: calc(50% - 15px);
     height: 50px;
@@ -1894,6 +1924,18 @@ a.btn-category {
 .cart-page .cart-summary .cart-btn button:first-child:hover {
     color: #ffffff;
     background: #FF6F61;
+} */
+
+.cart-btn {
+    background-color: #000;
+    color: #fff;
+    margin-right: 10px;
+    width: 100%;
+}
+
+.buy-btn {
+    background-color: #000;
+    color: #fff;
 }
 
 
@@ -1907,7 +1949,7 @@ a.btn-category {
 
 .wishlist-page {
     position: relative;
-    padding: 30px 0;
+    padding: 130px 0 30px 0;
 }
 
 .wishlist-page .wishlist-page-inner {
@@ -2103,7 +2145,7 @@ a.btn-category {
 
 .my-account {
     position: relative;
-    padding: 30px 0;
+    margin: 130px 0 30px 0;
 }
 
 .my-account .nav.nav-pills .nav-link {
@@ -2151,6 +2193,17 @@ a.btn-category {
 
 .my-account .tab-content .table td {
     vertical-align: middle;
+}
+
+.btn-update-info,
+.btn-update-password {
+    background-color: #7dd2e6;
+    color: #fff;
+}
+
+.btn-update-info:hover,
+.btn-update-password:hover {
+    background-color: #47c9e5;
 }
 
 
@@ -2258,14 +2311,14 @@ a.btn-category {
     padding: 0 15px;
     background: #fff;
     color: #130f40;
-    border: 1px solid #9F78FF;
+    border: 1px solid #000;
     border-radius: 5px;
     transition: all 0.25s linear;
 }
 
 .newsletter .form button:hover {
     color: #fff;
-    background: #9F78FF;
+    background: #47c9e5;
 }
 
 
@@ -2293,7 +2346,8 @@ a.btn-category {
 .btn-collection {
     padding: 10px 20px;
     color: #fff;
-    background-color: #9F78FF;
+    background-color: transparent;
+    border: 1px solid #fff;
     border-radius: 5px;
     font-size: 20px;
     position: relative;
@@ -2302,8 +2356,13 @@ a.btn-category {
 }
 
 .btn-collection:hover {
-    background-color: #6610f2;
+    background-color: #47c9e5;
     color: #fff;
+    border: none
+}
+
+.collection img {
+    width: 100%;
 }
 
 
@@ -2540,7 +2599,7 @@ a.btn-category {
 }
 
 .contact-info .social a:hover {
-    background: #9F78FF;
+    background: #47c9e5;
 }
 
 .contact-info .social a:hover i {
@@ -2563,7 +2622,7 @@ a.btn-category {
 
 .login {
     position: relative;
-    padding-top: 30px;
+    padding-top: 130px;
 }
 
 .login .login-form,
@@ -2571,6 +2630,16 @@ a.btn-category {
     padding: 30px;
     background: #ffffff;
     margin-bottom: 30px;
+}
+
+.login-btn {
+    background-color: #9F78FF;
+    color: #fff;
+}
+
+.login-btn:hover {
+    background-color: #6610f2;
+    transition: ease-in 0.4s;
 }
 
 
@@ -2596,7 +2665,7 @@ a.btn-category {
 .footer {
     margin-top: 30px;
     position: relative;
-    padding: 100px 50px;
+    padding: 100px 50px 30px 50px;
     background: #1D2547;
     color: #fff;
 }
@@ -2636,16 +2705,8 @@ a.btn-category {
     cursor: pointer;
 }
 
-
-/* .footer .footer-widget ul li a::before {
-    content: '\f105';
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-    padding-right: 5px;
-} */
-
 .footer .footer-widget ul li a:hover {
-    color: #6610f2;
+    color: #47c9e5;
     padding-left: 30px;
 }
 

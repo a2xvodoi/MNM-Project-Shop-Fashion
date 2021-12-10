@@ -29,7 +29,7 @@
     }
     
     .banner-item .banner-text {
-        /* position: absolute; */
+        position: absolute;
         width: 600px;
         color: white;
         top: 35%;
@@ -62,31 +62,36 @@
         padding: 10px 20px;
         border-radius: 5px;
         cursor: pointer;
-        background-color: #fff;
+        background-color: transparent;
+        border: 1px solid #fff;
         width: 130px;
         margin-top: 30px;
         transition: all 0.25s linear;
     }
     
     .banner-text-button a {
-        color: #000;
+        color: #fff;
     }
     
     .banner-text-button:hover {
-        background-color: #9F78FF;
-    }
-    
-    .banner-text-button:hover a {
-        color: #fff
+        background-color: #47c8e5b6;
+        border: none;
     }
     
     .flickity-page-dots {
         bottom: 10px;
     }
-    /* .banner-top:hover .flickity-button {
+    
+    .flickity-button {
+        opacity: 0;
+        transition: all 0.25s linear;
+    }
+    
+    .banner-top:hover .flickity-button {
         opacity: 1;
         background-color: black;
-    } */
+        color: #fff;
+    }
     
     .flickity-button-icon {
         /* color: #fff !important; */
@@ -137,7 +142,7 @@
     .features {
         width: 100%;
         padding: 2rem;
-        background-color: #f7f7fd;
+        background-color: #f5f5fc;
     }
     
     .features_list {
