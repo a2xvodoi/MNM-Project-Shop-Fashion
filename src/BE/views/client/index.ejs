@@ -2,7 +2,7 @@
     <!-- Main Slider Start -->
     <div class="header">
         <!-- <div class="container-fluid"> -->
-        <div class="banner-top carousel" data-flickity='{ "freeScroll": true, "wrapAround": true,"autoPlay":  2500 }'>
+        <div class="banner-top carousel" data-flickity='{ "freeScroll": true, "wrapAround": true,"autoPlay":  true }'>
             <div class="carousel-cell banner-item">
                 <img src="img/banner1.jpg" alt="">
                 <div class="black-color"></div>
@@ -10,6 +10,7 @@
                     <div class="banner-text-top">Fashion Changing Always</div>
                     <div class="banner-text-design">Creative Design</div>
                     <div class="banner-text-style">Style is forever</div>
+                    <div class="banner-text-button"><a href="#shopnow">SHOW NOW</a></div>
                 </div>
             </div>
             <div class="carousel-cell banner-item">
@@ -19,6 +20,7 @@
                     <div class="banner-text-top">Fashion Changing Always</div>
                     <div class="banner-text-design">Creative Design</div>
                     <div class="banner-text-style">Style is forever</div>
+                    <div class="banner-text-button"><a href="#shopnow">SHOW NOW</a></div>
                 </div>
             </div>
             <div class="carousel-cell banner-item">
@@ -28,6 +30,7 @@
                     <div class="banner-text-top">Fashion Changing Always</div>
                     <div class="banner-text-design">Creative Design</div>
                     <div class="banner-text-style">Style is forever</div>
+                    <div class="banner-text-button"><a href="#shopnow">SHOW NOW</a></div>
                 </div>
             </div>
         </div>
@@ -55,28 +58,28 @@
                 <div class="col-md-3">
                     <div class="category-item">
                         <img src="img/glasses.jpg" />
-                        <a href="" class="btn btn-category">Shop Now</a>
+                        <a href="#product" class="btn btn-category">Shop Now</a>
                         <div class="category-text">Glases</div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="category-item">
                         <img src="img/watches.jpg" />
-                        <a href="" class="btn btn-category">Shop Now</a>
+                        <a href="#product" class="btn btn-category">Shop Now</a>
                         <div class="category-text">Watches</div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="category-item">
                         <img src="img/jackets.jpg" />
-                        <a href="" class="btn btn-category">Shop Now</a>
+                        <a href="#product" class="btn btn-category">Shop Now</a>
                         <div class="category-text">Jackets</div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="category-item">
                         <img src="img/clothes.jpg" />
-                        <a href="" class="btn btn-category">Shop Now</a>
+                        <a href="#product" class="btn btn-category">Shop Now</a>
                         <div class="category-text">Clothes</div>
                     </div>
                 </div>
@@ -90,7 +93,7 @@
     <!-- Featured Product End -->
 
     <!-- Newsletter Start -->
-    <div class="newsletter">
+    <div class="newsletter" id="shopnow">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6">
@@ -111,7 +114,7 @@
             <img src="img/colection.jpg" alt="">
             <div class="collection-text">
                 <p>Collection Hourse Our First-ever</p>
-                <a href="" class="btn-collection">About Us</a>
+                <a href="#footer" class="btn-collection">About Us</a>
             </div>
         </div>
     </div>
@@ -124,7 +127,7 @@
             </div>
             <div class="row row-cols-lg-4 align-items-center">
                 <% products.forEach(function(product){%>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3" id="product">
                         <div class="product-item">
                             <div class="product-image">
                                 <a href="/products/<%= product._id %>">
