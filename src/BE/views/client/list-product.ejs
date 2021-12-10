@@ -54,12 +54,7 @@
                         <% products.forEach(product=> { %>
                             <div class="col-md-3">
                                 <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="/products/<%= product._id %>">
-                                            <%= product.name %>
-                                        </a>
 
-                                    </div>
                                     <div class="product-image">
                                         <a href="product-detail.html">
                                             <img src="<%= product.avatar %> " alt="Product Image" height="450px">
@@ -71,10 +66,15 @@
                                             <a href="#"><i class="fa fa-search"></i></a>
                                         </div>
                                     </div>
+                                    <div class="product-title">
+                                        <a href="/products/<%= product._id %>">
+                                            <%= product.name %>
+                                        </a>
+                                    </div>
                                     <div class="product-price">
-                                        <h3><span>$</span>
+                                        <p><span>$</span>
                                             <%= product.price %>
-                                        </h3>
+                                        </p>
                                         <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
                                     </div>
                                 </div>
