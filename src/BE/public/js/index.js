@@ -9,7 +9,3 @@ document.querySelector("#search-btn").onclick = () => {
     searchForm.classList.toggle("active");
     account.classList.remove("active");
 };
-window.onscroll = () => {
-    searchForm.classList.remove("active");
-    account.classList.remove("active");
-};
