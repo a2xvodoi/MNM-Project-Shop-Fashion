@@ -80,7 +80,6 @@ module.exports = {
                 type: 'create',
                 status: 'success',
             };
-            
             res.redirect('/admin/users');
             res.json({
                 status: 'success'

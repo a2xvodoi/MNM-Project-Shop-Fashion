@@ -5,27 +5,30 @@ const cartController = require("../../controllers/client/CartController");
 const wishlistController = require("../../controllers/client/WishlistController");
 const productController = require("../../controllers/client/ProductController");
 const homeController = require("../../controllers/client/HomeController");
+const orderController = require("../../controllers/client/OrderController");
 
-const {login} = require('../../middleware/client/Auth');
+const { login } = require("../../middleware/client/Auth");
 
 /* GET home page. */
 router.get("/", homeController.index);
 
 /* GET cart page. */
-router.get('/cart', login, cartController.cart);
-router.post('/cart/addCart', login, cartController.create);
-router.patch('/cart/:id/update', login, cartController.update);
-router.delete('/cart/:id/destroy', login, cartController.destroy);
+router.get("/cart", login, cartController.cart);
+router.post("/cart/addCart", login, cartController.create);
+router.patch("/cart/:id/update", login, cartController.update);
+router.delete("/cart/:id/destroy", login, cartController.destroy);
+router.get("/buynow", login, cartController.buynow);
+router.get("/receipt", login, cartController.receipt);
 
 /* GET wishlist page. */
 router.get("/wishlist", login, wishlistController.wishlist);
-router.post('/wishlist/addWishlist', login, wishlistController.create);
-router.delete('/wishlist/:id/destroy', login, wishlistController.destroy);
+router.post("/wishlist/addWishlist", login, wishlistController.create);
+router.delete("/wishlist/:id/destroy", login, wishlistController.destroy);
 
 /* GET pay page. */
-router.get("/pay", (req, res, next) => {
-    res.render("client/pay");
-});
+router.get("/my-orders", login, orderController.index);
+router.get("/order", login, orderController.create);
+router.post("/order", login, orderController.store);
 
 /* GET contact page. */
 router.get("/contact", (req, res, next) => {
@@ -55,6 +58,6 @@ router.post("/login", accountController.postLogin);
 router.get("/logout", accountController.logout);
 
 /* GET list-product page. */
-router.get("/:category", homeController.listProduct);
+router.get("/:category", productController.listProduct);
 
 module.exports = router;

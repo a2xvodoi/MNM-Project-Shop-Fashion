@@ -14,30 +14,27 @@ module.exports.index = (req, res, next)=>{
 
 module.exports.search = (req, res, next) =>{
     const {search_product} = req.query;
-        console.log(search_product);
+    const page = parseInt(req.query.page) || 1;
+    const perPage = 8;
 
-       Product.find({name: {$regex: search_product,$options: 'i'  }}).exec()
-
-            .then(products => {
-                const data = {
-                    products: products,
-                };
-                res.render('client/list-product', data);
-            })
-            .catch(next);
+    Product.find({name: {$regex: search_product,$options: 'i'  }})
+    .skip((perPage * page) - perPage)
+    .limit(perPage)
+    .then(products => {
+        Product.find({name: {$regex: search_product,$options: 'i'  }})
+        .count((err, count) => { // count to calculate the number of pages
+            if (err) return next(err);
+            const data = {
+                products: products,
+                current: page,
+                pages: Math.ceil(count / perPage),
+                q: search_product
+            };
+            res.render('client/list-product', data);
+        })
+    })
+    .catch(next);
 };
 
-module.exports.listProduct = (req, res, next) =>{
-
-    Product.find({category: req.params.category}).exec()
-
-         .then(products => {
-             const data = {
-                 products: products,
-             };
-             res.render('client/list-product', data);
-         })
-         .catch(next);
-};
 
 

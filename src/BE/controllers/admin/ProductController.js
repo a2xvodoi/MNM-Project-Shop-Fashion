@@ -39,25 +39,29 @@ const uploadSingle = (file) => {
 module.exports = {
     // get /admin/products
     index : (req, res, next) => {
-        var page = parseInt(req.query.page) || 1;
-        var perPage =5;
-                //var start = (page -1) * perPage;
-                //var end = page * perPage;
-        Product.find({}).populate('category').skip((perPage * page) - perPage) // in the first page the value of the skip is 0
-        .limit(perPage).then(products => {
-            Product.count((err, count) => { // count to calculate the number of pages
+        const filter = {};
+        if (req.query._id) filter._id = req.query._id;
+        if (req.query.name) filter.name = {$regex: req.query.name,$options: 'i'};
+        if (req.query.category) filter.category = req.query.category;
+        const page = parseInt(req.query.page) || 1;
+        const perPage = 10;
+        Product.find(filter).populate('category').sort({updatedAt: -1})
+        .skip((perPage * page) - perPage) // in the first page the value of the skip is 0
+        .limit(perPage)
+        .then(products => {
+            Product.find(filter).count((err, count) => { // count to calculate the number of pages
                 if (err) return next(err);
-            const data = {
-                products: products,
-                current: page,
-                pages: Math.ceil(count / perPage)
-            };
-            
-
-            res.render('admin/products/index', data);
+                const data = {
+                    products: products,
+                    current: page,
+                    pages: Math.ceil(count / perPage),
+                    query: filter,
+                };
+                console.log(data.query)
+                res.render('admin/products/index', data);
+            })
         })
-        .catch(next); // output just 9 items
-        });
+        .catch(next);
     },
 
     // get /admin/products/:_id
@@ -112,7 +116,6 @@ module.exports = {
     edit: (req, res, next) => {
         Product.findOne({ _id: req.params._id }).populate('category')
         .then((product) =>{
-            // console.log(product);
             res.render('admin/products/edit', {product: product});
         })
         .catch(next);

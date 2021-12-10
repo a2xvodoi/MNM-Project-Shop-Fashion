@@ -3,14 +3,22 @@ const Category = require('../../models/Category');
 module.exports = {
     // get /admim/category
     index: (req, res, next) => {
-        Category.find({})
-            .then(categories => {
+        const page = parseInt(req.query.page) || 1;
+        const perPage = 10;
+        Category.find({}).skip((perPage * page) - perPage)
+        .limit(perPage)
+        .then(categories => {
+            Category.count((err, count) => { // count to calculate the number of pages
+                if (err) return next(err);
                 const data = {
                     categories: categories,
+                    current: page,
+                    pages: Math.ceil(count / perPage)
                 };
                 res.render('admin/categories/index', data);
             })
-            .catch(next);
+        })
+        .catch(next);
     },
     // post admin/categories/store
     store: async (req, res, next) => {
