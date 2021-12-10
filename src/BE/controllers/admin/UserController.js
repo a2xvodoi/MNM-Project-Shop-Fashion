@@ -67,8 +67,7 @@ module.exports = {
                 new: true
             };
 
-            const data = JSON.parse(req.body.data);
-            const user = await new User(data);
+            const user = await new User(req.body);
             if (user.userType !== 'user') {
                 user.role = 'iVPO2fzrK';
             }
@@ -81,9 +80,8 @@ module.exports = {
                 type: 'create',
                 status: 'success',
             };
-            res.json({
-                status: 'success'
-            });
+            res.redirect('/admin/users');
+           
         } catch (error) {
             console.log(error);
             req.session.message = {

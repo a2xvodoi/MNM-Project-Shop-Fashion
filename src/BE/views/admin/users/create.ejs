@@ -64,48 +64,5 @@
     )
 </script>
 <% } %>
-<script>
-    $('.btn-submit').click((e)=>{
-        e.preventDefault();
 
-        const user_name = $('input[name="user_name"]').val();
-        const password = $('input[name="password"]').val();
-        const full_name = $('input[name="full_name"]').val();
-        const birthday = $('input[name="birthday"]').val();
-        const phone = $('input[name="phone"]').val();
-        const email = $('input[name="email"]').val();
-        const address = $('input[name="address"]').val();
-       
-        const userType = $('select[name="userType"]').val();
-        
-       
-      
-        // console.log($('input[name="size_color[color]"]'));
-        const data = {
-            user_name: user_name,
-            password: password,
-            full_name: full_name,
-            birthday: birthday,
-            phone: phone,
-            email: email,
-            address: address,
-            
-            userType: userType
-        }
-        $.ajax({
-            type: "POST",
-            url: "/admin/users/create",
-            data: { data: JSON.stringify(data)},
-            dataType: "JSON",
-            success: function (response) {
-                if (response.status === 'success') {
-                    window.location.href = '/admin/users';
-                    return;
-                }
-                window.location.href = '/admin/users/create';
-            }
-        });
-       
-    })
-</script>
 <%- include('../layouts/foot')%>
