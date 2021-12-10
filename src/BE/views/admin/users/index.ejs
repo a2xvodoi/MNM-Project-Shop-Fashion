@@ -5,23 +5,56 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="card">
-						<div class="card-header">
-							<div class="d-flex align-items-center">
+						<div class="card-header row" style="border-bottom: unset">
+							<div class="d-flex align-items-center col-md-6">
 								<h3 class="card-title">Tài Khoản</h3>
 								<a href="/admin/users/create">
 									<div class="btn btn-success ml-3">Thêm mới</div>
 								</a>
 							</div>
-							<div class="card-tools">
-								<div class="input-group input-group-sm" style="width: 150px;">
-									<input type="text" name="table_search" class="form-control float-right"
-										placeholder="Search">
-
-									<div class="input-group-append">
-										<button type="submit" class="btn btn-default">
-											<i class="fas fa-search"></i>
-										</button>
-									</div>
+							<div class="card-tools col-md-6">
+								<a href="#collapseFilter" class="btn btn-default text-primary float-sm-right"
+									data-toggle="collapse">
+									<i class="fas fa-filter"></i>
+									Lọc
+								</a>
+							</div>
+							<div class="collapse mt-3 w-100 <%= Object.keys(query).length !== 0 ? 'show' : '' %>" id="collapseFilter">
+								<div class="card card-body">
+									<form action="" method="get">
+										<div class="form-row">
+											<div class="form-group col-md-2">
+												<label for="_id">ID</label>
+												<input type="text" class="form-control" id="_id" name="_id" value="<%= query._id %>"/>
+											</div>
+											<div class="form-group col-md-4">
+												<label for="user_name">User name</label>
+												<input type="text" class="form-control" id="user_name" name="user_name" value="<%= query.user_name ? query.user_name.$regex : ''%>"/>
+											</div>
+											<div class="form-group col-md-6">
+												<label for="full_name">Full name</label>
+												<input type="text" class="form-control" id="full_name" name="full_name" value="<%= query.full_name ? query.full_name.$regex : ''%>"/>
+											</div>
+											<div class="form-group col-md-6">
+												<label for="email">Email</label>
+												<input type="text" class="form-control" id="email" name="email" value="<%= query.email ? query.email.$regex : ''%>"/>
+											</div>
+											<div class="form-group col-md-6">
+												<label for="userType">Loại tài khoản</label>
+												<select id="userType" class="form-control" name="userType">
+													<option value="">--- Chọn  loại tài khoản ---</option>
+													<option <%= query.userType === 'user' ? 'selected' : '' %> value="user">User</option>
+													<option <%= query.userType === 'admin' ? 'selected' : '' %> value="admin">Admin</option>
+													<option <%= query.userType === 'moderator' ? 'selected' : '' %> value="moderator">Moderator</option>
+												</select>
+											</div>
+										</div>
+										<div class="text-right">
+											<button type="submit" class="btn btn-primary">
+												<i class="fas fa-filter"></i> Lọc
+											</button>
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -40,49 +73,54 @@
 									</tr>
 								</thead>
 								<tbody>
-									<% users.forEach(user => { %>
-									<tr>
-										<td>
-											<%= user._id %>
-										</td>
-										<td>
-											<%=user.user_name %>
-										</td>
-										<td>
-											<%=user.full_name %>
-										</td>
-										<td>
-											<%=user.phone %>
-										</td>
-										<td>
-											<%=user.email %>
-										</td>
-										<td>
-											<%=user.userType %>
-										</td>
-										<td class="text-right">
-											<a class="btn btn-primary btn-sm" href="/admin/users/<%= user._id %>/view">
-												<i class="fas fa-folder">
-												</i>
-												View
-											</a>
-											<a class="btn btn-info btn-sm" href="/admin/users/<%= user._id %>/edit">
-												<i class="fas fa-pencil-alt">
-												</i>
-												Edit
-											</a>
-											<div class="btn btn-danger btn-sm" data-toggle="modal"
-												data-target="#deleteModal" data-_id="<%= user._id %>"
-												data-type="users">
-												<i class="fas fa-trash">
-												</i>
-												Delete
-											</div>
-										</td>
-									</tr>
-									<% }) %>
+									<% if (users && users.length) { %>
+										<% users.forEach(user => { %>
+											<tr>
+												<td>
+													<%= user._id %>
+												</td>
+												<td>
+													<%=user.user_name %>
+												</td>
+												<td>
+													<%=user.full_name %>
+												</td>
+												<td>
+													<%=user.phone %>
+												</td>
+												<td>
+													<%=user.email %>
+												</td>
+												<td>
+													<%=user.userType %>
+												</td>
+												<td class="text-right">
+													<a class="btn btn-primary btn-sm" href="/admin/users/<%= user._id %>/view">
+														<i class="fas fa-folder">
+														</i>
+														View
+													</a>
+													<a class="btn btn-info btn-sm" href="/admin/users/<%= user._id %>/edit">
+														<i class="fas fa-pencil-alt">
+														</i>
+														Edit
+													</a>
+													<div class="btn btn-danger btn-sm" data-toggle="modal"
+														data-target="#deleteModal" data-_id="<%= user._id %>"
+														data-type="users">
+														<i class="fas fa-trash">
+														</i>
+														Delete
+													</div>
+												</td>
+											</tr>
+										<% }) %>
+									<% } else { %>
+										<tr class="font-italic w-100 text-center">
+											<td colspan="7">Không tìm thấy user nào!</td>
+										</tr>
+									<% } %>
 								</tbody>
-							
 							</table>
 						</div>
 						<div class="m-3">
@@ -90,6 +128,7 @@
 							<% if(pages > 0) { %> <!-- show pagination if there is pages -->
 							  <nav class="mx-auto">
 								<ul class="pagination">
+								<% var q = Object.keys(query).length !== 0 ? ('&_id=' + (query._id ? query_id : '') + '&user_name=' + (query.user_name ? query.user_name.$regex: '') + '&full_name=' + (query.full_name ? query.full_name.$regex: '') + '&email=' + (query.email ? query.email.$regex: '') + '&userType=' + (query.userType ? query.userType : '')) : ''; %> 
 								  <!-- FIRST ITEM -->
 								  <% if(current == 1) { %>
 									<li class="page-item disabled">
@@ -97,7 +136,7 @@
 									</li>
 								  <% } else { %>
 									<li class="page-item">
-									  <a class="page-link" href="?page=1">First</a>
+									  <a class="page-link" href="?page=1<%= q %>">First</a>
 									</li>
 								  <% } %>
 								  <!-- ITEMS  -->
@@ -110,13 +149,13 @@
 								  <% for(; i <= (Number(current) + 4) && i <= pages; i++) { %>
 									<% if(i == current) { %>
 									  <li class="page-item active">
-										<a class="page-link" href="?page=<%= i %>">
+										<a class="page-link" href="?page=<%= i %><%= q %>">
 										  <%= i %>
 										</a>
 									  </li>
 									<% } else { %>
 									  <li class="page-item">
-										<a class="page-link" href="?page=<%= i %>">
+										<a class="page-link" href="?page=<%= i %><%= q %>">
 										  <%= i %>
 										</a>
 									  </li>
@@ -136,7 +175,7 @@
 									</li>
 								  <% } else { %>
 									<li class="page-item">
-									  <a class="page-link" href="?page=<%= pages %>">
+									  <a class="page-link" href="?page=<%= pages %><%= q %>">
 										Last
 									  </a>
 									</li>

@@ -39,17 +39,23 @@ const uploadSingle = (file) => {
 module.exports = {
     // get /admin/products
     index : (req, res, next) => {
+        const filter = {};
+        if (req.query._id) filter._id = req.query._id;
+        if (req.query.name) filter.name = {$regex: req.query.name,$options: 'i'};
+        if (req.query.category) filter.category = req.query.category;
         const page = parseInt(req.query.page) || 1;
         const perPage = 10;
-        Product.find({}).populate('category').skip((perPage * page) - perPage) // in the first page the value of the skip is 0
+        Product.find(filter).populate('category').sort({updatedAt: -1})
+        .skip((perPage * page) - perPage) // in the first page the value of the skip is 0
         .limit(perPage)
         .then(products => {
-            Product.count((err, count) => { // count to calculate the number of pages
+            Product.find(filter).count((err, count) => { // count to calculate the number of pages
                 if (err) return next(err);
                 const data = {
                     products: products,
                     current: page,
-                    pages: Math.ceil(count / perPage)
+                    pages: Math.ceil(count / perPage),
+                    query: filter,
                 };
                 res.render('admin/products/index', data);
             })
@@ -69,14 +75,7 @@ module.exports = {
 
     // get /admin/product/:_id
     create: (req, res, next) => {
-        Category.find({})
-            .then(categories => {
-                const data = {
-                    categories: categories,
-                };
-                res.render('admin/products/create', data);
-            })
-            .catch(next);
+        res.render('admin/products/create');
     },
 
     // post /admin/product/create
