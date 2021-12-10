@@ -81,9 +81,7 @@ module.exports = {
                 status: 'success',
             };
             res.redirect('/admin/users');
-            res.json({
-                status: 'success'
-            });
+           
         } catch (error) {
             console.log(error);
             req.session.message = {
