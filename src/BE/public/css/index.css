@@ -6,7 +6,7 @@
         width: 100vw !important;
         height: 600px;
         counter-increment: gallery-cell;
-        position: relative;
+        /* position: relative; */
     }
     
     .banner-item img {
@@ -29,7 +29,7 @@
     }
     
     .banner-item .banner-text {
-        position: absolute;
+        /* position: absolute; */
         width: 600px;
         color: white;
         top: 35%;
@@ -83,21 +83,20 @@
     .flickity-page-dots {
         bottom: 10px;
     }
-    
-    .banner-top:hover .flickity-button {
+    /* .banner-top:hover .flickity-button {
         opacity: 1;
         background-color: black;
-    }
+    } */
     
     .flickity-button-icon {
-        color: #fff !important;
+        /* color: #fff !important; */
     }
     
     .banner-top .flickity-page-dots .dot {
         width: 13px;
         height: 13px;
         opacity: 1;
-        background: #ffffff;
+        /* background: #ffffff; */
     }
     
     .banner-top .flickity-page-dots .dot.is-selected {

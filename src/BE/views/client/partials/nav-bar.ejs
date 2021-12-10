@@ -2,7 +2,6 @@
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
             <a href="#" class="logo"><img src="/img/Avnendv-removebg-preview2.png" alt="logo"></a>
-            <!-- <a href="/" class="navbar-brand">MENU</a> -->
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -16,21 +15,25 @@
             </div>
             <div class="navbar-nav">
                 <div class="fas fa-search icons" id="search-btn"></div>
-                <a href="/wishlist" class="btn-wishlish fa fa-heart icons">
-                    <span>
-                        <%= customer.wishlist ? customer.wishlist.length : 0 %>
-                    </span>
-                </a>
-                <a href="/cart" class="fas fa-shopping-cart icons btn-cart ">
-                    <span>
-                        <%= customer.cart ? customer.cart.length : 0 %>
-                    </span>
-                </a>
+                <div>
+                    <a href="/wishlist" class="btn-wishlish fa fa-heart icons">
+                        <span>
+                            <%= customer.wishlist ? customer.wishlist.length : 0 %>
+                        </span>
+                    </a>
+                </div>
+                <div>
+                    <a href="/cart" class="fas fa-shopping-cart icons btn-cart ">
+                        <span>
+                            <%= customer.cart ? customer.cart.length : 0 %>
+                        </span>
+                    </a>
+                </div>
                 <% if (customer) { %>
                     <div class="nav-item ">
-                        <a href="#" class="nav-link account-btn fas fa-user">
+                        <div href="#" class="nav-link account-btn fas fa-user">
                             <%= customer.user_name %>
-                        </a>
+                        </div>
                         <div class="account-list">
                             <a href="/user/show" class="dropdown-item ">Thông tin</a>
                             <a href="/my-orders" class="dropdown-item">Đơn hàng</a>
@@ -39,7 +42,9 @@
                     </div>
                     <% } else { %>
                         <div class="nav-item ">
-                            <a href="" class="fas fa-user account-btn  icons"></a>
+                            <div class="icons">
+                                <i class="fas fa-user account-btn"></i>
+                            </div>
                             <div class="account-list">
                                 <a href="/login" class="dropdown-item">Đăng nhập</a>
                                 <a href="/register" class="dropdown-item">Đăng kí</a>
