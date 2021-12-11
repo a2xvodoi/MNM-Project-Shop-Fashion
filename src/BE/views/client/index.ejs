@@ -100,10 +100,12 @@
                     <h1>Đăng kí nhận thông tin mới nhất</h1>
                 </div>
                 <div class="col-md-6">
-                    <div class="form">
-                        <input type="email" placeholder="Nhập địa chỉ email ...">
-                        <button style="width: fit-content;">Đăng kí</button>
-                    </div>
+                    <form action="/subscribe" method="post">
+                        <div class="form">
+                            <input type="email" placeholder="Nhập địa chỉ email ..." name="mail">
+                            <button style="width: fit-content;">Đăng kí</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

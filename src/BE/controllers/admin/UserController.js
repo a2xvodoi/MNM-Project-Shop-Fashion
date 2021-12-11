@@ -11,7 +11,8 @@ module.exports = {
         const page = parseInt(req.query.page) || 1;
         const perPage = 10;
         
-        User.find(filter).skip((perPage * page) - perPage)
+        User.find(filter).sort({updatedAt: -1})
+        .skip((perPage * page) - perPage)
         .limit(perPage)
         .then(users => {
             User.find(filter).count((err, count) => { // count to calculate the number of pages

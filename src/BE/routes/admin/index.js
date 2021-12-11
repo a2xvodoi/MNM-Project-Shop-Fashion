@@ -23,8 +23,8 @@ router.get('/login', homeController.login);
 /* POST login page. */
 router.post('/login', homeController.postLogin);
 
-/* POST logout page. */
-router.post('/logout', homeController.logout);
+/* GET logout page. */
+router.get('/logout', homeController.logout);
 
 /* GET list product page. */
 router.get('/products', permission(1), categories, productController.index);
@@ -67,6 +67,7 @@ router.get('/orders', permission(3), orderController.index);
 
 /* GET detail order page. */
 router.get('/orders/:id', permission(3), orderController.detail);
+router.patch('/orders/:id/confirm', permission(3), orderController.confirm);
 
 /* GET list user page. */
 router.get('/users', permission(4), userController.index);
@@ -87,5 +88,7 @@ router.get('/users/:_id/view', permission(4), userController.view);
 router.get('/permissions', permission(5), permissionController.index);
 /* PATCH user permission page. */
 router.patch('/permissions/:id/update', permission(5), permissionController.update);
+router.patch('/permissions/:id/lock', permission(5), permissionController.lock);
+router.patch('/permissions/:id/unlock', permission(5), permissionController.lock);
 
 module.exports = router;

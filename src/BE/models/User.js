@@ -55,6 +55,11 @@ const User = new Schema({
         enum: ['user', 'admin', 'moderator'],
         default: 'user',
     },
+    status: {
+        type: Number,
+        enum: [0, 1],
+        default: 1,
+    },
     role: {
         type: String,
         ref: 'role',

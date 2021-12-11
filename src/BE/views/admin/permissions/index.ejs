@@ -5,20 +5,57 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="card">
-						<div class="card-header">
-							<div class="d-flex align-items-center">
+						<div class="card-header row" style="border-bottom: unset">
+							<div class="d-flex align-items-center col-md-6">
 								<h3 class="card-title">Phân quyền</h3>
 							</div>
-							<div class="card-tools">
-								<div class="input-group input-group-sm" style="width: 150px;">
-									<input type="text" name="table_search" class="form-control float-right"
-										placeholder="Search">
-
-									<div class="input-group-append">
-										<button type="submit" class="btn btn-default">
-											<i class="fas fa-search"></i>
-										</button>
-									</div>
+							<div class="card-tools col-md-6">
+								<a href="#collapseFilter" class="btn btn-default text-primary float-sm-right"
+									data-toggle="collapse">
+									<i class="fas fa-filter"></i>
+									Lọc
+								</a>
+							</div>
+							<div class="collapse mt-3 w-100 <%= Object.keys(query).length !== 0 ? 'show' : '' %>" id="collapseFilter">
+								<div class="card card-body">
+									<form action="" method="get">
+										<div class="form-row">
+											<div class="form-group col-md-2">
+												<label for="_id">ID</label>
+												<input type="text" class="form-control" id="_id" name="_id" value="<%= query._id %>"/>
+											</div>
+											<div class="form-group col-md-4">
+												<label for="user_name">User name</label>
+												<input type="text" class="form-control" id="user_name" name="user_name" value="<%= query.user_name ? query.user_name.$regex : ''%>"/>
+											</div>
+											<div class="form-group col-md-6">
+												<label for="full_name">Full name</label>
+												<input type="text" class="form-control" id="full_name" name="full_name" value="<%= query.full_name ? query.full_name.$regex : ''%>"/>
+											</div>
+											<div class="form-group col-md-6">
+												<label for="status">Trạng thái</label>
+												<select id="status" class="form-control" name="status">
+													<option value="">--- Chọn  trạng thái ---</option>
+													<option <%= query.status == 1 ? 'selected' : '' %> value="1">Hoạt động</option>
+													<option <%= query.status == 0 ? 'selected' : '' %> value="0">Khoá</option>
+												</select>
+											</div>
+											<div class="form-group col-md-6">
+												<label for="role">Quyền</label>
+												<select id="role" class="form-control" name="role">
+													<option value="">--- Chọn  quyền ---</option>
+													<% roles.forEach(role => { %>
+														<option value="<%= role._id %>" <%= query.role == role._id ? 'selected' : '' %>><%= role.name %></option>
+													<% }) %>
+												</select>
+											</div>
+										</div>
+										<div class="text-right">
+											<button type="submit" class="btn btn-primary">
+												<i class="fas fa-filter"></i> Lọc
+											</button>
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -36,45 +73,55 @@
 									</tr>
 								</thead>
 								<tbody>
-									<% users.forEach(user => { %>
-									<tr data-id="<%= user._id %>">
-										<td>
-											<%= user._id %>
-										</td>
-										<td>
-											<%=user.user_name %>
-										</td>
-										<td>
-											<%=user.full_name %>
-										</td>
-										<td>
-											<% if (user.userType === 'moderator') { %>
-                                            <span class="text-primary">Toàn quyền</span>
-                                            <% } else { %>
-                                                <select class="custom-select sl-role">
-                                                    <% roles.forEach(role => { %>
-                                                        <option value="<%= role._id %>" <%= role._id === user.role._id ? 'selected' : ''%> ><%= role.name %></option>
-                                                    <% }) %>
-                                                </select>
-                                            <% } %>
-										</td>
-										<td>
-											
-										</td>
-										<td class="text-right">
-											<button class="btn btn-primary btn-sm <%= user.userType === 'moderator' ? 'disable' : ''%>  btn-update">
-												<i class="fas fa-pencil-alt"></i>
-												</i>
-												Cập nhật
-											</button>
-											<button class="btn btn-info btn-sm <%= user.userType === 'moderator' ? 'disable' : ''%>  btn-lock">
-												<i class="fas fa-lock"></i>
-												</i>
-												Khoá
-											</button>
-										</td>
-									</tr>
-									<% }) %>
+									<% if (users && users.length) { %>
+										<% users.forEach(user => { %>
+											<tr data-id="<%= user._id %>">
+												<td>
+													<%= user._id %>
+												</td>
+												<td>
+													<%=user.user_name %>
+												</td>
+												<td>
+													<%=user.full_name %>
+												</td>
+												<td>
+													<% if (user.userType === 'moderator') { %>
+													<span class="text-primary">Toàn quyền</span>
+													<% } else { %>
+														<select class="custom-select sl-role">
+															<% roles.forEach(role => { %>
+																<option value="<%= role._id %>" <%= role._id === user.role._id ? 'selected' : ''%> ><%= role.name %></option>
+															<% }) %>
+														</select>
+													<% } %>
+												</td>
+												<td>
+													<% if (user.status === 1) { %>
+														<span class="status text-success">Hoạt động</span>
+													<% } else { %>
+														<span class="status text-secondary">Khoá</span>
+													<% } %>
+												</td>
+												<td class="text-right">
+													<button class="btn btn-primary btn-sm <%= (user.userType === 'moderator' || user.status === 0) ? 'disable' : ''%>  btn-update">
+														<i class="fas fa-pencil-alt"></i>
+														</i>
+														Cập nhật
+													</button>
+													<button class="btn btn-info btn-sm btn-lock-un <%= (user.userType === 'moderator') ? 'disable' : ''%> <%= user.status === 1 ? 'btn-lock' : 'btn-unlock' %>">
+														<i class="fas fa-lock"></i>
+														</i>
+														<%= user.status === 1 ? 'Khoá' : 'Mở khoá' %>
+													</button>
+												</td>
+											</tr>
+											<% }) %>
+									<% } else { %>
+										<tr class="font-italic w-100 text-center">
+											<td colspan="7">Không tìm thấy user nào!</td>
+										</tr>
+									<% } %>
 								</tbody>
 							
 							</table>
@@ -84,6 +131,7 @@
 							<% if(pages > 0) { %> <!-- show pagination if there is pages -->
 							  <nav class="mx-auto">
 								<ul class="pagination">
+									<% var q = Object.keys(query).length !== 0 ? ('&_id=' + (query._id ? query_id : '') + '&user_name=' + (query.user_name ? query.user_name.$regex: '') + '&full_name=' + (query.full_name ? query.full_name.$regex: '') + '&status=' + (query.status ? query.status : '') + '&role=' + (query.role ? query.role : '')) : ''; %> 
 								  <!-- FIRST ITEM -->
 								  <% if(current == 1) { %>
 									<li class="page-item disabled">
@@ -91,7 +139,7 @@
 									</li>
 								  <% } else { %>
 									<li class="page-item">
-									  <a class="page-link" href="?page=1">First</a>
+									  <a class="page-link" href="?page=1<%= q %>">First</a>
 									</li>
 								  <% } %>
 								  <!-- ITEMS  -->
@@ -104,13 +152,13 @@
 								  <% for(; i <= (Number(current) + 4) && i <= pages; i++) { %>
 									<% if(i == current) { %>
 									  <li class="page-item active">
-										<a class="page-link" href="?page=<%= i %>">
+										<a class="page-link" href="?page=<%= i %><%= q %>">
 										  <%= i %>
 										</a>
 									  </li>
 									<% } else { %>
 									  <li class="page-item">
-										<a class="page-link" href="?page=<%= i %>">
+										<a class="page-link" href="?page=<%= i %><%= q %>">
 										  <%= i %>
 										</a>
 									  </li>
@@ -130,7 +178,7 @@
 									</li>
 								  <% } else { %>
 									<li class="page-item">
-									  <a class="page-link" href="?page=<%= pages %>">
+									  <a class="page-link" href="?page=<%= pages %><%= q %>">
 										Last
 									  </a>
 									</li>
@@ -169,6 +217,51 @@
                 dataType: "JSON",
                 success: function (response) {
                     console.log(response.status);
+                }
+            });
+        }
+    })
+    $('.btn-lock-un').click(function(){
+        if (!$(this).hasClass('disable')) {
+            const parent = $(this).closest('tr');
+            const id = parent.data('id');
+			const that = this;
+			var url = `/admin/permissions/${id}/`;
+			
+			if ($(this).hasClass('btn-lock')) {
+				url += 'lock';
+			} else {
+				url += 'unlock';
+			}
+
+            $.ajax({
+                type: "PATCH",
+                url: url,
+                dataType: "JSON",
+                success: function (response) {
+					if (response.status == 201) {
+						var statusL = parent.find('.status');
+						if (statusL.hasClass('text-success')) {
+							statusL.removeClass('text-success');
+							statusL.addClass('text-secondary');
+							statusL.html('Khoá');
+						}else{
+							statusL.addClass('text-success');
+							statusL.removeClass('text-secondary');
+							statusL.html('Hoạt động');
+						}
+						if ($(that).hasClass('btn-lock')) {
+							$(that).removeClass('btn-lock');
+							$(that).addClass('btn-unlock');
+							$(that).html('<i class="fas fa-lock"></i> Mở khoá');
+						}else{
+							$(that).addClass('btn-lock');
+							$(that).removeClass('btn-unlock');
+							$(that).html('<i class="fas fa-lock"></i> Khoá');
+						}
+
+						return false;
+					}
                 }
             });
         }

@@ -16,7 +16,14 @@
                 </div>
                 <div class="form-group">
                     <label for="birthday">Birthday</label>
-                    <input type="date" id="birthday" name="birthday" class="form-control" value="<%= users.birthday %>" disabled>
+                    <% 
+                        let birthday = users.birthday;
+                        let date = birthday.getDate();
+                        let month = birthday.getMonth() + 1;
+                        let year = birthday.getFullYear();
+                        birthday = year + '-' + month + '-' + date;
+                    %> 
+                    <input type="date" id="birthday" name="birthday" placeholder="" class="form-control" value="<%= birthday %>" disabled>
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone</label>

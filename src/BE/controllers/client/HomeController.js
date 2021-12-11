@@ -1,6 +1,6 @@
 const Product = require('../../models/Product');
 const Category = require('../../models/Category');
-
+const nodemailer =  require('nodemailer');
 
 module.exports.index = (req, res, next)=>{
         Product.find({}).limit(5).sort({createdAt: 1})
@@ -36,5 +36,34 @@ module.exports.search = (req, res, next) =>{
     .catch(next);
 };
 
+module.exports.subscribe = (req, res, next) =>{
+    const config = {
+        host: process.env.MAIL_STMP,
+        port: process.env.MAIL_POST,
+        secure: true,
+        auth: {
+            user: process.env.MAIL_USER, 
+            pass: process.env.MAIL_PASSWORD
+        },
+        tls: {
+            rejectUnauthorized: false
+        }
+    };
+    var transporter =  nodemailer.createTransport(config);
 
+    var mainOptions = {
+        from: process.env.MAIL_USER,
+        to: req.body.mail,
+        subject: 'Thông báo nhận thông tin từ AVNENDV shop',
+        html: '<h1>Bạn đã nhận đăng kí từ shop</h1>'
+    }
+
+    transporter.sendMail(mainOptions, function(err, info){
+        if (err) {
+            res.redirect('/');
+        } else {
+            res.redirect('/');
+        }
+    });
+};
 
