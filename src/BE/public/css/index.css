@@ -1,0 +1,204 @@
+    .banner-top {
+        height: 600px;
+    }
+    
+    .banner-item {
+        width: 100vw !important;
+        height: 600px;
+        counter-increment: gallery-cell;
+        /* position: relative; */
+    }
+    
+    .banner-item img {
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+        object-fit: cover;
+    }
+    
+    .banner-item .black-color {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        background-color: black;
+        opacity: 0.4;
+        z-index: 1000;
+    }
+    
+    .banner-item .banner-text {
+        position: absolute;
+        width: 600px;
+        color: white;
+        top: 35%;
+        left: 15%;
+        z-index: 9999;
+    }
+    
+    .banner-text-top {
+        font-weight: 700;
+        font-size: 50px;
+        opacity: 0;
+    }
+    
+    .banner-text-design {
+        width: 370px;
+        font-size: 50px;
+        font-weight: 400;
+        line-height: 1.1;
+        margin-top: 12px;
+        opacity: 0;
+    }
+    
+    .banner-text-style {
+        font-size: 20px;
+        margin-top: 7px;
+        opacity: 0;
+    }
+    
+    .banner-text-button {
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: transparent;
+        border: 1px solid #fff;
+        width: 130px;
+        margin-top: 30px;
+        transition: all 0.25s linear;
+    }
+    
+    .banner-text-button a {
+        color: #fff;
+    }
+    
+    .banner-text-button:hover {
+        background-color: #47c8e5b6;
+        border: none;
+    }
+    
+    .flickity-page-dots {
+        bottom: 10px;
+    }
+    
+    .flickity-button {
+        opacity: 0;
+        transition: all 0.25s linear;
+    }
+    
+    .banner-top:hover .flickity-button {
+        opacity: 1;
+        background-color: black;
+        color: #fff;
+    }
+    
+    .flickity-button-icon {
+        /* color: #fff !important; */
+    }
+    
+    .banner-top .flickity-page-dots .dot {
+        width: 13px;
+        height: 13px;
+        opacity: 1;
+        /* background: #ffffff; */
+    }
+    
+    .banner-top .flickity-page-dots .dot.is-selected {
+        background: #9F78FF;
+    }
+    
+    .banner-item.is-selected .banner-text .banner-text-top {
+        -webkit-animation: textra 0.8s forwards;
+        animation: textra 0.8s forwards;
+    }
+    
+    .banner-item.is-selected .banner-text .banner-text-design {
+        -webkit-animation: textra 1s forwards;
+        animation: textra 1s forwards;
+    }
+    
+    .banner-item.is-selected .banner-text .banner-text-style {
+        -webkit-animation: textra 1.4s forwards;
+        animation: textra 1.4s forwards;
+    }
+    
+    .banner-item.is-selected .banner-text .banner-text-button {
+        -webkit-animation: textra 1.4s forwards;
+        animation: textra 1.4s forwards;
+    }
+    
+    @-webkit-keyframes textra {
+        from {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    .features {
+        width: 100%;
+        padding: 2rem;
+        background-color: #f5f5fc;
+    }
+    
+    .features_list {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .features_list-item {
+        width: calc(100%/3 - 1.5rem);
+        height: auto;
+        padding: 3rem 4rem;
+        background-color: #a887fa28;
+        transition: all 0.5s linear;
+        border-radius: 1rem;
+    }
+    
+    .features_list-item:hover {
+        background-color: #fff;
+        box-shadow: 0 5px 20px 0px #9F78FF;
+    }
+    
+    .features_list-item:hover .features_list-item-title {
+        color: #da3f06;
+    }
+    
+    .features_list-item:hover .features_list-item-icon {
+        box-shadow: 0 5px 15px 0px #9F78FF;
+    }
+    
+    .features_list-item-icon {
+        width: 170px;
+        height: 170px;
+        margin: 0px auto 3rem auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        font-size: 70px;
+        color: #da3f06;
+        background-color: #fff;
+        transition: all 0.5s linear;
+        cursor: pointer;
+    }
+    
+    .features_list-item-title {
+        font-size: 25px;
+        color: #201f1f;
+        font-weight: 450;
+        line-height: 1.4;
+        transition: all 0.5s linear;
+        margin-bottom: 20px;
+        cursor: pointer;
+    }
+    
+    .features_list-item-text {
+        font-size: 25px;
+        line-height: 1.3;
+        font-weight: 300;
+    }

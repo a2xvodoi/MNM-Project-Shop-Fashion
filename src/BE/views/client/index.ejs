@@ -1,81 +1,52 @@
 <%- include('layouts/head') %>
     <!-- Main Slider Start -->
     <div class="header">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-3">
-                    <nav class="navbar bg-light">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="/">Trang chủ</a>
-                            </li>
-                            <% categories.forEach(element=> { %>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/<%= element._id %> ">
-                                        <%= element.name %>
-                                    </a>
-                                </li>
-                                <% }) %>
-                        </ul>
-                    </nav>
+        <!-- <div class="container-fluid"> -->
+        <div class="banner-top carousel" data-flickity='{ "freeScroll": true, "wrapAround": true,"autoPlay": 2500}'>
+            <div class="carousel-cell banner-item">
+                <img src="img/banner1.jpg" alt="">
+                <div class="black-color"></div>
+                <div class="banner-text">
+                    <div class="banner-text-top">Fashion Changing Always</div>
+                    <div class="banner-text-design">Creative Design</div>
+                    <div class="banner-text-style">Style is forever</div>
+                    <div class="banner-text-button"><a href="#shopnow">SHOW NOW</a></div>
                 </div>
-                <div class="col-md-6">
-                    <div class="header-slider normal-slider">
-                        <div class="header-slider-item">
-                            <img src="img/slider-1.jpg" alt="Slider Image" />
-                            <div class="header-slider-caption">
-                                <!-- <p>Some text goes here that describes the image</p>
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a> -->
-                            </div>
-                        </div>
-                        <div class="header-slider-item">
-                            <img src="img/slider-2.jpg" alt="Slider Image" />
-                            <div class="header-slider-caption">
-                                <!-- <p>Some text goes here that describes the image</p>
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a> -->
-                            </div>
-                        </div>
-                        <div class="header-slider-item">
-                            <img src="img/slider-3.jpg" alt="Slider Image" />
-                            <div class="header-slider-caption">
-                                <!-- <p>Some text goes here that describes the image</p>
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a> -->
-                            </div>
-                        </div>
-                    </div>
+            </div>
+            <div class="carousel-cell banner-item">
+                <img src="img/banner2.jpg" alt="">
+                <div class="black-color"></div>
+                <div class="banner-text">
+                    <div class="banner-text-top">Fashion Changing Always</div>
+                    <div class="banner-text-design">Creative Design</div>
+                    <div class="banner-text-style">Style is forever</div>
+                    <div class="banner-text-button"><a href="#shopnow">SHOW NOW</a></div>
                 </div>
-                <div class="col-md-3">
-                    <div class="header-img">
-                        <div class="img-item">
-                            <img src="img/category-1.jpg" />
-                            <a class="img-text" href="">
-                                <!-- <p>Some text goes here that describes the image</p> -->
-                            </a>
-                        </div>
-                        <div class="img-item">
-                            <img src="img/category-2.jpg" />
-                            <a class="img-text" href="">
-                                <!-- <p>Some text goes here that describes the image</p> -->
-                            </a>
-                        </div>
-                    </div>
+            </div>
+            <div class="carousel-cell banner-item">
+                <img src="img/banner3.jpg" alt="">
+                <div class="black-color"></div>
+                <div class="banner-text">
+                    <div class="banner-text-top">Fashion Changing Always</div>
+                    <div class="banner-text-design">Creative Design</div>
+                    <div class="banner-text-style">Style is forever</div>
+                    <div class="banner-text-button"><a href="#shopnow">SHOW NOW</a></div>
                 </div>
             </div>
         </div>
+        <!-- </div> -->
     </div>
     <!-- Main Slider End -->
 
     <!-- Brand Start -->
     <div class="brand">
-        <div class="container-fluid">
-            <div class="brand-slider">
-                <div class="brand-item"><img src="img/brand-1.png" alt=""></div>
-                <div class="brand-item"><img src="img/brand-2.png" alt=""></div>
-                <div class="brand-item"><img src="img/brand-3.png" alt=""></div>
-                <div class="brand-item"><img src="img/brand-4.png" alt=""></div>
-                <div class="brand-item"><img src="img/brand-5.png" alt=""></div>
-                <div class="brand-item"><img src="img/brand-6.png" alt=""></div>
-            </div>
+        <div class="brand-slider">
+            <div class="brand-item"><img src="img/brand-1.png" alt=""></div>
+            <div class="brand-item"><img src="img/brand-2.png" alt=""></div>
+            <div class="brand-item"><img src="img/brand-3.png" alt=""></div>
+            <div class="brand-item"><img src="img/brand-4.png" alt=""></div>
+            <div class="brand-item"><img src="img/brand-5.png" alt=""></div>
+            <div class="brand-item"><img src="img/brand-6.png" alt=""></div>
         </div>
     </div>
     <!-- Brand End -->
@@ -85,47 +56,31 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3">
-                    <div class="category-item ch-400">
-                        <img src="img/category-3.jpg" />
-                        <a class="category-name" href="">
-                            <!-- <p>Some text goes here that describes the image</p> -->
-                        </a>
+                    <div class="category-item">
+                        <img src="img/glasses.jpg" />
+                        <a href="#product" class="btn btn-category">Shop Now</a>
+                        <div class="category-text">Glases</div>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="category-item ch-250">
-                        <img src="img/category-4.jpg" />
-                        <a class="category-name" href="">
-                            <!-- <p>Some text goes here that describes the image</p> -->
-                        </a>
-                    </div>
-                    <div class="category-item ch-150">
-                        <img src="img/category-5.jpg" />
-                        <a class="category-name" href="">
-                            <!-- <p>Some text goes here that describes the image</p> -->
-                        </a>
+                    <div class="category-item">
+                        <img src="img/watches.jpg" />
+                        <a href="#product" class="btn btn-category">Shop Now</a>
+                        <div class="category-text">Watches</div>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="category-item ch-150">
-                        <img src="img/category-6.jpg" />
-                        <a class="category-name" href="">
-                            <!-- <p>Some text goes here that describes the image</p> -->
-                        </a>
-                    </div>
-                    <div class="category-item ch-250">
-                        <img src="img/category-7.jpg" />
-                        <a class="category-name" href="">
-                            <!-- <p>Some text goes here that describes the image</p> -->
-                        </a>
+                    <div class="category-item">
+                        <img src="img/jackets.jpg" />
+                        <a href="#product" class="btn btn-category">Shop Now</a>
+                        <div class="category-text">Jackets</div>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="category-item ch-400">
-                        <img src="img/category-8.jpg" />
-                        <a class="category-name" href="">
-                            <!-- <p>Some text goes here that describes the image</p> -->
-                        </a>
+                    <div class="category-item">
+                        <img src="img/clothes.jpg" />
+                        <a href="#product" class="btn btn-category">Shop Now</a>
+                        <div class="category-text">Clothes</div>
                     </div>
                 </div>
             </div>
@@ -138,7 +93,7 @@
     <!-- Featured Product End -->
 
     <!-- Newsletter Start -->
-    <div class="newsletter">
+    <div class="newsletter" id="shopnow">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6">
@@ -146,7 +101,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form">
-                        <input type="email" placeholder="Email ...">
+                        <input type="email" placeholder="Nhập địa chỉ email ...">
                         <button style="width: fit-content;">Đăng kí</button>
                     </div>
                 </div>
@@ -154,23 +109,26 @@
         </div>
     </div>
     <!-- Newsletter End -->
+    <div class="collection">
+        <div class="container-fluid">
+            <img src="img/colection.jpg" alt="">
+            <div class="collection-text">
+                <p>Collection Hourse Our First-ever</p>
+                <a href="#footer" class="btn-collection">About Us</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Recent Product Start -->
     <div class="recent-product product">
         <div class="container-fluid">
             <div class="section-header">
-                <h1>Sản phẩm mới nhất</h1>
+                <p>Sản phẩm mới nhất</p>
             </div>
-            <div class="row align-items-center product-slider product-slider-4">
+            <div class="row row-cols-lg-4 align-items-center">
                 <% products.forEach(function(product){%>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3" id="product">
                         <div class="product-item">
-                            <div class="product-title">
-                                <a href="/products/<%= product._id %>">
-                                    <%= product.name %>
-                                </a>
-
-                            </div>
                             <div class="product-image">
                                 <a href="/products/<%= product._id %>">
                                     <img src=<%=product.avatar %> alt=`image of ${
@@ -180,13 +138,18 @@
                                     <a href="#"><i class="fa fa-cart-plus"></i></a>
                                     <a href="#" class="wishlist-add" data-id="<%= product._id %>"><i
                                             class="fa fa-heart"></i></a>
-                                    <a href="/products/<%= product._id %>"><i class="fa fa-search"></i></a>
+                                    <a href="#"><i class="fa fa-search"></i></a>
                                 </div>
                             </div>
+                            <div class="product-title">
+                                <a href="/products/<%= product._id %>">
+                                    <%= product.name %>
+                                </a>
+                            </div>
                             <div class="product-price">
-                                <h3>
+                                <p>
                                     <%= product.price %><span>đ</span>
-                                </h3>
+                                </p>
                                 <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Mua ngay</a>
                             </div>
                         </div>
@@ -195,6 +158,36 @@
             </div>
         </div>
     </div>
+    <div class="container-fluid">
+        <div class="features">
+            <div class="features_list">
+                <div class="features_list-item">
+                    <i class="fas fa-phone features_list-item-icon"></i>
+                    <p class="features_list-item-title">0393448958</p>
+                    <p class="features_list-item-text">Round-the-clock free hotline (24/7)</p>
+                </div>
+                <div class="features_list-item">
+                    <i class="fas fa-truck features_list-item-icon"></i>
+                    <p class="features_list-item-title">
+                        Fast & Free Delivery
+                    </p>
+                    <p class="features_list-item-text">
+                        Free delivery on all orders
+                    </p>
+                </div>
+                <div class="features_list-item">
+                    <i class="fas fa-thumbs-up features_list-item-icon"></i>
+                    <p class="features_list-item-title">
+                        Fast & Free Delivery
+                    </p>
+                    <p class="features_list-item-text">
+                        Free delivery on all orders
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Recent Product End -->
     <%- include('layouts/foot') %>
         <%- include('partials/add-wishlist') %>
+            <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
