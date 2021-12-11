@@ -39,7 +39,7 @@ module.exports = (req, res, next) => {
         {
             link: '/admin/permissions',
             name: 'Phân quyền',
-            icon: 'fas fa-user',
+            icon: 'fas fa-cube',
             active: active === 'permissions' ? true : false,
         },
     ];
