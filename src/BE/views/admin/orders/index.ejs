@@ -5,20 +5,52 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="card">
-					<div class="card-header">
-						<div class="d-flex align-items-center">
+					<div class="card-header row" style="border-bottom: unset">
+						<div class="d-flex align-items-center col-md-6">
 							<h3 class="card-title">Đơn hàng</h3>
 						</div>
-						<div class="card-tools">
-							<div class="input-group input-group-sm" style="width: 150px;">
-								<input type="text" name="table_search" class="form-control float-right"
-									placeholder="Search">
-
-								<div class="input-group-append">
-									<button type="submit" class="btn btn-default">
-										<i class="fas fa-search"></i>
-									</button>
-								</div>
+						<div class="card-tools col-md-6">
+							<a href="#collapseFilter" class="btn btn-default text-primary float-sm-right"
+								data-toggle="collapse">
+								<i class="fas fa-filter"></i>
+								Lọc
+							</a>
+						</div>
+						<div class="collapse mt-3 w-100 <%= Object.keys(query).length !== 0 ? 'show' : '' %>" id="collapseFilter">
+							<div class="card card-body">
+								<form action="" method="get">
+									<div class="form-row">
+										<div class="form-group col-md-2">
+											<label for="_id">ID</label>
+											<input type="text" class="form-control" id="_id" name="_id" value="<%= query._id %>"/>
+										</div>
+										<div class="form-group col-md-4">
+											<label for="full_name">Tên người nhận</label>
+											<input type="text" class="form-control" id="full_name" name="full_name" value="<%= query.full_name ? query.full_name.$regex : ''%>"/>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="status">Trạng thái</label>
+											<select id="status" class="form-control" name="status">
+												<option value="">--- Chọn  trạng thái ---</option>
+												<option <%= query.status == 0 ? 'selected' : '' %> value="0">Chờ xử lý</option>
+												<option <%= query.status == 1 ? 'selected' : '' %> value="1">Đang giao</option>
+											</select>
+										</div>
+										<div class="form-group col-md-4">
+											<input type="date" class="form-control" name="date_from" id="date_from" value="<%= query.updatedAt ? query.updatedAt.$gte : '' %>">
+										</div>
+										<div class="form-group col-md-4">
+											<input type="date" class="form-control" name="date_to" id="date_to" value="<%= query.updatedAt ? query.updatedAt.$lte : ''%>">
+										</div>
+										<div class="form-group col-md-4">
+											<div class="text-right">
+												<button type="submit" class="btn btn-primary">
+													<i class="fas fa-filter"></i> Lọc
+												</button>
+											</div>
+										</div>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -37,35 +69,50 @@
 								</tr>
 							</thead>
 							<tbody>
+							<% if (orders && orders.length) { %>
 								<% orders.forEach(order => { %>
-								<tr>
-									<td>
-										<%= order._id %>
-									</td>
-									<td>
-										<%= order.full_name %>
-									</td>
-									<td>
-										<%= order.email %> 
-									</td>
-									<td>
-										<%= order.phone %>
-									</td>
-									<td>
-										<%= order.address %>
-									</td>
-									<td>
-										<%= order.status %>
-									</td>
-									<td class="text-right">
-										<a class="btn btn-primary btn-sm" href="/admin/orders/<%= order._id %>">
-											<i class="fas fa-folder">
-											</i>
-											View
-										</a>
-									</td>
+									<tr>
+										<td>
+											<%= order._id %>
+										</td>
+										<td>
+											<%= order.full_name %>
+										</td>
+										<td>
+											<%= order.email %> 
+										</td>
+										<td>
+											<%= order.phone %>
+										</td>
+										<td>
+											<%= order.address %>
+										</td>
+										<td>
+											<% if (order.status === 1) { %>
+												<span class="status text-success font-italic">Đang giao</span>
+											<% } else { %>
+												<span class="status text-danger font-italic">Chờ xử lý</span>
+											<% } %>
+										</td>
+										<td class="text-right">
+											<a class="btn btn-secondary btn-sm btn-confirm <%= order.status === 1 ? 'disable' : '' %>" data-id="<%= order._id %>">
+												<i class="fas fa-check">
+												</i>
+												Confirm
+											</a>
+											<a class="btn btn-primary btn-sm" href="/admin/orders/<%= order._id %>">
+												<i class="fas fa-folder">
+												</i>
+												View
+											</a>
+										</td>
+									</tr>
+									<% }) %>
+							<% } else { %>
+								<tr class="font-italic w-100 text-center">
+									<td colspan="7">Không tìm thấy đơn hàng nào nào!</td>
 								</tr>
-								<% }) %>
+							<% } %>
 							</tbody>
 						</table>
 					</div>
@@ -74,6 +121,7 @@
 						<% if(pages > 0) { %> <!-- show pagination if there is pages -->
 						  <nav class="mx-auto">
 							<ul class="pagination">
+								<% var q = Object.keys(query).length !== 0 ? ('&_id=' + (query._id ? query_id : '') + '&full_name=' + (query.full_name ? query.full_name.$regex: '') + '&date_from=' + (query.updatedAt ? query.updatedAt.$gte: '') + '&date_to=' + (query.updatedAt ? query.updatedAt.$lte: '') + '&status=' + (query.status ? query.status : '')) : ''; %> 
 							  <!-- FIRST ITEM -->
 							  <% if(current == 1) { %>
 								<li class="page-item disabled">
@@ -81,7 +129,7 @@
 								</li>
 							  <% } else { %>
 								<li class="page-item">
-								  <a class="page-link" href="?page=1">First</a>
+								  <a class="page-link" href="?page=1<%= q %>">First</a>
 								</li>
 							  <% } %>
 							  <!-- ITEMS  -->
@@ -94,13 +142,13 @@
 							  <% for(; i <= (Number(current) + 4) && i <= pages; i++) { %>
 								<% if(i == current) { %>
 								  <li class="page-item active">
-									<a class="page-link" href="?page=<%= i %>">
+									<a class="page-link" href="?page=<%= i %><%= q %>">
 									  <%= i %>
 									</a>
 								  </li>
 								<% } else { %>
 								  <li class="page-item">
-									<a class="page-link" href="?page=<%= i %>">
+									<a class="page-link" href="?page=<%= i %><%= q %>">
 									  <%= i %>
 									</a>
 								  </li>
@@ -120,7 +168,7 @@
 								</li>
 							  <% } else { %>
 								<li class="page-item">
-								  <a class="page-link" href="?page=<%= pages %>">
+								  <a class="page-link" href="?page=<%= pages %><%= q %>">
 									Last
 								  </a>
 								</li>
@@ -143,3 +191,26 @@
 <%- include('../partials/footer') %>
 <!-- Footer Bottom End -->
 <%- include('../layouts/foot')%>
+
+<script>
+	$('.btn-confirm').click(function(e) {
+		e.preventDefault();
+		const that = this;
+		if (!$(this).hasClass('disable')) {
+			const id = $(this).data('id')
+			$.ajax({
+				type: "PATCH",
+				url: `/admin/orders/${id}/confirm`,
+				success: function (response) {
+					if (response.status === 201) {
+						$(that).addClass('disable');
+						const statusO = $(that).closest('tr').find('.status');
+						statusO.html('Đang giao');
+						statusO.removeClass('text-danger');
+						statusO.addClass('text-success');
+					}
+				}
+			});
+		}
+	})
+</script>

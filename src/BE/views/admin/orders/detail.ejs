@@ -15,7 +15,7 @@
                     <div>ID người mua: <span class="font-italic"><%= order.userId._id %></div>
                     <div>Người mua: <span class="font-italic"><%= order.userId.full_name %></div>
                     <div>Ngày đặt hàng: <span class="font-italic"><%= order.createdAt.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></div>
-                    <div>Trạng thái: <span class="font-italic"><%= order.status %></div>
+                    <div>Trạng thái: <span class="font-italic <%= order.status === 1 ? 'text-success' : 'text-danger' %>"><%= order.status === 1 ? 'Đang giao' : 'Chờ xử lý' %></div>
                 </div>
             </div>
             <h4 class="my-2">Danh sách sản phẩm</h4>
