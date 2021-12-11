@@ -59,7 +59,11 @@
                                             <% } %>
 										</td>
 										<td>
-											
+											<% if (user.status === 1) { %>
+												<span class="text-success">Hoạt động</span>
+											<% } else { %>
+												<span class="text-secondary">Khoá</span>
+											<% } %>
 										</td>
 										<td class="text-right">
 											<button class="btn btn-primary btn-sm <%= user.userType === 'moderator' ? 'disable' : ''%>  btn-update">
