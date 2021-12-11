@@ -11,6 +11,7 @@ const { login } = require("../../middleware/client/Auth");
 
 /* GET home page. */
 router.get("/", homeController.index);
+router.post("/subscribe", homeController.subscribe);
 
 /* GET cart page. */
 router.get("/cart", login, cartController.cart);
