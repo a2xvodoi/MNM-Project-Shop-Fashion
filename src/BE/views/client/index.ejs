@@ -150,7 +150,7 @@
                             </div>
                             <div class="product-price">
                                 <p>
-                                    <%= product.price %><span>đ</span>
+                                    <%= product.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) %>
                                 </p>
                                 <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Mua ngay</a>
                             </div>
