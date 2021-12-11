@@ -73,7 +73,7 @@
 												<img src="<%= product.avatar %> " alt="" width="100px" height="100px" />
 											</td>
 											<td><%= product.category.name %></td>
-											<td><%= product.price %></td>
+											<td><%= product.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) %></td>
 											<td class="text-right">
 												<a class="btn btn-primary btn-sm" href="/admin/products/<%= product._id %>">
 													<i class="fas fa-folder"> </i>
