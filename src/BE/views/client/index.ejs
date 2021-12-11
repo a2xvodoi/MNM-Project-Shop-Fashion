@@ -146,8 +146,19 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form">
-                        <input type="email" placeholder="Email ...">
-                        <button style="width: fit-content;">Đăng kí</button>
+                        <%
+                            if(typeof(mess) != 'undefined' && mess != '') {
+                        %>
+                        <div style="padding: 10px; width: 100%; border-radius: 4px; background-color: #98c4ff; color: #006eff">
+                        <%- mess %>
+                        </div>
+                        <%
+                            }
+                        %>
+                        <form action="/index" method="POST">
+                            <input name="mail" placeholder="Mail của bạn..." required>
+                            <button type="submit">Gửi</button>
+                        </form>
                     </div>
                 </div>
             </div>
