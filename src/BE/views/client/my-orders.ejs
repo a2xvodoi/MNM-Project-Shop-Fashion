@@ -8,7 +8,7 @@
                         <div class="cart-page-inner">
                             <div class="row">
                                 <p class="location col-10">Mã đơn hàng <%= order._id %> </p>
-                                <p class="text-right col-2"><span>Đang giao</span></p>
+                                <p class="text-right col-2"><span><%= order.status === 1 ? 'Đang giao' : 'Chờ xử lý' %></span></p>
                             </div>
                             <% let total = 0 %> 
                             <% order.products.forEach(product => { %>

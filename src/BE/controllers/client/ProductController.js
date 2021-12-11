@@ -4,8 +4,32 @@ const Category = require('../../models/Category');
 module.exports.listProduct = (req, res, next) =>{
     const page = parseInt(req.query.page) || 1;
     const perPage = 8;
+    const sort = {};
 
-    Product.find({category: req.params.category}).skip((perPage * page) - perPage)
+    switch (req.query.sort) {
+        case 'price-ascending':
+            sort.price = 1;
+            break;
+    
+        case 'price-descending':
+            sort.price = -1;
+            break;
+    
+        case 'title-ascending':
+            sort.name = 1;
+            break;
+    
+        case 'title-descending':
+            sort.name = -1;
+            break;
+    
+        default:
+            sort.updatedAt = -1;
+            break;
+    }
+    Product.find({category: req.params.category})
+    .sort(sort)
+    .skip((perPage * page) - perPage)
     .limit(perPage)
     .then(products => {
         Product.find({category: req.params.category})
@@ -14,7 +38,8 @@ module.exports.listProduct = (req, res, next) =>{
             const data = {
                 products: products,
                 current: page,
-                pages: Math.ceil(count / perPage)
+                pages: Math.ceil(count / perPage),
+                sort: req.query.sort
             };
             res.render('client/list-product', data);
         })
