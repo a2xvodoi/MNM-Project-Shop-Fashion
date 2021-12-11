@@ -67,6 +67,7 @@ router.get('/orders', permission(3), orderController.index);
 
 /* GET detail order page. */
 router.get('/orders/:id', permission(3), orderController.detail);
+router.patch('/orders/:id/confirm', permission(3), orderController.confirm);
 
 /* GET list user page. */
 router.get('/users', permission(4), userController.index);

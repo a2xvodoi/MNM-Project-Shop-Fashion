@@ -73,49 +73,55 @@
 									</tr>
 								</thead>
 								<tbody>
-									<% users.forEach(user => { %>
-									<tr data-id="<%= user._id %>">
-										<td>
-											<%= user._id %>
-										</td>
-										<td>
-											<%=user.user_name %>
-										</td>
-										<td>
-											<%=user.full_name %>
-										</td>
-										<td>
-											<% if (user.userType === 'moderator') { %>
-                                            <span class="text-primary">Toàn quyền</span>
-                                            <% } else { %>
-                                                <select class="custom-select sl-role">
-                                                    <% roles.forEach(role => { %>
-                                                        <option value="<%= role._id %>" <%= role._id === user.role._id ? 'selected' : ''%> ><%= role.name %></option>
-                                                    <% }) %>
-                                                </select>
-                                            <% } %>
-										</td>
-										<td>
-											<% if (user.status === 1) { %>
-												<span class="status text-success">Hoạt động</span>
-											<% } else { %>
-												<span class="status text-secondary">Khoá</span>
-											<% } %>
-										</td>
-										<td class="text-right">
-											<button class="btn btn-primary btn-sm <%= (user.userType === 'moderator' || user.status === 0) ? 'disable' : ''%>  btn-update">
-												<i class="fas fa-pencil-alt"></i>
-												</i>
-												Cập nhật
-											</button>
-											<button class="btn btn-info btn-sm btn-lock-un <%= (user.userType === 'moderator') ? 'disable' : ''%> <%= user.status === 1 ? 'btn-lock' : 'btn-unlock' %>">
-												<i class="fas fa-lock"></i>
-												</i>
-												<%= user.status === 1 ? 'Khoá' : 'Mở khoá' %>
-											</button>
-										</td>
-									</tr>
-									<% }) %>
+									<% if (users && users.length) { %>
+										<% users.forEach(user => { %>
+											<tr data-id="<%= user._id %>">
+												<td>
+													<%= user._id %>
+												</td>
+												<td>
+													<%=user.user_name %>
+												</td>
+												<td>
+													<%=user.full_name %>
+												</td>
+												<td>
+													<% if (user.userType === 'moderator') { %>
+													<span class="text-primary">Toàn quyền</span>
+													<% } else { %>
+														<select class="custom-select sl-role">
+															<% roles.forEach(role => { %>
+																<option value="<%= role._id %>" <%= role._id === user.role._id ? 'selected' : ''%> ><%= role.name %></option>
+															<% }) %>
+														</select>
+													<% } %>
+												</td>
+												<td>
+													<% if (user.status === 1) { %>
+														<span class="status text-success">Hoạt động</span>
+													<% } else { %>
+														<span class="status text-secondary">Khoá</span>
+													<% } %>
+												</td>
+												<td class="text-right">
+													<button class="btn btn-primary btn-sm <%= (user.userType === 'moderator' || user.status === 0) ? 'disable' : ''%>  btn-update">
+														<i class="fas fa-pencil-alt"></i>
+														</i>
+														Cập nhật
+													</button>
+													<button class="btn btn-info btn-sm btn-lock-un <%= (user.userType === 'moderator') ? 'disable' : ''%> <%= user.status === 1 ? 'btn-lock' : 'btn-unlock' %>">
+														<i class="fas fa-lock"></i>
+														</i>
+														<%= user.status === 1 ? 'Khoá' : 'Mở khoá' %>
+													</button>
+												</td>
+											</tr>
+											<% }) %>
+									<% } else { %>
+										<tr class="font-italic w-100 text-center">
+											<td colspan="7">Không tìm thấy user nào!</td>
+										</tr>
+									<% } %>
 								</tbody>
 							
 							</table>
