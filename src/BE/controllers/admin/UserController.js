@@ -2,18 +2,25 @@ const User = require('../../models/User');
 
 module.exports = {
     index: (req, res, next) => {
+        const filter = {};
+        if (req.query._id) filter._id = req.query._id;
+        if (req.query.user_name) filter.user_name = {$regex: req.query.user_name,$options: 'i'};
+        if (req.query.full_name) filter.full_name = {$regex: req.query.full_name,$options: 'i'};
+        if (req.query.email) filter.email = {$regex: req.query.email,$options: 'i'};
+        if (req.query.userType) filter.userType = req.query.userType;
         const page = parseInt(req.query.page) || 1;
         const perPage = 10;
         
-        User.find({}).skip((perPage * page) - perPage)
+        User.find(filter).skip((perPage * page) - perPage)
         .limit(perPage)
         .then(users => {
-            User.count((err, count) => { // count to calculate the number of pages
+            User.find(filter).count((err, count) => { // count to calculate the number of pages
                 if (err) return next(err);
                 const data = {
                     users: users,
                     current: page,
-                    pages: Math.ceil(count / perPage)
+                    pages: Math.ceil(count / perPage),
+                    query: filter,
                 };
                 res.render('admin/users/index', data);
             })
