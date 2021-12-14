@@ -1,11 +1,20 @@
 const User = require("../../models/User");
-const bcrypt = require("bcryptjs");
+const {validationResult} = require('express-validator');
 
 module.exports.register = (req, res, next) => {
-    res.render("client/register");
+    res.render("client/user/register");
 };
 
 module.exports.postRegister = async function (req, res, next) {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        res.render("client/user/register", { 
+            errors: errors.array(),
+            old: req.body
+        });
+        return;
+    }
     const session = await User.startSession();
     session.startTransaction();
     try {
@@ -14,36 +23,35 @@ module.exports.postRegister = async function (req, res, next) {
             new: true,
         };
         const user = await new User(req.body);
-        // console.log(user); return;
         user.save(opts);
 
         await session.commitTransaction();
         session.endSession();
-        // req.session.message = {
-        //     type: 'create',
-        //     status: 'success',
-        // };
+
         console.log("success");
         res.redirect("/login");
     } catch (error) {
-        // req.session.message = {
-        //     type: 'create',
-        //     status: 'error',
-        // };
         await session.abortTransaction();
         session.endSession();
         res.redirect("back");
         console.log(error);
     }
-    // res.redirect("/thanh-cong");
 };
 
 module.exports.login = (req, res, next) => {
-    res.render("client/login");
+    res.render("client/user/login");
 };
 
 module.exports.postLogin = async (req, res, next) => {
-    // res.json(req.body);
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        res.render("client/user/login", { 
+            errors: errors.array(),
+            old: req.body
+        });
+    }
     const user_name = req.body.user_name;
     const password = req.body.password;
 
@@ -52,13 +60,23 @@ module.exports.postLogin = async (req, res, next) => {
             user_name
         });
 
+        const err = [
+            {
+                msg: "Tên đăng nhập hoặc mật khẩu không chính xác",
+            },
+        ];
         if (!user) {
-            res.json("Không tìm thấy user");
-            return;
+            res.render("client/user/login", { 
+                errors: err,
+                old: req.body
+            });
         }
         const isCorrectPassword = await user.isValidPassword(password);
 
-        if (!isCorrectPassword) return res.json("Mật khẩu sai");
+        if (!isCorrectPassword) return res.render("client/user/login", { 
+            errors: err,
+            old: req.body
+        });
         req.session.customer = {
             _id: user._id,
             user_name: user.user_name,
@@ -81,7 +99,7 @@ module.exports.show = (req, res, next) => {
             _id: userId
         })
         .then((user) => {
-            res.render("client/user-info", {
+            res.render("client/user/user-info", {
                 user: user
             });
         })
@@ -89,8 +107,17 @@ module.exports.show = (req, res, next) => {
 };
 
 module.exports.update = async (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.json({
+            status: 303,
+            errors: errors.array(),
+        });
+    }
+
     const userId = req.session.customer._id;
-    const data = JSON.parse(req.body.data);
+    const data = req.body.data;
     const session = await User.startSession();
     session.startTransaction();
 
@@ -119,8 +146,17 @@ module.exports.update = async (req, res, next) => {
     }
 }
 module.exports.updatePassword = async (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.json({
+            status: 303,
+            errors: errors.array(),
+        });
+    }
+
     const userId = req.session.customer._id;
-    const data = JSON.parse(req.body.data);
+    const data = req.body.data;
     const session = await User.startSession();
     session.startTransaction();
 
@@ -149,9 +185,9 @@ module.exports.updatePassword = async (req, res, next) => {
     } catch (error) {
         await session.abortTransaction();
         session.endSession();
-        res.status(300).json({
+        res.json({
             status: 300,
-            msg: 'error',
+            msg: error,
         })
     }
 }

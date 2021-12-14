@@ -1,0 +1,141 @@
+<%- include('../layouts/head') %>
+<!-- My Account Start -->
+<div class="my-account">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h4>Thông tin tài khoản</h4>
+                <form action="" method="post" id="form-validation-user-info">
+                    <div id="res-errors"></div>
+                    <div class="row info-change">
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" name="user_name" placeholder="User Name"
+                                value="<%= user.user_name%>">
+                        </div>
+                        <div class="col-md-6">
+                            <% 
+                                let birthday = user.birthday;
+                                let date = birthday.getDate();
+                                let month = birthday.getMonth() + 1;
+                                let year = birthday.getFullYear();
+                                birthday = year + '-' + month + '-' + date;
+                            %> 
+                            <input class="form-control" type="date" name="birthday" placeholder="Birthday"
+                                value="<%= birthday%>">
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" name="full_name" placeholder="Họ tên"
+                                value="<%= user.full_name%>">
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="tel" name="phone" placeholder="Số điện thoại"
+                                value="<%= user.phone%>">
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" name="email" placeholder="Email"
+                                value="<%= user.email%>">
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" name="address" placeholder="Địa chỉ"
+                                value="<%= user.address%>">
+                        </div>
+                        <div class="col-md-12">
+                            <button class="btn btn-update-info" type="submit">Cập nhật thông tin</button>
+                            <br><br>
+                        </div>
+                    </div>
+                    <h4>Đổi mật khẩu</h4>
+                    <div id="res-errors-pass"></div>
+                    <div class="row pass-change">
+                        <div class="col-md-12">
+                            <input class="form-control" type="password" name="old_password"
+                                placeholder="Mật khẩu hiện tại">
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="password" id="new_password" name="new_password" placeholder="Mật khẩu mới">
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="password" name="new_password_confirm"
+                                placeholder="Xác nhận mật khẩu">
+                        </div>
+                        <div class="col-md-12">
+                            <button class="btn btn-update-password">Lưu thay đổi</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- My Account End -->
+<%- include('../layouts/foot') %>
+<%- include('validation/info') %>
+
+<script src="/js/show-error-form.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.btn-update-info').click((e)=>{
+            e.preventDefault();
+            const userName = $('input[name="user_name"]').val();
+            const fullName = $('input[name="full_name"').val();
+            const phone = $('input[name="phone"').val();
+            const email = $('input[name="email"').val();
+            const address = $('input[name="address"').val();
+            const birthday = $('input[name="birthday"').val();
+
+            const data = {
+                'user_name': userName,
+                'full_name': fullName,
+                'phone': phone,
+                'email': email,
+                'address': address,
+                'birthday': birthday,
+            }
+            if (!$('.info-change').find('input.error').length) {
+            $.ajax({
+                type: "PUT",
+                url: "/user/update",
+                data: {data: JSON.stringify(data)},
+                dataType: "JSON",
+                success: function (response) {
+                    if (response.status === 200) {
+                        window.location.reload();
+                    }
+                    if (response.status === 303) {
+                        showError('#res-errors', response.errors);
+                    }
+                },
+            });
+        }
+        })
+    
+        $('.btn-update-password').click((e)=>{
+            e.preventDefault();
+            const passwordOld = $('input[name="old_password"]').val();
+            const passwordNew = $('input[name="new_password"]').val();
+
+            const data = {
+                'passwordOld': passwordOld,
+                'passwordNew': passwordNew,
+            }
+
+            if (!$('.pass-change').find('input.error').length) {
+                $.ajax({
+                    type: "PATCH",
+                    url: "/user/update-password",
+                    data: {data: JSON.stringify(data)},
+                    dataType: "JSON",
+                    success: function (response) {
+                        if (response.status === 200) {
+                            window.location.reload();
+                        }
+
+                        if (response.status === 303) {
+                            showError('#res-errors-pass', response.errors);
+                        }
+                    }
+                });
+            }
+        })
+    });
+</script>

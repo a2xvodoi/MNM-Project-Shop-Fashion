@@ -1,4 +1,5 @@
 const User = require('../../models/User');
+const {validationResult} = require('express-validator');
 
 module.exports = {
     index: (req, res, next) => {
@@ -66,6 +67,14 @@ module.exports = {
         res.render('admin/users/create');
     },
     store: async (req, res, next) => {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            return res.render("admin/users/create", { 
+                errors: errors.array(),
+                old: req.body
+            });
+        }
 
         const session = await User.startSession();
         session.startTransaction();
@@ -120,6 +129,14 @@ module.exports = {
 
     },
     update: async (req, res, next) => {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            return res.render("admin/users/create", { 
+                errors: errors.array(),
+                old: req.body
+            });
+        }
 
         const session = await User.startSession();
         session.startTransaction();

@@ -4,6 +4,7 @@
     <div class="container-fluid">
         <h3>Thêm mới sản phẩm</h3>
         <div class="card-body">
+            <div id="res-errors"></div>
             <div class="form-group">
                 <label for="name">Product Name</label>
                 <input type="text" id="name" name="name" class="form-control" />
@@ -95,5 +96,5 @@
 <% } %>
 <script src="/js/changeImage.js"></script>
 <script src="/js/addForm.js"></script>
-<%- include('../layouts/foot')%> <%- include('../partials/product-script',
-{type: 'create' }) %>
+<%- include('../layouts/foot')%> 
+<%- include('../partials/product-script',{type: 'create' }) %>

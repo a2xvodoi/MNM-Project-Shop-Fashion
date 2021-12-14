@@ -7,7 +7,9 @@ const productController = require("../../controllers/client/ProductController");
 const homeController = require("../../controllers/client/HomeController");
 const orderController = require("../../controllers/client/OrderController");
 
+var {validate}= require('../../helpers/requests/User');
 const { login } = require("../../middleware/client/Auth");
+const parse = require("../../middleware/ParseDataMiddleware");
 
 /* GET home page. */
 router.get("/", homeController.index);
@@ -38,8 +40,8 @@ router.get("/contact", (req, res, next) => {
 
 /* GET info user page. */
 router.get("/user/show", login, accountController.show);
-router.put("/user/update", login, accountController.update);
-router.patch("/user/update-password", login, accountController.updatePassword);
+router.put("/user/update", login, parse, validate.validateInfo(), accountController.update);
+router.patch("/user/update-password", login, parse, validate.validatePassword(), accountController.updatePassword);
 
 /* GET search product page. */
 router.get("/search", homeController.search);
@@ -49,11 +51,11 @@ router.get("/products/:_id", productController.detail);
 
 /* Register user */
 router.get("/register", accountController.register);
-router.post("/register", accountController.postRegister);
+router.post("/register", validate.validateRegisterUser(), accountController.postRegister);
 
 /* Login user */
 router.get("/login", accountController.login);
-router.post("/login", accountController.postLogin);
+router.post("/login", validate.validateLogin(), accountController.postLogin);
 
 /* Logout user */
 router.get("/logout", accountController.logout);

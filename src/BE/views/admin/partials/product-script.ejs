@@ -1,5 +1,6 @@
 <input type="hidden" name="type-submit" value="<%= type %> ">
 
+<script src="/js/show-error-form.js"></script>
 <script>
     $('.btn-submit').click((e)=>{
         e.preventDefault();
@@ -58,7 +59,12 @@
                     $('form[name="upload-files"]').submit();
                     return false;
                 }
-                window.location.href = '/admin/products/create';
+
+                if (response.status === 303) {
+                    showError('#res-errors', response.errors);
+                    return false;
+                }
+                window.location.reload();
             }
         });
     })

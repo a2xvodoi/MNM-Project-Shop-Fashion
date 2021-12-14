@@ -1,6 +1,7 @@
 <script src="/assets/plugins/jquery/jquery.validate.min.js"></script>
 <script>
-    $('#form-validation-user-info').validate({
+    $(document).ready(function () {
+        $('#form-validation-user-info').validate({
         rules: { 
             user_name: {
                 required: true,
@@ -27,4 +28,6 @@
             }
         }, 
     })
+
+    });
 </script>
