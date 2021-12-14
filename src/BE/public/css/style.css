@@ -2878,3 +2878,7 @@ select .selected {
         text-align: center;
     }
 }
+
+label.error{
+    color: #dc3545;
+}

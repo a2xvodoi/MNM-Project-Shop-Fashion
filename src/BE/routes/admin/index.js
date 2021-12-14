@@ -7,6 +7,9 @@ const orderController = require('../../controllers/admin/OrderController');
 const userController = require('../../controllers/admin/UserController');
 const permissionController = require('../../controllers/admin/PermissionController');
 
+var validateProduct= require('../../helpers/requests/Product').validate;
+var validateUser= require('../../helpers/requests/User').validate;
+const parse = require("../../middleware/ParseDataMiddleware");
 const size_color = require('../../widgets/size_color');
 const categories = require('../../widgets/category-client');
 const permission = require('../../middleware/admin/Permission');
@@ -33,13 +36,13 @@ router.get('/products', permission(1), categories, productController.index);
 router.get('/products/create', permission(1), categories, size_color, productController.create);
 
 /* POST store product page. */
-router.post('/products/create', permission(1), productController.store);
+router.post('/products/create', permission(1), parse, validateProduct.validateProduct(), productController.store);
 
 /* GET edit product page. */
 router.get('/products/:_id/edit', permission(1), categories, size_color, productController.edit);
 
 /* PUT edit product page. */
-router.put('/products/:_id/update', permission(1), productController.update);
+router.put('/products/:_id/update', permission(1), parse, validateProduct.validateProduct(), productController.update);
 
 /* POST upload file page. */
 router.post('/products/:_id/upload/:type', permission(1), productController.upload);
@@ -76,11 +79,11 @@ router.delete('/users/:_id/destroy', permission(4), userController.destroy);
 /* Get store user page. */
 router.get('/users/create', permission(4), userController.create);
 /* POST create user page. */
-router.post('/users/create', permission(4), userController.store);
+router.post('/users/create', permission(4), validateUser.validateRegisterUser(), userController.store);
 /* GET edit user page. */
 router.get('/users/:_id/edit', permission(4), userController.edit); 
 /* PUT update user page. */
-router.put('/users/:_id/update', permission(4), userController.update);
+router.put('/users/:_id/update', permission(4), validateUser.validateRegisterUser(), userController.update);
 /* get view user page. */
 router.get('/users/:_id/view', permission(4), userController.view);
 

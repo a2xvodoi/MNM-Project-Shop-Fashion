@@ -1,19 +1,29 @@
-<%- include('layouts/head') %>
+<%- include('../layouts/head') %>
     <!-- Login Start -->
     <div class="login">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
+                    <% if (typeof errors !== 'undefined') { %>
+                        <% errors.forEach(error => { %>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <%= error.msg %> 
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <% }) %>
+                    <% } %> 
                     <div class="login-form">
                         <form action="" method="post">
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Tên đăng nhập</label>
-                                    <input class="form-control" type="text" placeholder="Tên đăng nhập" name="user_name">
+                                    <input class="form-control" type="text" value="<%= typeof old !== 'undefined' ? old.user_name : '' %>" placeholder="Tên đăng nhập" name="user_name">
                                 </div>
                                 <div class="col-md-6">
                                     <label>Mật khẩu</label>
-                                    <input class="form-control" type="password" placeholder="Mật khẩu" name="password">
+                                    <input class="form-control" type="password" value="<%= typeof old !== 'undefined' ? old.password : '' %>" placeholder="Mật khẩu" name="password">
                                 </div>
                                 <div class="col-md-12">
                                     <div class="custom-control custom-checkbox">
@@ -32,4 +42,4 @@
         </div>
     </div>
     <!-- Login End -->
-    <%- include('layouts/foot') %>
+    <%- include('../layouts/foot') %>

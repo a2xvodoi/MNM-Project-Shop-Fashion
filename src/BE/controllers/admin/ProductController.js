@@ -1,8 +1,9 @@
 const Product = require('../../models/Product');
 const Category = require('../../models/Category');
+const {validationResult} = require('express-validator');
 
-var formidable = require('formidable');
-var mv = require('mv');
+const formidable = require('formidable');
+const mv = require('mv');
 
 /**
  * Save single file
@@ -80,12 +81,21 @@ module.exports = {
 
     // post /admin/product/create
     store: async (req, res, next) => {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            return res.json({
+                status: 303,
+                errors: errors.array(),
+            });
+        }
+
         const session = await Product.startSession();
         session.startTransaction();
         try {
             const opts = { session, new: true };
             
-            const data = JSON.parse(req.body.data);
+            const data = req.body.data;
             const product = await new Product(data);
             product.save(opts);
             console.log('success');
@@ -115,12 +125,21 @@ module.exports = {
 
     // put /admin/product/:_id/update
     update: async (req, res, next) => {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            return res.json({
+                status: 303,
+                errors: errors.array(),
+            });
+        }
+
         const session = await Product.startSession();
         session.startTransaction();
         try {
             const opts = { session, new: true };
             
-            const data = JSON.parse(req.body.data);
+            const data = req.body.data;
             await Product.findOneAndUpdate({ _id: req.params._id }, data, opts);
 
             await session.commitTransaction();
