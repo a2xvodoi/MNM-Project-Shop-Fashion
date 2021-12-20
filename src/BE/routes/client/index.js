@@ -7,12 +7,12 @@ const productController = require("../../controllers/client/ProductController");
 const homeController = require("../../controllers/client/HomeController");
 const orderController = require("../../controllers/client/OrderController");
 
-var {validate}= require('../../helpers/requests/User');
+const {validate}= require('../../helpers/requests/User');
 const { login } = require("../../middleware/client/Auth");
 const parse = require("../../middleware/ParseDataMiddleware");
 
 /* GET home page. */
-router.get("/", homeController.index);
+router.get("/", require('../../widgets/slider-client'), homeController.index);
 router.post("/subscribe", homeController.subscribe);
 
 /* GET cart page. */

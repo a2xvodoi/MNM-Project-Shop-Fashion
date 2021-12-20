@@ -14,20 +14,27 @@ module.exports = {
         res.render('admin/login');
     },
 
-    postLogin : passport.authenticate('local', { 
-        successRedirect: '/admin/dashboard',
-        failureRedirect: '/admin/login',
-    }),
-    // postLogin: passport.authenticate('local'),
-    // function(req, res) {
-    //   // If this function gets called, authentication was successful.
-    //   // `req.user` contains the authenticated user.
-    //   res.redirect('/admin');
-    // },
-
+    postLogin : (req, res, next)  =>{
+        passport.authenticate('local', (err, user) =>{
+            if (err)    return res.redirect('/admin/login');
+            // Redirect if it fails
+            if (!user){
+                const errors = [
+                    {
+                        msg: 'Tên tài khoản, mật khẩu không chính xác'
+                    }
+                ]
+                return res.render('admin/login', {errors: errors});
+            };
+            req.logIn(user, function(err) {
+                if (err)    return next(err);
+                // Redirect if it succeeds
+                return res.redirect('back');
+            });
+        })(req, res, next)
+    },
     logout : (req, res, next)=>{
         req.logout();
         res.redirect('/admin/login');
     },
-
 }

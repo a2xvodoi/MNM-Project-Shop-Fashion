@@ -6,6 +6,7 @@ const categoryController = require('../../controllers/admin/CategoryController')
 const orderController = require('../../controllers/admin/OrderController');
 const userController = require('../../controllers/admin/UserController');
 const permissionController = require('../../controllers/admin/PermissionController');
+const sliderController = require('../../controllers/admin/SliderController');
 
 var validateProduct= require('../../helpers/requests/Product').validate;
 var validateUser= require('../../helpers/requests/User').validate;
@@ -93,5 +94,8 @@ router.get('/permissions', permission(5), permissionController.index);
 router.patch('/permissions/:id/update', permission(5), permissionController.update);
 router.patch('/permissions/:id/lock', permission(5), permissionController.lock);
 router.patch('/permissions/:id/unlock', permission(5), permissionController.lock);
+
+/* GET slider page */
+router.get('/slider', sliderController.index);
 
 module.exports = router;

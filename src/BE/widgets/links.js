@@ -42,6 +42,12 @@ module.exports = (req, res, next) => {
             icon: 'fas fa-cube',
             active: active === 'permissions' ? true : false,
         },
+        {
+            link: '/admin/slider',
+            name: 'Quản lí slide',
+            icon: 'fas fa-sliders-h',
+            active: active === 'slider' ? true : false,
+        },
     ];
     next();
 }
