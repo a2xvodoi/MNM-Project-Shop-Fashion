@@ -16,7 +16,8 @@
               <i class="fas fa-user-tie"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-auto dropdown-menu-right" style="left: inherit; right: 0px;">
-              <a href="#" class="dropdown-item">Đổi mật khẩu</a>
+              <!-- <a href="#" class="dropdown-item" data-toggle="modal" data-target="#passwordModal">Đổi mật khẩu</a> -->
+              <button class="dropdown-item" data-toggle="modal" data-target="#passwordModal">Đổi mật khẩu</button>
               <a href="/admin/logout" class="dropdown-item">Đăng xuất</a>
             </div>
           </li>
@@ -27,3 +28,4 @@
         </li>
     </ul>
 </nav>
+<%- include('./change-password') %>

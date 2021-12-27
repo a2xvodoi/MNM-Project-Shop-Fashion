@@ -1,10 +1,23 @@
+const Product = require('../../models/Product');
+const Category = require('../../models/Category');
+const Order = require('../../models/Order');
 const User = require('../../models/User');
 const passport = require('passport');
 require('../../config/passport');
 
 module.exports = {
     index : (req, res, next)=>{
-        res.render('admin/dashboard');
+        Promise.all([Product.find(), Category.find(), Order.find(), User.find({userType: 'user'})])
+        .then(([products, categories, orders, users]) => {
+            const data = {
+                products: products,
+                categories: categories,
+                orders: orders,
+                users: users
+            }
+            res.render('admin/dashboard', data);
+        })
+        .catch(next);
     },
     
     login : (req, res, next)=>{

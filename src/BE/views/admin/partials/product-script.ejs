@@ -54,7 +54,6 @@
             success: function (response) {
                 if (response.status === 200) {
                     let formUpload = $('form[name="upload-files"]');
-                    console.log(formUpload);
                     formUpload.attr('action', `/admin/products/${response._id}/upload/${response.type}`);
                     $('form[name="upload-files"]').submit();
                     return false;

@@ -4,6 +4,7 @@ const accountController = require("../../controllers/client/AccountController");
 const cartController = require("../../controllers/client/CartController");
 const wishlistController = require("../../controllers/client/WishlistController");
 const productController = require("../../controllers/client/ProductController");
+const rateController = require("../../controllers/client/RateController");
 const homeController = require("../../controllers/client/HomeController");
 const orderController = require("../../controllers/client/OrderController");
 
@@ -48,6 +49,8 @@ router.get("/search", homeController.search);
 
 /* GET info product page. */
 router.get("/products/:_id", productController.detail);
+router.get("/products/:id/rate", rateController.rate);
+router.post("/products/:id/rate", rateController.setRate);
 
 /* Register user */
 router.get("/register", accountController.register);
