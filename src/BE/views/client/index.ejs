@@ -1,92 +1,54 @@
 <%- include('layouts/head') %>
     <!-- Main Slider Start -->
-    <div class="header">
-        <!-- <div class="container-fluid"> -->
-        <div class="banner-top carousel" data-flickity='{ "freeScroll": true, "wrapAround": true,"autoPlay": 2500}'>
-            <div class="carousel-cell banner-item">
-                <img src="img/banner1.jpg" alt="">
-                <div class="black-color"></div>
-                <div class="banner-text">
-                    <div class="banner-text-top">Fashion Changing Always</div>
-                    <div class="banner-text-design">Creative Design</div>
-                    <div class="banner-text-style">Style is forever</div>
-                    <div class="banner-text-button"><a href="#shopnow">SHOW NOW</a></div>
-                </div>
+    <% if (slider) { %>
+        <div class="header">
+            <!-- <div class="container-fluid"> -->
+            <div class="banner-top carousel" data-flickity='{ "freeScroll": true, "wrapAround": true,"autoPlay": 2500}'>
+                <% slider.banner.forEach(element => { %>
+                    <div class="carousel-cell banner-item">
+                        <img src="<%= element %> " alt="">
+                        <div class="black-color"></div>
+                        <!-- <div class="banner-text">
+                            <div class="banner-text-top">Fashion Changing Always</div>
+                            <div class="banner-text-design">Creative Design</div>
+                            <div class="banner-text-style">Style is forever</div>
+                            <div class="banner-text-button"><a href="#shopnow">SHOW NOW</a></div>
+                        </div> -->
+                    </div>
+                <% }) %>
             </div>
-            <div class="carousel-cell banner-item">
-                <img src="img/banner2.jpg" alt="">
-                <div class="black-color"></div>
-                <div class="banner-text">
-                    <div class="banner-text-top">Fashion Changing Always</div>
-                    <div class="banner-text-design">Creative Design</div>
-                    <div class="banner-text-style">Style is forever</div>
-                    <div class="banner-text-button"><a href="#shopnow">SHOW NOW</a></div>
-                </div>
+            <!-- </div> -->
+        </div>
+        <!-- Main Slider End -->
+    
+        <!-- Brand Start -->
+        <div class="brand">
+            <div class="brand-slider">
+                <% slider.brand.forEach(element => { %>
+                    <div class="brand-item"><img src="<%= element %> " alt=""></div>
+                <% }) %>
             </div>
-            <div class="carousel-cell banner-item">
-                <img src="img/banner3.jpg" alt="">
-                <div class="black-color"></div>
-                <div class="banner-text">
-                    <div class="banner-text-top">Fashion Changing Always</div>
-                    <div class="banner-text-design">Creative Design</div>
-                    <div class="banner-text-style">Style is forever</div>
-                    <div class="banner-text-button"><a href="#shopnow">SHOW NOW</a></div>
+        </div>
+        <!-- Brand End -->
+    
+        <!-- Category Start-->
+        <div class="category">
+            <div class="container-fluid">
+                <div class="row">
+                    <% slider.category.forEach(element => { %>
+                        <div class="col-md-3">
+                            <div class="category-item">
+                                <img src="<%= element.img %> " />
+                                <a href="<%= element.link %>" class="btn btn-category">Xem ngay</a>
+                                <div class="category-text"><%= element.category %></div>
+                            </div>
+                        </div>
+                    <% }) %>
                 </div>
             </div>
         </div>
-        <!-- </div> -->
-    </div>
-    <!-- Main Slider End -->
-
-    <!-- Brand Start -->
-    <div class="brand">
-        <div class="brand-slider">
-            <div class="brand-item"><img src="img/brand-1.png" alt=""></div>
-            <div class="brand-item"><img src="img/brand-2.png" alt=""></div>
-            <div class="brand-item"><img src="img/brand-3.png" alt=""></div>
-            <div class="brand-item"><img src="img/brand-4.png" alt=""></div>
-            <div class="brand-item"><img src="img/brand-5.png" alt=""></div>
-            <div class="brand-item"><img src="img/brand-6.png" alt=""></div>
-        </div>
-    </div>
-    <!-- Brand End -->
-
-    <!-- Category Start-->
-    <!-- <div class="category">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="category-item">
-                        <img src="img/glasses.jpg" />
-                        <a href="#product" class="btn btn-category">Shop Now</a>
-                        <div class="category-text">Glases</div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="category-item">
-                        <img src="img/watches.jpg" />
-                        <a href="#product" class="btn btn-category">Shop Now</a>
-                        <div class="category-text">Watches</div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="category-item">
-                        <img src="img/jackets.jpg" />
-                        <a href="#product" class="btn btn-category">Shop Now</a>
-                        <div class="category-text">Jackets</div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="category-item">
-                        <img src="img/clothes.jpg" />
-                        <a href="#product" class="btn btn-category">Shop Now</a>
-                        <div class="category-text">Clothes</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- Category End-->
+        <!-- Category End-->
+    <% } %>
 
     <!-- Featured Product Start -->
 
@@ -111,15 +73,17 @@
         </div>
     </div>
     <!-- Newsletter End -->
-    <div class="collection">
-        <div class="container-fluid">
-            <img src="img/colection.jpg" alt="">
-            <div class="collection-text">
-                <p>Collection Hourse Our First-ever</p>
-                <a href="#footer" class="btn-collection">About Us</a>
+    <% if (slider) { %>
+        <div class="collection">
+            <div class="container-fluid">
+                <img src="<%= slider.about %>" alt="">
+                <!-- <div class="collection-text">
+                    <p>Collection Hourse Our First-ever</p>
+                    <a href="#footer" class="btn-collection">About Us</a>
+                </div> -->
             </div>
         </div>
-    </div>
+    <% } %>
 
     <!-- Recent Product Start -->
     <div class="recent-product product">
@@ -137,7 +101,7 @@
                                     <%= product.name %>}`>
                                 </a>
                                 <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                    <!-- <a href="#"><i class="fa fa-cart-plus"></i></a> -->
                                     <a href="#" class="wishlist-add" data-id="<%= product._id %>"><i
                                             class="fa fa-heart"></i></a>
                                     <a href="#"><i class="fa fa-search"></i></a>
@@ -152,7 +116,7 @@
                                 <p>
                                     <%= product.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) %>
                                 </p>
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Mua ngay</a>
+                                <!-- <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Mua ngay</a> -->
                             </div>
                         </div>
                     </div>
@@ -165,25 +129,25 @@
             <div class="features_list">
                 <div class="features_list-item">
                     <i class="fas fa-phone features_list-item-icon"></i>
-                    <p class="features_list-item-title">0393448958</p>
-                    <p class="features_list-item-text">Round-the-clock free hotline (24/7)</p>
+                    <p class="features_list-item-title">+123-456-7890</p>
+                    <p class="features_list-item-text">Đường dây nóng miễn phí (24/7)</p>
                 </div>
                 <div class="features_list-item">
                     <i class="fas fa-truck features_list-item-icon"></i>
                     <p class="features_list-item-title">
-                        Fast & Free Delivery
+                        Giao hàng nhanh và miễn phí
                     </p>
                     <p class="features_list-item-text">
-                        Free delivery on all orders
+                        Giao hàng miễn phí trên tất cả các đơn đặt hàng
                     </p>
                 </div>
                 <div class="features_list-item">
                     <i class="fas fa-thumbs-up features_list-item-icon"></i>
                     <p class="features_list-item-title">
-                        Fast & Free Delivery
+                        Sự lựa chọn hàng đầu
                     </p>
                     <p class="features_list-item-text">
-                        Free delivery on all orders
+                        Sự ủng hộ và yêu thích từ khách hàng
                     </p>
                 </div>
             </div>

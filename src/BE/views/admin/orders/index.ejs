@@ -208,6 +208,10 @@
 						statusO.html('Đang giao');
 						statusO.removeClass('text-danger');
 						statusO.addClass('text-success');
+						toastMixin.fire({
+							animation: true,
+							title: 'Xác nhận thành công'
+						});
 					}
 				}
 			});

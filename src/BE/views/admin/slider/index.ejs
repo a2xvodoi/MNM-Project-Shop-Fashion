@@ -1,0 +1,56 @@
+<%- include('../layouts/head',{title: 'Quản lý slide'}) %>
+	<!-- Main content -->
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12 mb-4">
+                    <label for="">Banner</label><br>
+                    <div class="d-flex">
+                        <% slider.banner.forEach(element => { %>
+                            <img src="/<%= element %>" class="img-fluid mr-3" alt="" width="250px">
+                        <% }) %>
+                    </div>
+                    <label for="">Brand</label>
+                    <div class="d-flex">
+                        <% slider.brand.forEach(element => { %>
+                            <img src="/<%= element %>" class="img-fluid mr-3" alt="" width="120px">
+                        <% }) %>
+                    </div>
+                    <label for="">About</label>
+                    <div>
+                        <img src="/<%= slider.about %>" class="img-fluid mr-3" alt="" width="250px">
+                    </div>
+				</div>
+			</div>
+		</div><!-- /.container-fluid -->
+	</section>
+	<!-- /.content -->
+
+<!-- Footer Start -->
+<%- include('../partials/footer') %>
+<!-- Footer Bottom End -->
+<div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="categoryModalLabel">Thêm danh mục</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form action="" method="POST" name="form-category">
+					<div class="form-group">
+						<label for="name" class="col-form-label">Tên danh mục:</label>
+						<input type="text" class="form-control" id="name" name="name">
+					</div>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+					<button type="submit" class="btn btn-primary btn-confirm">Xác nhận</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%- include('../partials/delete-modal') %>
+<%- include('../layouts/foot')%>

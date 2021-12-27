@@ -2,13 +2,13 @@ const Product = require('../../models/Product');
 const nodemailer =  require('nodemailer');
 
 module.exports.index = (req, res, next)=>{
-        Product.find({}).limit(8).sort({updatedAt: -1})
-        .then(products=>{
-            res.render('client/index', {
-                products,
-            });
-        })
-        .catch(next);
+    Product.find({}).limit(8).sort({updatedAt: -1})
+    .then(products=>{
+        res.render('client/index', {
+            products,
+        });
+    })
+    .catch(next);
 };
 
 module.exports.search = (req, res, next) =>{

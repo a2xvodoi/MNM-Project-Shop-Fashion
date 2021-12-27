@@ -7,18 +7,18 @@
                     <div class="product-detail-top">
                         <div class="row">
                             <div class="col-md-5 align-items-center">
+                                <input type="text" name="_id" hidden value="<%= product._id %>" />
                                 <div class="product-slider-single normal-slider">
-                                    <input type="text" name="_id" hidden value="<%= product._id %>" />
                                     <% product.otherImg.forEach(index=> { %>
                                         <img src="<%= index %>" alt="Product Image" />
-                                        <% }); %>
+                                    <% }); %>
                                 </div>
                                 <div class="product-slider-single-nav normal-slider">
                                     <% product.otherImg.forEach(index=> { %>
                                         <div class="slider-nav-img">
                                             <img src="<%= index %>" alt="Product Image" />
                                         </div>
-                                        <% }); %>
+                                    <% }); %>
                                 </div>
                             </div>
                             <div class="col-md-7">
@@ -82,7 +82,7 @@
                                     <a class="nav-link active" data-toggle="pill" href="#description">Mô tả</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="pill" href="#reviews">Đánh giá (1)</a>
+                                    <a class="nav-link" data-toggle="pill" href="#reviews">Đánh giá</a>
                                 </li>
                             </ul>
 
@@ -94,22 +94,9 @@
                                 </div>
                                 <div id="reviews" class="container tab-pane fade">
                                     <div class="reviews-submitted">
-                                        <div class="reviewer">
-                                            Phasellus Gravida - <span>01 Jan 2020</span>
-                                        </div>
-                                        <div class="ratting">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <p>
-                                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.
-                                        </p>
                                     </div>
                                     <div class="reviews-submit">
-                                        <h4>Give your Review:</h4>
+                                        <h4>Đánh giá của bạn:</h4>
                                         <div class="ratting">
                                             <i class="far fa-star"></i>
                                             <i class="far fa-star"></i>
@@ -118,17 +105,19 @@
                                             <i class="far fa-star"></i>
                                         </div>
                                         <div class="row form">
-                                            <div class="col-sm-6">
-                                                <input type="text" placeholder="Name" />
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input type="email" placeholder="Email" />
+                                            <% if (!customer) { %>
+                                                <div class="col-sm-6">
+                                                    <input type="text" placeholder="Name" name="name" />
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="email" placeholder="Email" name="email" />
+                                                </div>
+                                            <% } %>
+                                            <div class="col-sm-12">
+                                                <textarea placeholder="Review" name="content"></textarea>
                                             </div>
                                             <div class="col-sm-12">
-                                                <textarea placeholder="Review"></textarea>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <button>Submit</button>
+                                                <button class="btn-submit-rate">Gửi</button>
                                             </div>
                                         </div>
                                     </div>
@@ -151,9 +140,7 @@
                                                 <img src="<%= product.avatar %>" alt="Product Image" />
                                             </a>
                                             <div class="product-action">
-                                                <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                                <a href="#"><i class="fa fa-search"></i></a>
-
+                                                <!-- <a href="#"><i class="fa fa-cart-plus"></i></a> -->
                                                 <a href="#" class="wishlist-add" data-id="<%= product._id %>"><i
                                                         class="fa fa-heart"></i></a>
                                                 <a href="/products/<%= product._id %>"><i class="fa fa-search"></i></a>
@@ -168,7 +155,7 @@
                                             <p>
                                                 <%= product.price.toLocaleString('it-IT', {style : 'currency' , currency: 'VND' })%>
                                             </p>
-                                            <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Mua ngay</a>
+                                            <!-- <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Mua ngay</a> -->
                                         </div>
                                     </div>
                                 </div>
@@ -193,6 +180,64 @@
         </div>
     </div>
     <!-- Product Detail End -->
-    <%- include('layouts/foot') %>
-        <%- include('partials/add-wishlist') %>
-            <script src="/js/cart.js"></script>
+<%- include('layouts/foot') %>
+<%- include('partials/add-wishlist') %>
+<script src="/js/cart.js"></script>
+<script>
+    const id = $('input[name="_id"]').val();
+    const showRate = (name, email, content) => {
+        $('.reviews-submitted').append(`
+            <div class="reviewer">
+                ${name || 'Ẩn danh'} <span>(${email})</span>
+            </div>
+            <div class="ratting">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+            </div>
+            <p>
+                ${content}
+            </p>
+        `);
+    }
+    const getRate = () => {
+        $.ajax({
+            type: "GET",
+            url: `/products/${id}/rate`,
+            dataType: "JSON",
+            success: function (response) {
+                $('.reviews-submitted').html('');
+                if (response.rates.length) {
+                    response.rates.forEach(rate => {
+                        showRate(rate.name, rate.email, rate.content);
+                    });
+                }else {
+                    $('.reviews-submitted').html('<i>Chưa có đánh giá nào</i>');
+                }
+            }
+        });
+    }
+    getRate();
+    $('.btn-submit-rate').click(function(){
+        let name = $('input[name="name"]').val() || '';
+        let email = $('input[name="email"]').val() || '';
+        let content = $('textarea[name="content"]').val();
+        
+        $.ajax({
+            type: "POST",
+            url: `/products/${id}/rate`,
+            data: {name, email, content},
+            dataType: "JSON",
+            success: function (response) {
+                if (response.status === 200) {
+                    getRate();
+                }
+            },
+            error: function(response){
+                console.log(response);
+            }
+        });
+    })
+</script>

@@ -912,7 +912,7 @@ a.btn-category {
 
 .product-item {
     position: relative;
-    padding-bottom: 60px;
+    /* padding-bottom: 60px; */
     margin-bottom: 30px;
     transition: all 0.25s linear;
     border: 1px solid #dae1f5;
