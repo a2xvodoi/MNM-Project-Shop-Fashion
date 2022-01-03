@@ -44,6 +44,12 @@ module.exports = {
                 session,
                 new: true
             };
+            if (req.user.userType !== 'moderator' && req.body.role === 'GeleME95A') {
+                throw new Error('Không có quyền này!');
+            }
+            if (req.user.role._id == 'GeleME95A' && req.body.role !== 'GeleME95A') {
+                throw new Error('Không có quyền này!');
+            }
             await User.findOneAndUpdate({
                 _id: req.params.id
             }, req.body, opts);
@@ -52,6 +58,7 @@ module.exports = {
             session.endSession();
             res.json({status: 201});
         } catch (error) {
+            console.log(1);
             await session.abortTransaction();
             session.endSession();
             res.json({status: 300});

@@ -2,8 +2,16 @@ const {check} = require('express-validator');
 
 const Product = require("../../models/Product");
 
-const checkExistName = async (value) => {
-	const rs = await Product.find({name : value}).count();
+const checkExistName = async (value, { req }) => {
+  const filter = {
+    name: value,
+  };
+  if (typeof req.params !== "undefined" && req.params._id) {
+    filter._id = {
+      $ne: req.params._id,
+    };
+  }
+	const rs = await Product.find(filter).count();
 	if (rs) {
 		throw new Error('Tên sản phẩm đã tồn tại');
 	}

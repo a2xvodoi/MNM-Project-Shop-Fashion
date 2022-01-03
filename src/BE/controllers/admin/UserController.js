@@ -83,7 +83,9 @@ module.exports = {
                 session,
                 new: true
             };
-
+            if (req.body.userType === 'moderator' && req.userType !== 'moderator') {
+                throw new Error("Không có quyền tạo tài khoản này!");
+            }
             const user = await new User(req.body);
             if (user.userType !== 'user') {
                 user.role = 'iVPO2fzrK';
@@ -115,6 +117,13 @@ module.exports = {
     },
     // get /admin/user/:_id/edit
     edit: (req, res, next) => {
+        if (req.user._id === req.params._id) {
+            req.session.message = {
+                type: 'update',
+                status: 'error',
+            };
+            res.redirect('/admin/users');
+        }
         User.findOne({
                 _id: req.params._id
             })
@@ -130,11 +139,23 @@ module.exports = {
     },
     update: async (req, res, next) => {
         const errors = validationResult(req);
+        const userUpdate = req.body;
+        if (req.user._id === req.params._id) {
+            req.session.message = {
+                type: 'update',
+                status: 'error',
+            };
+            res.redirect('/admin/users');
+        }
 
         if (!errors.isEmpty()) {
-            return res.render("admin/users/create", { 
+            const users = {
+                ...userUpdate,
+                _id: req.params._id
+            }
+            return res.render("admin/users/edit", { 
                 errors: errors.array(),
-                old: req.body
+                users: users
             });
         }
 
@@ -145,14 +166,23 @@ module.exports = {
                 session,
                 new: true
             };
-            if (req.body.userType !== 'user') {
-                req.body.role = 'iVPO2fzrK';
+            if (userUpdate.userType !== 'user') {
+                userUpdate.role = 'iVPO2fzrK';
             }
+            if (userUpdate.userType === 'moderator' && req.userType !== 'moderator') {
+                throw new Error("Không có quyền tạo tài khoản này!");
+            }
+            const user = await User.findOne({_id: req.params._id});
+            user.user_name = userUpdate.user_name;
+            user.password = userUpdate.password;
+            user.full_name = userUpdate.full_name;
+            user.birthday = userUpdate.birthday;
+            user.phone = userUpdate.phone;
+            user.email = userUpdate.email;
+            user.address = userUpdate.address;
+            user.userType = userUpdate.userType;
 
-            await User.findOneAndUpdate({
-                _id: req.params._id
-            }, req.body, opts);
-
+            user.save(opts);
             await session.commitTransaction();
             session.endSession();
             req.session.message = {
@@ -169,7 +199,7 @@ module.exports = {
             console.log(error);
             await session.abortTransaction();
             session.endSession();
-            res.redirect('back');
+            res.redirect('/admin/users');
         }
     },
     view: (req, res, next) => {
