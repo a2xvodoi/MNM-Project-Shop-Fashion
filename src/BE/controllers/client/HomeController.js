@@ -79,7 +79,12 @@ module.exports.subscribe = (req, res, next) =>{
         from: process.env.MAIL_USER,
         to: req.body.mail,
         subject: 'Thông báo nhận thông tin từ AVNENDV shop',
-        html: '<h1>Bạn đã nhận đăng kí từ shop</h1>'
+        html: '<h1>Bạn đã nhận đăng kí từ shop AVNENDV</h1>' + 
+            "</br><h4>Cảm ơn bạn đã quan tâm đến shop của chúng tôi .Thư gửi này để xác nhận cho việc đăng ký nhận thông tin của bạn  </h4>"+
+            "</br> <h4> Thông tin liên hệ  </h4>"+
+            "</br> <h4><strong> Số điện thoại: </strong>  0336637633  </h4>"+
+            "</br><span><h4> <strong> Fanpage: </strong> https://www.facebook.com/profile.php?id=100075157174164 </h4> </br>"+
+            "</br><h4> <strong> Website của chúng tôi :</h4> </strong><h5> https://avnendv.herokuapp.com/ </h5> </br>",
     }
 
     transporter.sendMail(mainOptions, function(err, info){

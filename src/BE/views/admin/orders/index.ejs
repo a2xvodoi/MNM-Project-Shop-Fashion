@@ -34,6 +34,7 @@
 												<option value="">--- Chọn  trạng thái ---</option>
 												<option <%= query.status == 0 ? 'selected' : '' %> value="0">Chờ xử lý</option>
 												<option <%= query.status == 1 ? 'selected' : '' %> value="1">Đang giao</option>
+												<option <%= query.status == 2 ? 'selected' : '' %> value="2">Đã thanh toán</option>
 											</select>
 										</div>
 										<div class="form-group col-md-4">
@@ -89,13 +90,15 @@
 										</td>
 										<td>
 											<% if (order.status === 1) { %>
-												<span class="status text-success font-italic">Đang giao</span>
+												<span class="status text-secondary font-italic">Đang giao</span>
+											<% } else if (order.status === 2) { %>
+												<span class="status text-success font-italic">Đã thanh toán</span>
 											<% } else { %>
 												<span class="status text-danger font-italic">Chờ xử lý</span>
 											<% } %>
 										</td>
 										<td class="text-right">
-											<a class="btn btn-secondary btn-sm btn-confirm <%= order.status === 1 ? 'disable' : '' %>" data-id="<%= order._id %>">
+											<a class="btn btn-secondary btn-sm btn-confirm <%= (order.status === 1 || order.status === 2) ? 'disable' : '' %>" data-id="<%= order._id %>">
 												<i class="fas fa-check">
 												</i>
 												Confirm
@@ -207,7 +210,7 @@
 						const statusO = $(that).closest('tr').find('.status');
 						statusO.html('Đang giao');
 						statusO.removeClass('text-danger');
-						statusO.addClass('text-success');
+						statusO.addClass('text-secondary');
 						toastMixin.fire({
 							animation: true,
 							title: 'Xác nhận thành công'
