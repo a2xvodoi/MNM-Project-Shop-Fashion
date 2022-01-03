@@ -188,7 +188,7 @@ module.exports = {
     },
 
     upload: async (req, res, next) => {
-        const form = formidable({ multiples: true });
+        const form = formidable({ multiples: true, maxFileSize: 100 * 1024 * 1024 });
 
         const session = await Product.startSession();
         session.startTransaction();

@@ -216,10 +216,20 @@
                 data: { role: role},
                 dataType: "JSON",
                 success: function (response) {
-                    toastMixin.fire({
-						animation: true,
-						title: 'Cập nhật quyền thành công!'
-					});
+                    if (response.status === 201) {
+						toastMixin.fire({
+							animation: true,
+							title: 'Cập nhật quyền thành công!'
+						});
+						return false;
+					}else{
+						toastMixin.fire({
+							animation: true,
+							title: 'Cập nhật quyền không thành công!',
+							icon: 'error',
+						});
+						return false;
+					}
                 }
             });
         }

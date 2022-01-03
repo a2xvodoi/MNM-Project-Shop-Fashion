@@ -213,8 +213,17 @@
 		<script>
 			Swal.fire(
 				'Success!',
-				'Cập nhật sản phẩm thành công!',
+				'Cập nhật tài khoản thành công!',
 				'success'
+			)
+		</script>
+<% } %>
+<% if (message && message.type === 'update' && message.status === 'error') { %>
+		<script>
+			Swal.fire(
+				'Error!',
+				'Đã có lỗi khi cập nhật tài khoản!',
+				'error'
 			)
 		</script>
 <% } %>

@@ -21,9 +21,10 @@
                         let date = birthday.getDate();
                         let month = birthday.getMonth() + 1;
                         let year = birthday.getFullYear();
-                        birthday = year + '-' + month + '-' + date;
+                        // birthday = year + '-' + month + '-' + date;
+                        birthday = date + '-' + month + '-' + year;
                     %> 
-                    <input type="date" id="birthday" name="birthday" placeholder="" class="form-control" value="<%= birthday %>" disabled>
+                    <input type="text" id="birthday" name="birthday" placeholder="" class="form-control" value="<%= birthday %>" disabled>
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone</label>
