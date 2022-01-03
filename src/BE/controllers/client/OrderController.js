@@ -12,7 +12,7 @@ const configMomo = (order, total, rq, res) => {
     const extraData = ""; //pass empty value if your merchant does not have stores
     const orderId = order._id;
     const orderInfo = `Thanh toán đơn hàng ${order._id} với momo`;
-    const redirectUrl = "http://localhost:3000/my-orders";
+    const redirectUrl = "https://avnendv.herokuapp.com/my-orders";
     const ipnUrl = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
     const amount = total + 10000;
     //before sign HMAC SHA256 with format
